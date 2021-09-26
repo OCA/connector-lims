@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_lims_attribute
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-26 11:39+0000\n"
+"PO-Revision-Date: 2021-09-26 11:39+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_lims_attribute
+#: model:ir.model.fields,field_description:product_lims_attribute.field_product_template__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: product_lims_attribute
+#: model:ir.model.fields,field_description:product_lims_attribute.field_product_template__id
+msgid "ID"
+msgstr ""
+
+#. module: product_lims_attribute
+#: model:ir.model.fields,field_description:product_lims_attribute.field_product_product__is_product_sample
+#: model:ir.model.fields,field_description:product_lims_attribute.field_product_template__is_product_sample
+msgid "Is a product sample"
+msgstr ""
+
+#. module: product_lims_attribute
+#: model:ir.model.fields,field_description:product_lims_attribute.field_product_template____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: product_lims_attribute
+#: model:ir.model,name:product_lims_attribute.model_product_template
+msgid "Product Template"
+msgstr ""
