@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.lims.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <div name="options" position="inside">
+                <div>
+                    <field name="is_product_sample" />
+                    <label for="is_product_sample" />
+                </div>
+            </div>
+            <notebook position="inside">
+                <page
+                    name="product_lims"
+                    groups="base.group_no_one"
+                    string="LIMS"
+                    attrs="{'invisible': [('is_product_sample', '!=', True)]}"
+                >
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
