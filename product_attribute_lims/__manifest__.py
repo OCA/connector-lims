@@ -6,7 +6,7 @@
     "summary": "Product attributes for LIMS",
     "version": "14.0.1.0.1",
     "license": "AGPL-3",
-    "author": "Xtendoo, Odoo Community Association (OCA)",
+    "author": "DDl, Xtendoo, Odoo Community Association (OCA)",
     "category": "Warehouse",
     "website": "https://github.com/OCA/connector-lims",
     "depends": [
