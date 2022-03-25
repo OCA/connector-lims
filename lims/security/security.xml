@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Dixmit
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record id="ir_module_category_lims" model="ir.module.category">
+        <field name="name">LIMS</field>
+    </record>
+    <record id="group_lims_base" model="res.groups">
+        <field name="name">LIMS Base Root Menu</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+    <record id="group_lims_sampler" model="res.groups">
+        <field name="name">Sampler</field>
+        <field name="category_id" ref="ir_module_category_lims" />
+        <field name="implied_ids" eval="[(4, ref('group_lims_base'))]" />
+    </record>
+    <record id="group_lims_analyst" model="res.groups">
+        <field name="name">Analyst</field>
+        <field name="category_id" ref="ir_module_category_lims" />
+        <field name="implied_ids" eval="[(4, ref('group_lims_base'))]" />
+    </record>
+    <record id="group_lims_verifier" model="res.groups">
+        <field name="name">Verifier</field>
+        <field name="category_id" ref="ir_module_category_lims" />
+        <field name="implied_ids" eval="[(4, ref('group_lims_base'))]" />
+    </record>
+    <record id="group_lims_publisher" model="res.groups">
+        <field name="name">Publisher</field>
+        <field name="category_id" ref="ir_module_category_lims" />
+        <field name="implied_ids" eval="[(4, ref('group_lims_base'))]" />
+    </record>
+    <record id="group_lims_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="ir_module_category_lims" />
+        <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+        <field
+            name="implied_ids"
+            eval="[
+                    (4, ref('group_lims_sampler')),
+                    (4, ref('group_lims_analyst')),
+                    (4, ref('group_lims_verifier')),
+                    (4, ref('group_lims_publisher')),
+                ]"
+        />
+    </record>
+    <!-- TODO: security rules for analysis and samples -->
+</odoo>

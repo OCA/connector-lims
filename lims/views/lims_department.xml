@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Dixmit
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record model="ir.ui.view" id="lims_department_form_view">
+        <field name="name">lims.department.form (in lims)</field>
+        <field name="model">lims.department</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        text="Archived"
+                        bg_color="bg-danger"
+                        invisible="active"
+                    />
+                    <field name="active" invisible="1" />
+                    <group>
+                        <field name="name" />
+                    </group>
+                    <notebook>
+                        <page name="user" string="Users">
+                            <field name="user_ids" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="lims_department_search_view">
+        <field name="name">lims.department.search (in lims)</field>
+        <field name="model">lims.department</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <filter
+                    name="archived"
+                    domain="[('active', '=', False)]"
+                    string="Archived"
+                />
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="lims_department_list_view">
+        <field name="name">lims.department.list (in lims)</field>
+        <field name="model">lims.department</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+            </list>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="lims_department_act_window">
+        <field name="name">Department</field>
+        <!-- TODO -->
+        <field name="res_model">lims.department</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+    <record model="ir.ui.menu" id="lims_department_menu">
+        <field name="name">Department</field>
+        <field name="parent_id" ref="lims_config_root" />
+        <field name="action" ref="lims_department_act_window" />
+        <field name="sequence" eval="70" />
+    </record>
+</odoo>

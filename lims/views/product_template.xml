@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Dixmit
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.product.website.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='options']" position="inside">
+                <div>
+                    <field name="laboratory_ok" />
+                    <label for="laboratory_ok" />
+                </div>
+                <div>
+                    <field name="is_lab_template" />
+                    <label for="is_lab_template" />
+                </div>
+            </xpath>
+            <field name="uom_id" position="after">
+                <field
+                    name="laboratory_uom_id"
+                    invisible="not laboratory_ok"
+                    required="laboratory_ok"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="product_template_search_view" model="ir.ui.view">
+        <field name="name">product.template.search</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view" />
+        <field name="arch" type="xml">
+            <filter name="filter_to_sell" position="after">
+                <filter
+                    string="Can use on Lab"
+                    name="filter_laboratory_ok"
+                    domain="[('laboratory_ok','=',True)]"
+                />
+            </filter>
+        </field>
+    </record>
+    <record id="product_template_action" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,list,form,activity</field>
+        <field name="view_id" ref="product.product_template_kanban_view" />
+        <field name="search_view_id" ref="product.product_template_search_view" />
+        <field
+            name="context"
+        >{"search_default_filter_laboratory_ok":1, "default_laboratory_ok": 1, 'default_type': 'service'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                    Create a new product
+                </p>
+            <p>
+                    You must define a product for everything you sell or purchase,
+                    whether it's a storable product, a consumable or a service.
+                </p>
+        </field>
+    </record>
+    <menuitem
+        action="product_template_action"
+        id="menu_product_template_action"
+        parent="lims_config_root"
+        sequence="1"
+    />
+</odoo>

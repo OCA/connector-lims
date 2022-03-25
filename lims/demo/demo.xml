@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Dixmit
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo noupdate="1">
+    <record model="lims.sample.type" id="lims_blood_sample_type">
+        <field name="name">Blood</field>
+    </record>
+    <record model="lims.department" id="lims_hematology_department">
+        <field name="name">Hematology</field>
+        <field name="user_ids" eval="[(4, ref('base.user_admin'))]" />
+    </record>
+</odoo>

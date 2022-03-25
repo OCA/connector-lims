@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Dixmit
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record model="ir.ui.view" id="lims_analysis_form_view">
+        <field name="name">lims.analysis.form (in lims)</field>
+        <field name="model">lims.analysis</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" readonly="1" />
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box" />
+                    <h1>
+                        <label for="identifier" />
+                        <field name="identifier" />
+                    </h1>
+                    <group>
+                        <field name="sample_id" />
+                        <field name="company_id" />
+                        <field name="progress" widget="progressbar" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="lims_analysis_search_view">
+        <field name="name">lims.analysis.search (in lims)</field>
+        <field name="model">lims.analysis</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="identifier" />
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="lims_analysis_list_view">
+        <field name="name">lims.analysis.list (in lims)</field>
+        <field name="model">lims.analysis</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="identifier" column_invisible="1" />
+                <field
+                    name="product_id"
+                    context="{'default_laboratory_ok': True, 'default_sale_ok':False, 'default_purchase_ok':False}"
+                    options="{'no_quick_create': true}"
+                    readonly="state!='registered'"
+                />
+                <field name="name" readonly="state!='registered'" />
+                <field name="value" readonly="state!='to_analyze'" />
+                <field name="uom_id" readonly="state!='registered'" />
+                <field name="state" force_save="1" />
+                <field name="progress" widget="progressbar" />
+                <field name="can_verify" column_invisible="1" />
+                <button
+                    name="analyze_action"
+                    groups="lims.group_lims_analyst"
+                    type="object"
+                    icon="fa-check-square-o"
+                    title="Analyze"
+                    invisible="value == False or state != 'to_analyze'"
+                />
+                <button
+                    name="verify_action"
+                    groups="lims.group_lims_verifier"
+                    type="object"
+                    title="Verify"
+                    icon="fa-check-circle-o"
+                    invisible="can_verify == False or state != 'to_be_verified'"
+                />
+                <button
+                    name="retract_action"
+                    groups="lims.group_lims_verifier"
+                    type="object"
+                    title="Retract"
+                    icon="fa-undo"
+                    invisible="state != 'to_be_verified'"
+                />
+            </list>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="lims_analysis_act_window">
+        <field name="name">Analysis</field>
+        <field name="res_model">lims.analysis</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+</odoo>

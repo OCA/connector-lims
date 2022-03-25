@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_lims_sample_type,access_lims_analysis,model_lims_sample_type,lims.group_lims_base,1,0,0,0
+manage_lims_sample_type,access_lims_analysis,model_lims_sample_type,lims.group_lims_manager,1,1,1,1
+access_lims_department,access_lims_analysis,model_lims_department,lims.group_lims_base,1,0,0,0
+manage_lims_department,access_lims_analysis,model_lims_department,lims.group_lims_manager,1,1,1,1
+access_lims_sample,access_lims_analysis,model_lims_sample,lims.group_lims_base,1,0,0,0
+manage_lims_sample,access_lims_analysis,model_lims_sample,lims.group_lims_sampler,1,1,1,0
+access_lims_analysis,access_lims_analysis,model_lims_analysis,lims.group_lims_base,1,0,0,0
+manage_lims_analysis_analyst,access_lims_analysis,model_lims_analysis,lims.group_lims_analyst,1,1,1,1
+manage_lims_analysis_verifier,access_lims_analysis,model_lims_analysis,lims.group_lims_verifier,1,1,1,1
+manage_lims_analysis_publisher,access_lims_analysis,model_lims_analysis,lims.group_lims_publisher,1,1,1,1
