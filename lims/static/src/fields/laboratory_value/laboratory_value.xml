@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+<!-- Copyright 2026 Dixmit
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+   <t t-name="lims.LaboratoryValueField" owl="1">
+        <div t-ref="root">
+            <t t-if="props.readonly">
+                <ul t-if="type === 'multiselection-check'">
+                    <li
+                        t-foreach="value"
+                        t-as="option"
+                        t-key="option_index"
+                        t-att-class="value[option] ? 'selected' : 'not-selected'"
+                    >
+                        <span class="ps-1" t-esc="option" />
+                    </li>
+                </ul>
+                <CheckBox
+                    id="props.id"
+                    value="value"
+                    className="'d-inline-block'"
+                    disabled="props.readonly"
+                    onChange.bind="onChangeBoolean"
+                    t-elif="type==='boolean'"
+                />
+                <TagsList
+                    t-elif="type === 'multiselection'"
+                    tags="value.map((x) => ({text: x}))"
+                />
+                <span
+                    t-attf-class="o_lims_laboratory_value_{{type}}"
+                    t-esc="value"
+                    t-else=""
+                />
+            </t>
+            <t t-else="">
+                <input
+                    t-if="type === 'float'"
+                    t-att-id="props.id"
+                    t-ref="numpadDecimal"
+                    inputmode="decimal"
+                    class="o_input"
+                    autocomplete="off"
+                />
+                <textarea
+                    class="o_input"
+                    t-att-id="props.id"
+                    t-ref="textInput"
+                    t-att-rows="1"
+                    t-if="type === 'text'"
+                />
+                <input
+                    class="o_input"
+                    t-att-class="{
+                    'o_field_translate': isTranslatable,
+                    'o_field_placeholder': hasDynamicPlaceholder
+                }"
+                    t-att-id="props.id"
+                    type="text"
+                    autocomplete="off"
+                    t-ref="charInput"
+                    t-if="type === 'char'"
+                />
+                <CheckBox
+                    id="props.id"
+                    value="value"
+                    className="'d-inline-block'"
+                    disabled="props.readonly"
+                    onChange.bind="onChangeBoolean"
+                    t-elif="type==='boolean'"
+                />
+                <input
+                    t-ref="dateInput"
+                    type="text"
+                    t-att-id="props.id"
+                    autocomplete="off"
+                    t-att-placeholder="props.placeholder"
+                    data-field="dateInput"
+                    t-on-input="onDateInput"
+                    t-on-change="onDateChange"
+                    t-att-value="formattedDate || state.value"
+                    t-on-focus="() => picker.activeInput = 'dateInput'"
+                    t-elif="type === 'datetime' || type === 'date'"
+                />
+                <ul t-if="type === 'multiselection-check'">
+                    <li
+                        t-foreach="value"
+                        t-as="option"
+                        t-key="option_index"
+                        t-att-class="value[option] ? 'selected' : 'not-selected'"
+                        t-on-click="() => this.onChangeMultiSelectionCheck(option)"
+                    >
+                        <span class="ps-1" t-esc="option" />
+                    </li>
+                </ul>
+                <SelectMenu
+                    t-if="type === 'selection'"
+                    autoSort="false"
+                    class="'border-0'"
+                    menuClass="'o_field_selection_menu w-auto'"
+                    value="value"
+                    choices="props.record.data[props.name].selection.map((x)=>({value: x, label:x}))"
+                    onSelect.bind="onChangeSelection"
+                    id="props.id"
+                    searchable="true"
+                />
+                <div
+                    t-ref="multiselectionInput"
+                    t-if="type === 'multiselection'"
+                    class="o_multiselection_input"
+                >
+                    <SelectMenu
+                        autoSort="false"
+                        class="'border-0'"
+                        multiSelect="true"
+                        menuClass="'o_field_selection_menu w-auto'"
+                        value="value"
+                        choices="props.record.data[props.name].selection.map((x)=>({value: x, label:x}))"
+                        onSelect.bind="onChangeSelection"
+                        id="props.id"
+                        searchable="true"
+                    />
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>

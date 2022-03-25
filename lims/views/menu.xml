@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Dixmit
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <menuitem
+        id="lims_root"
+        name="LIMS"
+        sequence="10"
+        groups="lims.group_lims_base"
+        web_icon="lims,static/description/icon.png"
+    />
+    <menuitem id="lims_sample_root" name="Sample" parent="lims_root" sequence="1" />
+    <menuitem
+        id="lims_config_root"
+        name="Configuration"
+        parent="lims_root"
+        groups="lims.group_lims_manager"
+        sequence="99"
+    />
+</odoo>

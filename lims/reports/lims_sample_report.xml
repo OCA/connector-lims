@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="lims_sample_report" model="ir.actions.report">
+        <field name="name">LIMS Sample Report</field>
+        <field name="model">lims.sample</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lims.lims_sample_report_template</field>
+        <field name="report_file">lims.lims_sample_report_template</field>
+        <field name="binding_model_id" ref="model_lims_sample" />
+        <field name="binding_type">report</field>
+    </record>
+    <!-- We need to enforce the company as the configuration. Then all magic happens -->
+    <template id="lims.lims_sample_report_template">
+        <t t-call="web.report_layout">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.partner_id.lang" />
+                <t t-set="o" t-value="o.with_context(lang=lang)" />
+                <t t-set="company" t-value="o.company_id" />
+
+                <t t-set="layout_document_title">
+                    <span>Sample Report</span>
+                    <span t-out="o.identifier">My Sample Report</span>
+                </t>
+                <t t-call="web.external_layout" t-lang="lang">
+                    <div class="clearfix invoice_main">
+                        <div class="page mb-4">
+                            <div id="informations" class="row mb-4">
+                                <div
+                                    class="col"
+                                    t-if="o.received_date"
+                                    name="received_date"
+                                >
+                                    <strong>Received on</strong>
+                                    <div t-field="o.received_date" />
+                                </div>
+                                <div
+                                    class="col"
+                                    t-if="o.published_date"
+                                    name="published_date"
+                                >
+                                    <strong>Published on</strong>
+                                    <div t-field="o.published_date" />
+                                </div>
+                                <div
+                                    class="col"
+                                    t-if="o.sample_type_id"
+                                    name="sample_type_id"
+                                >
+                                    <strong>Sample Type</strong>
+                                    <div t-field="o.sample_type_id" />
+                                </div>
+                            </div>
+                            <div name="analysis_information">
+                                <table
+                                    class="table table-sm o_main_table table-borderless mb-0"
+                                >
+                                    <tbody>
+                                        <t t-set="current_section" t-value="None" />
+                                        <t t-set="current_subsection" t-value="None" />
+                                        <t
+                                            t-foreach="o.analysis_ids.sorted('sequence ASC')"
+                                            t-as="analysis"
+                                        >
+                                            <t
+                                                t-set="is_note"
+                                                t-value="analysis.display_type == 'line_note'"
+                                            />
+                                            <t
+                                                t-set="is_section"
+                                                t-value="analysis.display_type == 'line_section'"
+                                            />
+                                            <t
+                                                t-set="is_subsection"
+                                                t-value="analysis.display_type == 'line_subsection'"
+                                            />
+                                            <t t-if="is_section">
+                                                <t
+                                                    t-set="current_section"
+                                                    t-value="analysis"
+                                                />
+                                                <t
+                                                    t-set="current_subsection"
+                                                    t-value="None"
+                                                />
+                                                <t t-set="line_padding" t-value="0" />
+                                            </t>
+                                            <t t-elif="is_subsection">
+                                                <t
+                                                    t-set="current_subsection"
+                                                    t-value="analysis"
+                                                />
+                                                <t t-set="line_padding" t-value="3" />
+                                            </t>
+                                            <t t-else="">
+                                                <t
+                                                    t-set="line_padding"
+                                                    t-value="4 if current_subsection else (3 if current_section else 0)"
+                                                />
+                                            </t>
+                                            <t
+                                                t-set="padding_class"
+                                                t-value="line_padding and ('px-' + str(line_padding)) or ''"
+                                            />
+                                            <tr
+                                                t-att-class="
+                                                    'fw-bolder o_line_section' if is_section else
+                                                    'fw-bold o_line_subsection' if is_subsection else
+                                                    'fst-italic o_line_note' if is_note
+                                                    else ''"
+                                            >
+                                                <t
+                                                    t-if="analysis.display_type == 'line_note'"
+                                                >
+                                                    <td
+                                                        colspan="99"
+                                                        class="o_td_section"
+                                                    >
+                                                        <span t-field="analysis.name" />
+                                                    </td>
+                                                </t>
+                                                <t
+                                                    t-elif="analysis.display_type in ('line_section', 'line_subsection')"
+                                                >
+                                                    <td
+                                                        colspan="99"
+                                                        class="o_td_section"
+                                                        t-att-class="padding_class"
+                                                    >
+                                                        <h2
+                                                            t-field="analysis.name"
+                                                            t-if="is_section"
+                                                        />
+                                                        <h3
+                                                            t-field="analysis.name"
+                                                            t-if="is_subsection"
+                                                        />
+                                                    </td>
+                                                </t>
+                                                <t t-else="">
+                                                    <td
+                                                        t-att-class="padding_class"
+                                                        name="analysis_name"
+                                                    >
+                                                        <span t-field="analysis.name" />
+                                                    </td>
+                                                    <td
+                                                        name="analysis_value"
+                                                        class="o_field_laboratory_value text-end"
+                                                    >
+                                                        <ul
+                                                            class="text-start"
+                                                            t-if="analysis.value['result_type'] == 'multiselection-check'"
+                                                        >
+                                                            <li
+                                                                t-foreach="analysis.value.get('value', {})"
+                                                                t-as="option"
+                                                                t-att-class="'selected' if analysis.value['value'][option] else 'not-selected'"
+                                                            >
+                                                                <span t-out="option" />
+                                                            </li>
+                                                        </ul>
+                                                        <i
+                                                            t-attf-class="fa {{'fa-check' if analysis.value['value'] else 'fa-times'}}"
+                                                            t-elif="analysis.value['result_type'] == 'boolean'"
+                                                        />
+                                                        <span
+                                                            t-out="analysis._get_report_value()"
+                                                            t-else=""
+                                                        />
+                                                    </td>
+                                                    <td name="analysis_uom">
+                                                        <span
+                                                            t-field="analysis.uom_id"
+                                                            t-if="analysis.uom_id"
+                                                        />
+                                                    </td>
+                                                    <td
+                                                        class="o_field_laboratory_evaluation"
+                                                        name="analysis_evaluation "
+                                                    >
+                                                        <span
+                                                            class="text-success fw-bold"
+                                                            t-if="analysis.value_state == 'valid'"
+                                                        >=</span>
+                                                        <i
+                                                            class="fa fa-angle-down text-warning"
+                                                            t-elif="analysis.value_state == 'min_warning'"
+                                                        />
+                                                        <i
+                                                            class="fa fa-angle-double-down text-danger"
+                                                            t-elif="analysis.value_state == 'min'"
+                                                        />
+                                                        <i
+                                                            class="fa fa-angle-up text-warning"
+                                                            t-elif="analysis.value_state == 'max_warning'"
+                                                        />
+                                                        <i
+                                                            class="fa fa-angle-double-up text-danger"
+                                                            t-elif="analysis.value_state == 'max'"
+                                                        />
+                                                    </td>
+                                                    <td name="reference_value" class="">
+                                                        <small
+                                                            t-out="analysis._get_reference_value()"
+                                                        />
+                                                    </td>
+                                                </t>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

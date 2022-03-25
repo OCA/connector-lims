@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Dixmit
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record model="ir.ui.view" id="lims_sample_form_view">
+        <field name="name">lims.sample.form (in lims)</field>
+        <field name="model">lims.sample</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="receive_sample_action"
+                        type="object"
+                        string="Receive"
+                        invisible="state != 'due'"
+                    />
+                    <field name="state" widget="statusbar" readonly="1" />
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box" />
+                    <h1>
+                        <field name="identifier" />
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="partner_id" readonly="state != 'due'" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                                readonly="state != 'due'"
+                            />
+                            <field name="sample_date" readonly="state != 'due'" />
+                            <field name="progress" widget="progressbar" />
+                        </group>
+                        <group>
+                            <field name="sample_type_id" readonly="state != 'due'" />
+                            <field name="received_date" />
+                            <field name="priority" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="analysis" string="Analysis">
+                            <field
+                                name="analysis_ids"
+                                widget="section_and_note_one2many"
+                                invisible="state not in ['registered', 'scheduled_sampling', 'due']"
+                                context="{'list_view_ref': 'lims.lims_analysis_list_creation_view'}"
+                            />
+                            <field
+                                name="analysis_ids"
+                                widget="section_and_note_one2many"
+                                context="{'list_view_ref': 'lims.lims_analysis_list_view'}"
+                                invisible="state in ['registered', 'scheduled_sampling', 'due']"
+                            />
+                        </page>
+                        <page name="interpretation" string="Interpretation">
+                            <field name="interpretation" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="lims_sample_search_view">
+        <field name="name">lims.sample.search (in lims)</field>
+        <field name="model">lims.sample</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="identifier" />
+                <field name="sample_type_id" />
+                <field name="sample_date" />
+                <field name="partner_id" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="lims_sample_list_view">
+        <field name="name">lims.sample.list (in lims)</field>
+        <field name="model">lims.sample</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="identifier" />
+                <field name="sample_type_id" />
+                <field name="sample_date" />
+                <field name="partner_id" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="progress" widget="progressbar" />
+                <field name="state" />
+            </list>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="lims_sample_act_window">
+        <field name="name">Sample</field>
+        <field name="res_model">lims.sample</field>
+        <field name="view_mode">list,form</field>
+        <field name="path">lims_sample</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+    <record model="ir.ui.menu" id="lims_sample_menu">
+        <field name="name">Samples</field>
+        <field name="parent_id" ref="lims_sample_root" />
+        <field name="action" ref="lims_sample_act_window" />
+        <field name="sequence" eval="16" />
+    </record>
+</odoo>

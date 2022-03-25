@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Dixmit
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record model="ir.ui.view" id="lims_analysis_form_view">
+        <field name="name">lims.analysis.form (in lims)</field>
+        <field name="model">lims.analysis</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" readonly="1" />
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box" />
+                    <h1>
+                        <label for="identifier" />
+                        <field name="identifier" />
+                    </h1>
+                    <group>
+                        <field name="sample_id" />
+                        <field name="company_id" />
+                        <field name="progress" widget="progressbar" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="lims_analysis_search_view">
+        <field name="name">lims.analysis.search (in lims)</field>
+        <field name="model">lims.analysis</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="identifier" />
+                <field name="sample_id" />
+                <field name="analyte_id" />
+                <separator />
+                <filter
+                    string="To receive"
+                    name="filter_to_receive"
+                    domain="[('state', '=', 'registered')]"
+                    help="Items to receive"
+                />
+                <filter
+                    string="To analyze"
+                    name="filter_to_analyze"
+                    domain="[('state', '=', 'to_analyze')]"
+                    help="Items to work on"
+                />
+                <filter
+                    string="To verify"
+                    name="filter_to_be_verified"
+                    domain="[('state', '=', 'to_be_verified')]"
+                    help="Items to be verified"
+                />
+                <filter
+                    string="Verified"
+                    name="filter_verified"
+                    domain="[('state', '=', 'verified')]"
+                    help="Items verified"
+                />
+                <filter
+                    string="Rejected"
+                    name="filter_rejected"
+                    domain="[('state', '=', 'rejected')]"
+                    help="Items rejected"
+                />
+                <group>
+                    <filter
+                        string="Analyte"
+                        name="group_by_analyte"
+                        domain="[]"
+                        context="{'group_by': 'analyte_id'}"
+                    />
+                    <filter
+                        string="Sample"
+                        name="group_by_sample"
+                        domain="[]"
+                        context="{'group_by': 'sample_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="lims_analysis_list_base_view">
+        <field name="name">lims.analysis.list (in lims)</field>
+        <field name="model">lims.analysis</field>
+        <field name="priority" eval="16" />
+        <field name="arch" type="xml">
+            <list editable="bottom" default_order="id">
+                <field name="display_type" column_invisible="1" />
+                <field name="sample_id" />
+                <field name="identifier" column_invisible="1" />
+                <field
+                    name="analyte_id"
+                    options="{'no_create': true}"
+                    readonly="state!='registered'"
+                />
+                <field name="name" readonly="state!='registered'" />
+                <field
+                    name="value"
+                    readonly="state!='to_analyze'"
+                    widget="laboratory_value"
+                />
+                <field name="uom_id" readonly="state!='registered'" />
+                <field
+                    name="value_state"
+                    string="Evaluation"
+                    widget="laboratory_evaluation"
+                    optional="show"
+                />
+                <field name="state" force_save="1" optional="hide" />
+                <field name="progress" widget="progressbar" optional="hide" />
+                <field name="can_verify" column_invisible="1" />
+                <button
+                    name="analyze_action"
+                    groups="lims.group_lims_analyst"
+                    type="object"
+                    icon="fa-check-square-o"
+                    title="Analyze"
+                    invisible="state != 'to_analyze'"
+                />
+                <button
+                    name="verify_action"
+                    groups="lims.group_lims_verifier"
+                    type="object"
+                    title="Verify"
+                    icon="fa-check-circle-o"
+                    invisible="can_verify == False or state != 'to_be_verified'"
+                />
+                <button
+                    name="retract_action"
+                    groups="lims.group_lims_verifier"
+                    type="object"
+                    title="Retract"
+                    icon="fa-undo"
+                    invisible="state not in ['to_be_verified', 'rejected']"
+                />
+                <button
+                    name="reject_action"
+                    groups="lims.group_lims_verifier"
+                    type="object"
+                    title="Reject"
+                    icon="fa-times"
+                    invisible="state == 'rejected'"
+                />
+            </list>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="lims_analysis_list_creation_view">
+        <field name="name">lims.analysis.list (in lims)</field>
+        <field name="model">lims.analysis</field>
+        <field name="inherit_id" ref="lims_analysis_list_base_view" />
+        <field name="priority" eval="20" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <list position="attributes">
+                <attribute name="default_order">sequence, id</attribute>
+            </list>
+            <list position="inside">
+                <control>
+                    <create name="add_line_control" string="Add a line" />
+                    <create
+                        name="add_section_control"
+                        string="Add a section"
+                        context="{'default_display_type': 'line_section'}"
+                    />
+                    <create
+                        name="add_subsection_control"
+                        string="Add a subsection"
+                        context="{'default_display_type': 'line_subsection'}"
+                    />
+                    <create
+                        name="add_note_control"
+                        string="Add a note"
+                        context="{'default_display_type': 'line_note'}"
+                    />
+                </control>
+            </list>
+            <field name="name" position="attributes">
+                <attribute name="widget">section_and_note_text</attribute>
+            </field>
+            <field name="analyte_id" position="before">
+                <field name="sequence" widget="handle" />
+            </field>
+            <field name="sample_id" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </field>
+            <field name="value" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </field>
+            <field name="uom_id" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </field>
+            <field name="value_state" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="lims_analysis_list_view">
+        <field name="name">lims.analysis.list (in lims)</field>
+        <field name="model">lims.analysis</field>
+        <field name="inherit_id" ref="lims_analysis_list_base_view" />
+        <field name="priority" eval="30" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <list position="attributes">
+                <attribute name="create">false</attribute>
+                <attribute name="delete">false</attribute>
+                <attribute name="default_order">sequence, id</attribute>
+            </list>
+            <field name="sample_id" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </field>
+            <field name="analyte_id" position="before">
+                <field name="sequence" widget="handle" column_invisible="1" />
+            </field>
+            <field name="name" position="attributes">
+                <attribute name="widget">section_and_note_text</attribute>
+            </field>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="lims_analysis_act_window">
+        <field name="name">Analysis</field>
+        <field name="res_model">lims.analysis</field>
+        <field name="view_mode">list,form</field>
+        <field name="path">lims_analysis</field>
+        <field name="domain">[('display_type', '=', 'analyte')]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="lims_analysis_menu">
+        <field name="name">Analysis</field>
+        <field name="parent_id" ref="lims_sample_root" />
+        <field name="action" ref="lims_analysis_act_window" />
+        <field name="sequence" eval="16" />
+    </record>
+</odoo>
