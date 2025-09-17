@@ -1,0 +1,5 @@
+<odoo noupdate="1">
+    <record id="lims_laboratory_default" model="lims.laboratory">
+        <field name="name">Default Laboratory</field>
+    </record>
+</odoo>

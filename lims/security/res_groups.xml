@@ -1,0 +1,53 @@
+<odoo>
+    <!-- LIMS groups -->
+    <record id="group_lims_user_own" model="res.groups">
+        <field name="name">User (only own documents)</field>
+        <field name="category_id" ref="lims" />
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+    </record>
+
+    <record id="group_lims_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="lims" />
+        <field name="implied_ids" eval="[(4, ref('lims.group_lims_user_own'))]" />
+    </record>
+    <record id="group_lims_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="lims" />
+        <field name="implied_ids" eval="[(4, ref('group_lims_user'))]" />
+        <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+    </record>
+
+    <!-- Hidden groups -->
+    <record id="group_lims_laboratory" model="res.groups">
+        <field name="name">Manage Laboratories</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+    <record id="group_lims_team" model="res.groups">
+        <field name="name">Manage LIMS Teams</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+    <record id="group_lims_category" model="res.groups">
+        <field name="name">Manage LIMS Operators Categories</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+    <record id="group_lims_tag" model="res.groups">
+        <field name="name">Manage LIMS Tags</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+    <record id="group_lims_equipment" model="res.groups">
+        <field name="name">Manage LIMS Equipments</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+    <record id="group_lims_template" model="res.groups">
+        <field name="name">Manage LIMS Templates</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+    <record id="group_lims_batch" model="res.groups">
+        <field name="name">Manage LIMS Batches</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+</odoo>

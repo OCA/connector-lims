@@ -1,0 +1,6 @@
+<odoo noupdate="1">
+    <record id="lims" model="ir.module.category">
+        <field name="name">LIMS</field>
+        <field name="sequence">20</field>
+    </record>
+</odoo>

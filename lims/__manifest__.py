@@ -1,0 +1,48 @@
+# Copyright (C) 2025 Open Source Integrators
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+{
+    "name": "Laboratory Information Management System (LIMS)",
+    "summary": "Manage LIMS Equipments, Analysis and Work Orders",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
+    "category": "LIMS",
+    "author": "Open Source Integrators, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/connector-lims",
+    "depends": ["mail", "resource"],
+    "data": [
+        "data/ir_sequence.xml",
+        "data/mail_message_subtype.xml",
+        "data/module_category.xml",
+        "data/lims_stage.xml",
+        "data/lims_team.xml",
+        "data/lims_laboratory.xml",
+        "security/res_groups.xml",
+        "security/ir.model.access.csv",
+        "security/ir_rule.xml",
+        "views/res_config_settings.xml",
+        "views/lims_stage.xml",
+        "views/lims_tag.xml",
+        "views/res_partner.xml",
+        "views/lims_laboratory.xml",
+        "views/lims_operator.xml",
+        "views/lims_sample.xml",
+        "views/lims_order_line.xml",
+        "views/lims_order.xml",
+        "views/lims_order_type.xml",
+        "views/lims_batch.xml",
+        "views/lims_category.xml",
+        "views/lims_equipment.xml",
+        "views/lims_template.xml",
+        "views/lims_team.xml",
+        "views/menu.xml",
+        "wizard/lims_wizard.xml",
+    ],
+    "application": True,
+    "development_status": "Beta",
+    "maintainers": ["max3903", "jasiel-osi"],
+    "assets": {
+        "web.assets_backend": [
+            "lims/static/src/scss/team_dashboard.scss",
+        ]
+    },
+}

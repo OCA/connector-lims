@@ -1,0 +1,40 @@
+<odoo>
+    <!-- Res Partner Action -->
+    <record id="partner_lims_action" model="ir.actions.act_window">
+        <field name="name">Convert to LIMS Record</field>
+        <field name="res_model">lims.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="base.model_res_partner" />
+        <field name="groups_id" eval="[(4, ref('lims.group_lims_user'))]" />
+        <field name="binding_view_types">form,list</field>
+    </record>
+
+    <!-- wizard view -->
+    <record id="partner_wizard_view" model="ir.ui.view">
+        <field name="name">Convert to a Laboratory or LIMS Operator</field>
+        <field name="model">lims.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Convert to a Laboratory or LIMS Operator">
+                <div>
+                    Select whether you want to convert this record to a
+                    Laboratory or LIMS Operator.
+                </div>
+                <group>
+                    <group>
+                        <field name="lims_record_type" widget="selection" />
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        string="Convert"
+                        name="action_convert"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

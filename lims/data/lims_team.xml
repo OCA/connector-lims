@@ -1,0 +1,5 @@
+<odoo noupdate="1">
+    <record id="lims_team_default" model="lims.team">
+        <field name="name">Default Team</field>
+    </record>
+</odoo>

@@ -1,0 +1,3 @@
+- Rodrigo Madrid Carmona \<<rmadrid@opensourceintegrators.com>\>
+- Johannan Jasiel Luna García\<<jluna@opensourceintegrators.com>\>
+- Maxime Chambreuil \<<mchambreuil@opensourceintegrators.com>\>

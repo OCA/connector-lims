@@ -1,0 +1,199 @@
+<odoo>
+    <!-- LIMS Equipment -->
+    <record id="lims_equipment_search_view" model="ir.ui.view">
+        <field name="name">lims.equipment.search</field>
+        <field name="model">lims.equipment</field>
+        <field name="arch" type="xml">
+            <search string="Equipments">
+                <field name="name" string="LIMS Equipment Name" />
+                <field name="laboratory_id" />
+                <field name="operator_id" />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="operator_id"
+                        string="Operator"
+                        domain=""
+                        context="{'group_by':'operator_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="lims_equipment_list_view" model="ir.ui.view">
+        <field name="name">lims.equipment.list</field>
+        <field name="model">lims.equipment</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="operator_id" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="stage_id" />
+            </list>
+        </field>
+    </record>
+    <record id="lims_equipment_form_view" model="ir.ui.view">
+        <field name="name">lims.equipment.form</field>
+        <field name="model">lims.equipment</field>
+        <field name="arch" type="xml">
+            <form string="Equipment">
+                <header>
+                    <button
+                        id="previous_stage"
+                        name="previous_stage"
+                        string="Previous Stage"
+                        class="oe_highlight"
+                        type="object"
+                        groups="lims.group_lims_user"
+                    />
+                    <button
+                        id="next_stage"
+                        name="next_stage"
+                        string="Next Stage"
+                        class="oe_highlight"
+                        type="object"
+                        groups="lims.group_lims_user"
+                    />
+                    <field
+                        name="stage_id"
+                        widget="statusbar"
+                        domain="[('stage_type', '=', 'equipment')]"
+                    />
+                </header>
+                <sheet>
+                    <label for="name" class="oe_edit_only" />
+                    <h1>
+                        <field name="name" />
+                    </h1>
+                    <group id="main">
+                        <group id="main-left">
+                            <field name="operator_id" />
+                        </group>
+                        <group id="main-right">
+                            <field
+                                name="company_id"
+                                options="{'no_create': True}"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes" nolabel="1" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <!-- LIMS Equipment -->
+    <record id="action_lims_equipment" model="ir.actions.act_window">
+        <field name="name">LIMS Equipments</field>
+        <field name="res_model">lims.equipment</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="lims_equipment_search_view" />
+        <field name="context">{'default_laboratory_id':
+            context.get('laboratory_id', False)}
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add an equipment here.
+            </p>
+        </field>
+    </record>
+    <!-- LIMS Equipment Dashboard -->
+    <record id="lims_equipment_kanban_view" model="ir.ui.view">
+        <field name="name">lims.equipment.kanban</field>
+        <field name="model">lims.equipment</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="operator_id" class="o_kanban_small_column">
+                <field name="name" />
+                <field name="laboratory_id" />
+                <field name="operator_id" />
+                <field name="color" />
+                <templates>
+                    <t t-name="card">
+                        <div
+                            t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click"
+                        >
+                            <div class="oe_kanban_content">
+                                <div>
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name" />
+                                    </strong>
+                                </div>
+                                <div>
+                                    <field name="laboratory_id" />
+                                </div>
+                                <div>
+                                    <field name="operator_id" />
+                                </div>
+                            </div>
+                            <div class="oe_clear" />
+                        </div>
+                    </t>
+                    <t t-name="kanban-menu">
+                        <div class="container">
+                            <div class="o_kanban_card_manage_settings row">
+                                <div role="menuitem" aria-haspopup="true" class="col-6">
+                                    <ul
+                                        class="oe_kanban_colorpicker"
+                                        data-field="color"
+                                        role="popup"
+                                    />
+                                </div>
+                                <div role="menuitem" class="col-4">
+                                    <a
+                                        class="dropdown-item"
+                                        role="menuitem"
+                                        type="edit"
+                                    >Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="action_lims_dash_equipment" model="ir.actions.act_window">
+        <field name="name">LIMS Equipment</field>
+        <field name="res_model">lims.equipment</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a LIMS Equipment here.
+            </p>
+        </field>
+    </record>
+    <!-- Reporting -->
+    <record id="lims_equipment_graph_view" model="ir.ui.view">
+        <field name="name">lims.equipment.graph</field>
+        <field name="model">lims.equipment</field>
+        <field name="arch" type="xml">
+            <graph string="Equipments" type="bar">
+                <field name="operator_id" type="row" />
+            </graph>
+        </field>
+    </record>
+    <record id="lims_equipment_pivot_view" model="ir.ui.view">
+        <field name="name">lims.equipment.pivot</field>
+        <field name="model">lims.equipment</field>
+        <field name="arch" type="xml">
+            <pivot string="Equipments" display_quantity="true">
+                <field name="operator_id" type="row" />
+            </pivot>
+        </field>
+    </record>
+    <record id="action_lims_report_equipment" model="ir.actions.act_window">
+        <field name="name">Equipments</field>
+        <field name="res_model">lims.equipment</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="help" type="html">
+            <p>
+                Equipments Report
+            </p>
+        </field>
+    </record>
+</odoo>

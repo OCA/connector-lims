@@ -1,0 +1,257 @@
+<odoo>
+    <!-- Operations -->
+    <record id="lims_batch_form" model="ir.ui.view">
+        <field name="name">lims.batch.form</field>
+        <field name="model">lims.batch</field>
+        <field name="arch" type="xml">
+            <form string="Batches">
+                <header>
+                    <field name="team_id" invisible="1" />
+                    <button
+                        id="action_complete"
+                        name="action_complete"
+                        string="Complete"
+                        class="oe_highlight"
+                        type="object"
+                        groups="lims.group_lims_user"
+                        invisible="is_closed"
+                    />
+                    <button
+                        id="action_cancel"
+                        name="action_cancel"
+                        string="Cancel Batch"
+                        type="object"
+                        groups="lims.group_lims_user"
+                        invisible="is_closed"
+                    />
+                    <field
+                        name="stage_id"
+                        widget="statusbar"
+                        options="{'fold_field': 'fold', 'clickable': True}"
+                        domain="[('stage_type', '=', 'batch'), '|', ('team_ids', 'in', team_id), ('team_ids', '=', False)]"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="operator_id" />
+                            <field
+                                name="type"
+                                options="{'no_create': True, 'no_open': True}"
+                            />
+                            <field
+                                name="equipment_id"
+                                invisible="internal_type not in ['maintenance']"
+                                groups="lims.group_lims_equipment"
+                                options="{'no_create': True}"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="laboratory_id"
+                                groups="lims.group_lims_laboratory"
+                            />
+                            <field name="team_id" groups="lims.group_lims_team" />
+                            <field name="internal_type" invisible="1" />
+                            <field
+                                name="company_id"
+                                options="{'no_create': True}"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                    </group>
+                    <group string="Description" name="description_grp">
+                        <field
+                            name="description"
+                            nolabel="1"
+                            colspan="2"
+                            placeholder="Add a description for the batch..."
+                        />
+                    </group>
+                    <notebook>
+                        <page string="Work Orders" name="lines">
+                            <field name="line_ids">
+                                <list>
+                                    <field name="name" />
+                                    <field name="operator_id" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="lims_batch_list_view" model="ir.ui.view">
+        <field name="name">lims.batch.list</field>
+        <field name="model">lims.batch</field>
+        <field name="arch" type="xml">
+            <list name="batchs">
+                <field name="name" />
+                <field name="operator_id" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="stage_id" string="Stage" />
+            </list>
+        </field>
+    </record>
+
+    <record id="action_lims_operation_batch" model="ir.actions.act_window">
+        <field name="name">Orders</field>
+        <field name="res_model">lims.batch</field>
+        <field name="view_mode">list,form,calendar</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create an Order.
+            </p>
+        </field>
+    </record>
+
+    <!-- Search for lims.batch-->
+    <record id="lims_batch_search_view" model="ir.ui.view">
+        <field name="name">lims.batch.search</field>
+        <field name="model">lims.batch</field>
+        <field name="arch" type="xml">
+            <search string="Orders">
+                <filter
+                    string="My Orders"
+                    domain="[('operator_id.partner_id.user_ids', '=', uid)]"
+                    name="my_batchs"
+                />
+                <separator />
+                <field
+                    name="name"
+                    filter_domain="['|', ('name', 'ilike', self), ('name', '=like', str(self) + '%')]"
+                    string="LIMS Order Name"
+                />
+                <field name="team_id" groups="lims.group_lims_team" />
+                <field name="operator_id" />
+                <separator />
+                <filter
+                    string="To Do"
+                    domain="[('stage_id.is_closed', '=', False)]"
+                    name="todo"
+                />
+                <filter
+                    string="Unassigned"
+                    domain="[('operator_id', '=', False), ('stage_id.is_closed', '=', False)]"
+                    name="unassigned"
+                />
+                <filter
+                    string="Unscheduled"
+                    domain="[('scheduled_date_start', '=', False), ('stage_id.is_closed', '=', False)]"
+                    name="unscheduled"
+                />
+                <filter
+                    string="Done"
+                    domain="[('stage_id.is_closed', '=', True)]"
+                    name="done"
+                />
+                <separator />
+                <filter
+                    string="Today Batches"
+                    domain="[
+                    ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('scheduled_date_start', '&lt;', (datetime.datetime.combine(datetime.date.today(), datetime.time(23,59,59))))
+                    ]"
+                    name="batch_today"
+                />
+                <filter
+                    string="Future Batches"
+                    domain="[('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0))))]"
+                    name="batch_upcoming_all"
+                />
+                <filter
+                    string="Due Within 7 Days"
+                    domain="[
+                    ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=6)), datetime.time(23,59,59))))
+                    ]"
+                    name="batch_upcoming_week"
+                />
+                <filter
+                    string="Due Within 30 Days"
+                    domain="[
+                    ('scheduled_date_start', '&gt;=',(datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=29)), datetime.time(23,59,59))))
+                    ]"
+                    name="batch_upcoming_month"
+                />
+                <separator />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="lims_operator_id"
+                        domain=""
+                        context="{'group_by':'operator_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="lims_batch_calendar_view" model="ir.ui.view">
+        <field name="name">Batches</field>
+        <field name="model">lims.batch</field>
+        <field name="type">calendar</field>
+        <field name="arch" type="xml">
+            <calendar
+                string="Batches"
+                date_start="scheduled_date_start"
+                date_delay="scheduled_duration"
+                color="stage_id"
+            >
+                <field name="name" />
+                <field name="stage_id" filters="1" />
+                <field
+                    name="operator_id"
+                    write_model="lims.operator.calendar.filter"
+                    write_field="operator_id"
+                    filter_field="operator_checked"
+                    avatar_field="image_128"
+                />
+                <field name="team_id" filters="1" />
+            </calendar>
+        </field>
+    </record>
+
+    <record id="action_lims_dash_batch" model="ir.actions.act_window">
+        <field name="name">Batches</field>
+        <field name="res_model">lims.batch</field>
+        <field name="view_mode">kanban,list,form,calendar</field>
+        <field name="search_view_id" ref="lims_batch_search_view" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a batch.
+            </p>
+        </field>
+    </record>
+
+    <!-- Reporting -->
+
+    <record id="lims_batch_graph_view" model="ir.ui.view">
+        <field name="name">lims.batch.graph</field>
+        <field name="model">lims.batch</field>
+        <field name="arch" type="xml">
+            <graph string="Batches" type="bar">
+                <field name="stage_id" type="row" />
+            </graph>
+        </field>
+    </record>
+
+    <record id="lims_batch_pivot_view" model="ir.ui.view">
+        <field name="name">lims.batch.pivot</field>
+        <field name="model">lims.batch</field>
+        <field name="arch" type="xml">
+            <pivot string="Batches" display_quantity="true">
+                <field name="stage_id" type="row" />
+            </pivot>
+        </field>
+    </record>
+</odoo>

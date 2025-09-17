@@ -1,0 +1,47 @@
+<odoo>
+    <!-- Customers -->
+    <record id="action_lims_customer" model="ir.actions.act_window">
+        <field name="name">Customers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field
+            name="context"
+        >{'search_default_customer': 1, 'default_customer_rank': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Customer.
+            </p>
+        </field>
+    </record>
+
+    <!-- LIMS Fields -->
+    <record id="lims_partner_fields" model="ir.ui.view">
+        <field name="name">res.partner.lims.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="LIMS" groups="lims.group_lims_user_own">
+                    <group>
+                        <group>
+                            <field name="lims_laboratory" readonly="1" />
+                            <field name="lims_operator" readonly="1" />
+                        </group>
+                        <group />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="res_partner_search_reference" model="ir.ui.view">
+        <field name="name">res.partner.search.reference</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="ref" />
+            </field>
+        </field>
+    </record>
+</odoo>

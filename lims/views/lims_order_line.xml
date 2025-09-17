@@ -1,0 +1,378 @@
+<odoo>
+    <!-- Operations -->
+    <record id="lims_order_line_form" model="ir.ui.view">
+        <field name="name">lims.order.line.form</field>
+        <field name="model">lims.order.line</field>
+        <field name="arch" type="xml">
+            <form string="Work Orders">
+                <header>
+                    <field name="team_id" invisible="1" />
+                    <button
+                        id="action_complete"
+                        name="action_complete"
+                        string="Complete"
+                        class="oe_highlight"
+                        type="object"
+                        groups="lims.group_lims_user"
+                        invisible="is_closed"
+                    />
+                    <button
+                        id="action_cancel"
+                        name="action_cancel"
+                        string="Cancel Work Order"
+                        type="object"
+                        groups="lims.group_lims_user"
+                        invisible="is_closed"
+                    />
+                    <field
+                        name="stage_id"
+                        widget="statusbar"
+                        options="{'fold_field': 'fold', 'clickable': True}"
+                        domain="[('stage_type', '=', 'order'), '|', ('team_ids', 'in', team_id), ('team_ids', '=', False)]"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field
+                                name="type"
+                                options="{'no_create': True, 'no_open': True}"
+                            />
+                            <field name="sample_id" />
+                            <field name="priority" widget="priority" />
+                            <field
+                                name="tag_ids"
+                                widget="many2many_tags"
+                                groups="lims.group_lims_tag"
+                                options="{'color_field': 'color', 'no_create_edit': True}"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="laboratory_id"
+                                groups="lims.group_lims_laboratory"
+                            />
+                            <field name="team_id" groups="lims.group_lims_team" />
+                            <field name="operator_id" />
+                            <field name="order_id" />
+                            <field name="batch_id" groups="lims.group_lims_batch" />
+                            <field name="internal_type" invisible="1" />
+                            <field
+                                name="equipment_id"
+                                invisible="internal_type not in ['maintenance']"
+                                groups="lims.group_lims_equipment"
+                                options="{'no_create': True}"
+                            />
+                            <field
+                                name="company_id"
+                                options="{'no_create': True}"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Planning" name="planning_page">
+                            <group>
+                                <group string="Requirements" name="requirements_grp">
+                                    <field
+                                        name="category_ids"
+                                        widget="many2many_tags"
+                                        options="{'color_field': 'color'}"
+                                        groups="lims.group_lims_category"
+                                    />
+                                    <field name="request_early" />
+                                    <field name="request_late" />
+                                </group>
+                                <group id="schedule" string="Schedule Details">
+                                    <field name="scheduled_date_start" />
+                                    <field name="scheduled_duration" />
+                                    <field name="scheduled_date_end" readonly="1" />
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Instructions" name="instructions_page">
+                            <group string="Instructions" name="instructions_grp">
+                                <field
+                                    name="todo"
+                                    nolabel="1"
+                                    colspan="2"
+                                    widget="html"
+                                />
+                            </group>
+                        </page>
+                        <page string="Execution" name="execution_page">
+                            <group>
+                                <group id="execution-left">
+                                    <field name="date_start" />
+                                    <field name="date_end" />
+                                    <field name="duration" readonly="1" />
+                                </group>
+                                <group id="execution-right" />
+                            </group>
+                        </page>
+                        <page string="Result" name="result_page">
+                            <group>
+                                <group id="result-left">
+                                    <field name="result_type" />
+                                    <field name="result_formula" />
+                                    <field name="result_value" />
+                                    <field name="success" />
+                                </group>
+                                <group id="result-right">
+                                    <field name="result_min" />
+                                    <field name="result_max" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="lims_order_line_list_view" model="ir.ui.view">
+        <field name="name">lims.order.line.list</field>
+        <field name="model">lims.order.line</field>
+        <field name="arch" type="xml">
+            <list name="lines" default_order="scheduled_date_start">
+                <field name="scheduled_date_start" />
+                <field name="name" />
+                <field name="operator_id" />
+                <field name="sample_id" />
+                <field name="equipment_id" groups="lims.group_lims_equipment" />
+                <field name="type" />
+                <field name="result_min" />
+                <field name="result_max" />
+                <field name="result_value" />
+                <field name="success" />
+                <field name="batch_id" groups="lims.group_lims_batch" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="stage_id" string="Stage" />
+            </list>
+        </field>
+    </record>
+
+    <record id="action_lims_operation_order_line" model="ir.actions.act_window">
+        <field name="name">Work Orders</field>
+        <field name="res_model">lims.order.line</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Work Order.
+            </p>
+        </field>
+    </record>
+
+    <!-- Dashboard -->
+
+    <record id="lims_order_line_kanban_view" model="ir.ui.view">
+        <field name="name">lims.order.kanban</field>
+        <field name="model">lims.order</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage_id" class="o_kanban_small_column">
+                <field
+                    name="stage_id"
+                    options='{"group_by_tooltip": {"description": "Description"}}'
+                />
+                <field name="name" />
+                <field name="priority" />
+                <field name="operator_id" />
+                <field name="color" />
+                <templates>
+                    <t t-name="kanban-menu">
+                        <div class="container">
+                            <div class="o_kanban_card_manage_settings row">
+                                <div role="menuitem" aria-haspopup="true" class="col-6">
+                                    <ul
+                                        class="oe_kanban_colorpicker"
+                                        data-field="color"
+                                        role="popup"
+                                    />
+                                </div>
+                                <div role="menuitem" class="col-4">
+                                    <a
+                                        class="dropdown-item"
+                                        role="menuitem"
+                                        type="edit"
+                                    >Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                    <t t-name="card">
+                        <div
+                            t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click"
+                            name="lims_equipment"
+                        >
+                            <div class="oe_kanban_content">
+                                <div>
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name" />
+                                    </strong>
+                                </div>
+                                <div>
+                                    <field
+                                        name="tag_ids"
+                                        widget="many2many_tags"
+                                        groups="lims.group_lims_tag"
+                                        options="{'color_field': 'color'}"
+                                    />
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left">
+                                        <field
+                                            name="priority"
+                                            widget="priority"
+                                            groups="lims.group_lims_user"
+                                        />
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                        <field
+                                            name="operator_id"
+                                            widget="many2one_avatar_user"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="oe_clear" />
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Search for lims.order.line -->
+    <record id="lims_order_line_search_view" model="ir.ui.view">
+        <field name="name">lims.order.line.search</field>
+        <field name="model">lims.order.line</field>
+        <field name="arch" type="xml">
+            <search string="Work Orders">
+                <filter
+                    string="My Orders"
+                    domain="[('operator_id.partner_id.user_ids', '=', uid)]"
+                    name="my_orders"
+                />
+                <separator />
+                <field
+                    name="name"
+                    filter_domain="['|', ('name', 'ilike', self), ('name', '=like', str(self) + '%')]"
+                    string="LIMS Order Name"
+                />
+                <field name="team_id" groups="lims.group_lims_team" />
+                <field name="operator_id" />
+                <separator />
+                <filter
+                    string="To Do"
+                    domain="[('stage_id.is_closed', '=', False)]"
+                    name="todo"
+                />
+                <filter
+                    string="Unassigned"
+                    domain="[('operator_id', '=', False), ('stage_id.is_closed', '=', False)]"
+                    name="unassigned"
+                />
+                <filter
+                    string="Unscheduled"
+                    domain="[('scheduled_date_start', '=', False), ('stage_id.is_closed', '=', False)]"
+                    name="unscheduled"
+                />
+                <filter
+                    string="Done"
+                    domain="[('stage_id.is_closed', '=', True)]"
+                    name="done"
+                />
+                <separator />
+                <filter
+                    string="Today Orders"
+                    domain="[
+                    ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('scheduled_date_start', '&lt;', (datetime.datetime.combine(datetime.date.today(), datetime.time(23,59,59))))
+                    ]"
+                    name="order_today"
+                />
+                <filter
+                    string="Future Orders"
+                    domain="[('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0))))]"
+                    name="order_upcoming_all"
+                />
+                <filter
+                    string="Due Within 7 Days"
+                    domain="[
+                    ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=6)), datetime.time(23,59,59))))
+                    ]"
+                    name="order_upcoming_week"
+                />
+                <filter
+                    string="Due Within 30 Days"
+                    domain="[
+                    ('scheduled_date_start', '&gt;=',(datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=29)), datetime.time(23,59,59))))
+                    ]"
+                    name="order_upcoming_month"
+                />
+                <separator />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="lims_operator_id"
+                        domain=""
+                        context="{'group_by':'operator_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_lims_dash_order_line" model="ir.actions.act_window">
+        <field name="name">Work Orders</field>
+        <field name="res_model">lims.order.line</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="lims_order_line_search_view" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Work Order.
+            </p>
+        </field>
+    </record>
+
+    <!-- Reporting -->
+
+    <record id="lims_order_line_graph_view" model="ir.ui.view">
+        <field name="name">lims.order.line.graph</field>
+        <field name="model">lims.order.line</field>
+        <field name="arch" type="xml">
+            <graph string="Work Orders" type="bar">
+                <field name="stage_id" type="row" />
+            </graph>
+        </field>
+    </record>
+
+    <record id="lims_order_pivot_line_view" model="ir.ui.view">
+        <field name="name">lims.order.line.pivot</field>
+        <field name="model">lims.order.line</field>
+        <field name="arch" type="xml">
+            <pivot string="Work Orders" display_quantity="true">
+                <field name="stage_id" type="row" />
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_lims_report_order_line" model="ir.actions.act_window">
+        <field name="name">Work Orders</field>
+        <field name="res_model">lims.order.line</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="help" type="html">
+            <p>
+                Work Orders Reports.
+            </p>
+        </field>
+    </record>
+</odoo>

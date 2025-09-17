@@ -1,0 +1,105 @@
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.lims</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40" />
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app
+                    data-string="LIMS"
+                    string="LIMS"
+                    name="lims"
+                    groups="lims.group_lims_manager"
+                >
+                    <block title="Laboratories" name="laboratories_setting_container">
+                        <setting
+                            string="Manage Multiple Laboratories"
+                            help="Manage multiple laboratories"
+                        >
+                            <field name="group_lims_laboratory" />
+                        </setting>
+                    </block>
+
+                    <block title="Equipments" name="equipments_setting_container">
+                        <setting
+                            string="Manage Lab Equipments"
+                            help="Manage lab equipments"
+                        >
+                            <field name="group_lims_equipment" />
+                        </setting>
+                        <setting
+                            string="Manage Maintenance"
+                            help="Maintain your lab equipments"
+                            invisible="not group_lims_equipment"
+                        >
+                            <field name="module_lims_maintenance" />
+                        </setting>
+                    </block>
+
+                    <block title="Operators" name="operators_setting_container">
+                        <setting
+                            string="Manage Teams"
+                            help="Manage different teams of LIMS operators"
+                        >
+                            <field name="group_lims_team" />
+                        </setting>
+                        <setting
+                            string="Manage Categories"
+                            help="Manage different categories of LIMS operators"
+                        >
+                            <field name="group_lims_category" />
+                        </setting>
+                        <setting
+                            string="Manage your lab purchases"
+                            help="Manage subcontractors"
+                        >
+                            <field name="module_lims_purchase" />
+                        </setting>
+                    </block>
+
+                    <block title="Analysis" name="order_setting_container">
+                        <setting
+                            string="Manage Batches"
+                            help="Manage batches of analysis"
+                        >
+                            <field name="group_lims_batch" />
+                        </setting>
+                        <setting string="Manage Tags" help="Manage tags on analysis">
+                            <field name="group_lims_tag" />
+                        </setting>
+                        <setting string="Manage Templates" help="Manage templates">
+                            <field name="group_lims_template" />
+                        </setting>
+                        <setting
+                            string="Invoice your analysis"
+                            help="Create vendor bills and customer invoices when completing an analysis."
+                        >
+                            <field name="module_lims_account" />
+                        </setting>
+                        <setting
+                            string="Manage Logistics"
+                            help="Manage materials and stock operations. Automatically activate Lots &amp; Serial Numbers."
+                        >
+                            <field name="module_lims_stock" />
+                        </setting>
+                        <setting
+                            string="Sell analysis"
+                            help="Sell services that generate laboratory analysis"
+                        >
+                            <field name="module_lims_sale" />
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_lims_config" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'lims'}</field>
+    </record>
+</odoo>
