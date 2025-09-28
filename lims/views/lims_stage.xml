@@ -9,7 +9,6 @@
                 <field name="name" />
                 <field name="stage_type" />
                 <field name="is_closed" />
-                <field name="custom_color" />
             </list>
         </field>
     </record>
@@ -38,7 +37,6 @@
                             <field name="stage_type" />
                         </group>
                         <group>
-                            <field name="custom_color" />
                             <field name="fold" />
                             <field name="is_closed" />
                             <field name="is_default" />

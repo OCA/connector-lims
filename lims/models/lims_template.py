@@ -9,18 +9,18 @@ class LIMSTemplate(models.Model):
     _description = "LIMS Order Template"
 
     name = fields.Char(required=True)
-    instructions = fields.Text()
+    operator_id = fields.Many2one(
+        "res.partner", string="Operator", domain="[('is_lims_operator', '=', True)]"
+    )
+    physician_id = fields.Many2one(
+        "res.partner", domain="[('is_physician', '=', True)]"
+    )
+    test_ids = fields.Many2many("lims.test", string="Tests")
     category_ids = fields.Many2many("lims.category", string="Categories")
-    duration = fields.Float(help="Default duration in hours")
+    tag_ids = fields.Many2many("lims.tag", string="Tags")
     company_id = fields.Many2one(
         "res.company",
         string="Company",
         index=True,
         help="Company related to this template",
-    )
-    type_id = fields.Many2one("lims.order.type", string="Type")
-    team_id = fields.Many2one(
-        "lims.team",
-        string="Team",
-        help="Choose a team to be set on orders of this template",
     )

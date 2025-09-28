@@ -20,8 +20,8 @@ class ResConfigSettings(models.TransientModel):
     group_lims_tag = fields.Boolean(
         string="Manage Tags", implied_group="lims.group_lims_tag"
     )
-    group_lims_equipment = fields.Boolean(
-        string="Manage Equipments", implied_group="lims.group_lims_equipment"
+    group_lims_instrument = fields.Boolean(
+        string="Manage Instruments", implied_group="lims.group_lims_instrument"
     )
     group_lims_template = fields.Boolean(
         string="Manage Templates", implied_group="lims.group_lims_template"
@@ -40,6 +40,7 @@ class ResConfigSettings(models.TransientModel):
     )
     module_lims_sale = fields.Boolean(string="Sell LIMS services")
     module_lims_stock = fields.Boolean(string="Use Odoo Logistics")
+    module_lims_hl7 = fields.Boolean(string="Exchange data using HL7")
 
     # Priorities
     lims_order_request_late_lowest = fields.Float(

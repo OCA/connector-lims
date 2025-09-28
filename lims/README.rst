@@ -28,7 +28,9 @@ Laboratory Information Management System (LIMS)
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module is the base of the LIMS application in Odoo.
+This module is the base of the LIMS application based on LOINC.
+
+LOINC codes can be updated from here: https://loinc.org/downloads/
 
 **Table of contents**
 
@@ -42,12 +44,12 @@ The base LIMS module can be used with minimal initial configuration. It
 also allows for many advanced features, which require a more in-depth
 configuration.
 
-Analysis Stages
----------------
+Stages
+------
 
-The stage of an analysis is used to monitor its progress. Stages can be
-configured based on your company's specific business needs. A basic set
-of analysis stages comes pre-configured for use.
+The stages are used to monitor progress. Stages can be configured based
+on your company's specific business needs. A basic set of stages comes
+pre-configured for use.
 
 1. Go to *LIMS > Configuration > Stages*
 2. Create or edit a stage

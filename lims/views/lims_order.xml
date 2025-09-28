@@ -6,7 +6,6 @@
         <field name="arch" type="xml">
             <form string="Analysis">
                 <header>
-                    <field name="is_button" invisible="1" />
                     <field name="team_id" invisible="1" />
                     <button
                         id="action_complete"
@@ -46,46 +45,45 @@
                                 groups="lims.group_lims_template"
                             />
                             <field name="partner_id" />
-                            <field name="sample_id" />
+                            <field name="operator_id" />
+                            <field name="specimen_id" />
                             <field name="priority" widget="priority" />
+                        </group>
+                        <group>
+                            <field name="scheduled_date" />
+                            <field name="date" />
+                            <field name="team_id" groups="lims.group_lims_team" />
+                            <field
+                                name="category_ids"
+                                widget="many2many_tags"
+                                options="{'color_field': 'color'}"
+                                groups="lims.group_lims_category"
+                            />
                             <field
                                 name="tag_ids"
                                 widget="many2many_tags"
                                 groups="lims.group_lims_tag"
                                 options="{'color_field': 'color', 'no_create_edit': True}"
                             />
-                        </group>
-                        <group>
                             <field
-                                name="laboratory_id"
-                                groups="lims.group_lims_laboratory"
-                            />
-                            <field name="team_id" groups="lims.group_lims_team" />
-                            <field name="operator_id" />
-                            <field
-                                name="equipment_id"
-                                invisible="internal_type not in ['maintenance']"
-                                groups="lims.group_lims_equipment"
+                                name="instrument_id"
+                                groups="lims.group_lims_instrument"
                                 options="{'no_create': True}"
-                            />
-                            <field
-                                name="company_id"
-                                options="{'no_create': True}"
-                                groups="base.group_multi_company"
                             />
                         </group>
                     </group>
                     <notebook>
-                        <page string="Work Orders" name="lines">
-                            <field name="line_ids">
+                        <page string="Tests" name="tests">
+                            <field name="test_ids">
                                 <list>
                                     <field name="name" />
+                                    <field name="scheduled_date" />
+                                    <field name="test_id" />
                                     <field name="operator_id" />
-                                    <field name="type" />
-                                    <field name="result_min" />
-                                    <field name="result_max" />
-                                    <field name="result_value" />
-                                    <field name="success" />
+                                    <field
+                                        name="instrument_id"
+                                        groups="lims.group_lims_instrument"
+                                    />
                                     <field
                                         name="batch_id"
                                         groups="lims.group_lims_batch"
@@ -94,33 +92,20 @@
                                 </list>
                             </field>
                         </page>
-                        <page string="Planning" name="planning_page">
+                        <page string="Other info" name="other_info">
                             <group>
-                                <group string="Requirements" name="requirements_grp">
+                                <group name="other-left">
                                     <field
-                                        name="category_ids"
-                                        widget="many2many_tags"
-                                        options="{'color_field': 'color'}"
-                                        groups="lims.group_lims_category"
+                                        name="laboratory_id"
+                                        groups="lims.group_lims_laboratory"
                                     />
-                                    <field name="request_early" />
-                                    <field name="request_late" />
+                                    <field
+                                        name="company_id"
+                                        options="{'no_create': True}"
+                                        groups="base.group_multi_company"
+                                    />
                                 </group>
-                                <group id="schedule" string="Schedule Details">
-                                    <field name="scheduled_date_start" />
-                                    <field name="scheduled_duration" />
-                                    <field name="scheduled_date_end" readonly="1" />
-                                </group>
-                            </group>
-                        </page>
-                        <page string="Execution" name="execution_page">
-                            <group>
-                                <group id="execution-left">
-                                    <field name="date_start" />
-                                    <field name="date_end" />
-                                    <field name="duration" readonly="1" />
-                                </group>
-                                <group id="execution-right" />
+                                <group name="other-right" />
                             </group>
                         </page>
                     </notebook>
@@ -129,12 +114,13 @@
             </form>
         </field>
     </record>
+
     <record id="lims_order_list_view" model="ir.ui.view">
         <field name="name">lims.order.list</field>
         <field name="model">lims.order</field>
         <field name="arch" type="xml">
-            <list name="orders" default_order="scheduled_date_start">
-                <field name="scheduled_date_start" />
+            <list name="orders" default_order="scheduled_date">
+                <field name="scheduled_date" />
                 <field name="name" />
                 <field name="operator_id" />
                 <field name="stage_id" string="Stage" />
@@ -142,6 +128,7 @@
             </list>
         </field>
     </record>
+
     <record id="action_lims_operation_order" model="ir.actions.act_window">
         <field name="name">Analysis</field>
         <field name="res_model">lims.order</field>
@@ -239,7 +226,7 @@
             <search string="Orders">
                 <filter
                     string="My Orders"
-                    domain="[('operator_id.partner_id.user_ids', '=', uid)]"
+                    domain="[('operator_id.user_ids', '=', uid)]"
                     name="my_orders"
                 />
                 <separator />
@@ -263,7 +250,7 @@
                 />
                 <filter
                     string="Unscheduled"
-                    domain="[('scheduled_date_start', '=', False), ('stage_id.is_closed', '=', False)]"
+                    domain="[('scheduled_date', '=', False), ('stage_id.is_closed', '=', False)]"
                     name="unscheduled"
                 />
                 <filter
@@ -275,29 +262,29 @@
                 <filter
                     string="Today Orders"
                     domain="[
-                    ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
-                    ('scheduled_date_start', '&lt;', (datetime.datetime.combine(datetime.date.today(), datetime.time(23,59,59))))
+                    ('scheduled_date', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('scheduled_date', '&lt;', (datetime.datetime.combine(datetime.date.today(), datetime.time(23,59,59))))
                     ]"
                     name="order_today"
                 />
                 <filter
                     string="Future Orders"
-                    domain="[('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0))))]"
+                    domain="[('scheduled_date', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0))))]"
                     name="order_upcoming_all"
                 />
                 <filter
                     string="Due Within 7 Days"
                     domain="[
-                    ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
-                    ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=6)), datetime.time(23,59,59))))
+                    ('scheduled_date', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('scheduled_date', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=6)), datetime.time(23,59,59))))
                     ]"
                     name="order_upcoming_week"
                 />
                 <filter
                     string="Due Within 30 Days"
                     domain="[
-                    ('scheduled_date_start', '&gt;=',(datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
-                    ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=29)), datetime.time(23,59,59))))
+                    ('scheduled_date', '&gt;=',(datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('scheduled_date', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=29)), datetime.time(23,59,59))))
                     ]"
                     name="order_upcoming_month"
                 />
@@ -318,21 +305,10 @@
         <field name="model">lims.order</field>
         <field name="type">calendar</field>
         <field name="arch" type="xml">
-            <calendar
-                string="Analysis"
-                date_start="scheduled_date_start"
-                date_delay="scheduled_duration"
-                color="stage_id"
-            >
+            <calendar string="Analysis" date_start="scheduled_date" color="stage_id">
                 <field name="name" />
                 <field name="stage_id" filters="1" />
-                <field
-                    name="operator_id"
-                    write_model="lims.operator.calendar.filter"
-                    write_field="operator_id"
-                    filter_field="operator_checked"
-                    avatar_field="image_128"
-                />
+                <field name="operator_id" avatar_field="image_128" />
                 <field name="team_id" filters="1" />
             </calendar>
         </field>
@@ -351,7 +327,6 @@
     </record>
 
     <!-- Reporting -->
-
     <record id="lims_order_graph_view" model="ir.ui.view">
         <field name="name">lims.order.graph</field>
         <field name="model">lims.order</field>
@@ -377,9 +352,7 @@
         <field name="res_model">lims.order</field>
         <field name="view_mode">graph,pivot</field>
         <field name="help" type="html">
-            <p>
-                Analysis Reports.
-            </p>
+            <p>Analysis Reports.</p>
         </field>
     </record>
 

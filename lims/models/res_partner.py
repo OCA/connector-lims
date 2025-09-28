@@ -7,5 +7,6 @@ from odoo import fields, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    lims_laboratory = fields.Boolean("Is a laboratory")
-    lims_operator = fields.Boolean("Is an operator")
+    is_laboratory = fields.Boolean("Is a laboratory")
+    is_lims_operator = fields.Boolean("Is a lab operator")
+    is_physician = fields.Boolean("Is a physician")

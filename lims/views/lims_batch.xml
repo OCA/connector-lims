@@ -40,25 +40,21 @@
                     </div>
                     <group>
                         <group>
+                            <field name="test_id" />
                             <field name="operator_id" />
                             <field
-                                name="type"
-                                options="{'no_create': True, 'no_open': True}"
-                            />
-                            <field
-                                name="equipment_id"
-                                invisible="internal_type not in ['maintenance']"
-                                groups="lims.group_lims_equipment"
+                                name="instrument_id"
+                                groups="lims.group_lims_instrument"
                                 options="{'no_create': True}"
                             />
                         </group>
                         <group>
+                            <field name="scheduled_date" />
+                            <field name="team_id" groups="lims.group_lims_team" />
                             <field
                                 name="laboratory_id"
                                 groups="lims.group_lims_laboratory"
                             />
-                            <field name="team_id" groups="lims.group_lims_team" />
-                            <field name="internal_type" invisible="1" />
                             <field
                                 name="company_id"
                                 options="{'no_create': True}"
@@ -75,11 +71,15 @@
                         />
                     </group>
                     <notebook>
-                        <page string="Work Orders" name="lines">
-                            <field name="line_ids">
+                        <page string="Tests" name="tests">
+                            <field name="test_ids">
                                 <list>
                                     <field name="name" />
+                                    <field name="scheduled_date" />
                                     <field name="operator_id" />
+                                    <field name="instrument_id" />
+                                    <field name="order_id" />
+                                    <field name="stage_id" />
                                 </list>
                             </field>
                         </page>
@@ -96,7 +96,10 @@
         <field name="arch" type="xml">
             <list name="batchs">
                 <field name="name" />
+                <field name="test_id" />
                 <field name="operator_id" />
+                <field name="instrument_id" />
+                <field name="scheduled_date" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="stage_id" string="Stage" />
             </list>
@@ -122,7 +125,7 @@
             <search string="Orders">
                 <filter
                     string="My Orders"
-                    domain="[('operator_id.partner_id.user_ids', '=', uid)]"
+                    domain="[('operator_id.user_ids', '=', uid)]"
                     name="my_batchs"
                 />
                 <separator />
@@ -146,7 +149,7 @@
                 />
                 <filter
                     string="Unscheduled"
-                    domain="[('scheduled_date_start', '=', False), ('stage_id.is_closed', '=', False)]"
+                    domain="[('scheduled_date', '=', False), ('stage_id.is_closed', '=', False)]"
                     name="unscheduled"
                 />
                 <filter
@@ -158,29 +161,29 @@
                 <filter
                     string="Today Batches"
                     domain="[
-                    ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
-                    ('scheduled_date_start', '&lt;', (datetime.datetime.combine(datetime.date.today(), datetime.time(23,59,59))))
+                    ('scheduled_date', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('scheduled_date', '&lt;', (datetime.datetime.combine(datetime.date.today(), datetime.time(23,59,59))))
                     ]"
                     name="batch_today"
                 />
                 <filter
                     string="Future Batches"
-                    domain="[('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0))))]"
+                    domain="[('scheduled_date', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0))))]"
                     name="batch_upcoming_all"
                 />
                 <filter
                     string="Due Within 7 Days"
                     domain="[
-                    ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
-                    ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=6)), datetime.time(23,59,59))))
+                    ('scheduled_date', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('scheduled_date', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=6)), datetime.time(23,59,59))))
                     ]"
                     name="batch_upcoming_week"
                 />
                 <filter
                     string="Due Within 30 Days"
                     domain="[
-                    ('scheduled_date_start', '&gt;=',(datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
-                    ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=29)), datetime.time(23,59,59))))
+                    ('scheduled_date', '&gt;=',(datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('scheduled_date', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=29)), datetime.time(23,59,59))))
                     ]"
                     name="batch_upcoming_month"
                 />
@@ -201,21 +204,10 @@
         <field name="model">lims.batch</field>
         <field name="type">calendar</field>
         <field name="arch" type="xml">
-            <calendar
-                string="Batches"
-                date_start="scheduled_date_start"
-                date_delay="scheduled_duration"
-                color="stage_id"
-            >
+            <calendar string="Batches" date_start="scheduled_date" color="stage_id">
                 <field name="name" />
                 <field name="stage_id" filters="1" />
-                <field
-                    name="operator_id"
-                    write_model="lims.operator.calendar.filter"
-                    write_field="operator_id"
-                    filter_field="operator_checked"
-                    avatar_field="image_128"
-                />
+                <field name="operator_id" avatar_field="image_128" />
                 <field name="team_id" filters="1" />
             </calendar>
         </field>

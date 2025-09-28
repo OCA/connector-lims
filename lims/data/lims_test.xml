@@ -1,0 +1,9 @@
+<odoo noupdate="1">
+    <record id="lims_test_microbiology_parasitic_studies" model="lims.test">
+        <field name="name">Microbiology - parasitic studies</field>
+        <field name="loinc_code_id" search="[('loinc_num', '=', '92892-9')]" />
+        <field name="normal_range_min">10</field>
+        <field name="normal_range_max">20</field>
+        <field name="method_id" ref="lims_method_nonprob_amp_tar" />
+    </record>
+</odoo>

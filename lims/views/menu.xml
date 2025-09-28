@@ -48,21 +48,14 @@
         parent="dashboard"
         sequence="30"
     />
-    <menuitem
-        id="menu_lims_dash_equipment"
-        name="Equipments"
-        action="action_lims_dash_equipment"
-        parent="dashboard"
-        sequence="40"
-        groups="group_lims_equipment"
-    />
     <!-- Operations Menu -->
     <menuitem
-        id="menu_lims_operation_order_line"
-        name="Work Orders"
-        action="action_lims_operation_order_line"
+        id="menu_lims_operation_batch"
+        name="Batches"
+        action="action_lims_operation_batch"
         parent="operations"
         sequence="10"
+        groups="group_lims_batch"
     />
     <menuitem
         id="menu_lims_operation_order"
@@ -72,12 +65,25 @@
         sequence="20"
     />
     <menuitem
-        id="menu_lims_operation_batch"
-        name="Batches"
-        action="action_lims_operation_batch"
+        id="menu_lims_operation_order_test"
+        name="Tests"
+        action="action_lims_operation_order_test"
         parent="operations"
         sequence="30"
-        groups="group_lims_batch"
+    />
+    <menuitem
+        id="menu_lims_specimen"
+        name="Specimens"
+        action="action_lims_specimen"
+        parent="operations"
+        sequence="40"
+    />
+    <menuitem
+        id="menu_lims_result"
+        name="Results"
+        action="action_lims_result"
+        parent="operations"
+        sequence="50"
     />
     <!-- Master Data Menu -->
     <menuitem
@@ -88,9 +94,9 @@
         sequence="10"
     />
     <menuitem
-        id="menu_lims_sample"
-        name="Samples"
-        action="action_lims_sample"
+        id="menu_lims_physician"
+        name="Physicians"
+        action="action_lims_physician"
         parent="data"
         sequence="20"
     />
@@ -102,12 +108,12 @@
         sequence="30"
     />
     <menuitem
-        id="menu_lims_equipment"
-        name="Equipments"
-        action="action_lims_equipment"
+        id="menu_lims_instrument"
+        name="Instruments"
+        action="action_lims_instrument"
         parent="data"
-        sequence="80"
-        groups="group_lims_equipment"
+        sequence="40"
+        groups="group_lims_instrument"
     />
     <menuitem
         id="menu_lims_template"
@@ -119,26 +125,33 @@
     />
     <!-- Reporting Menu -->
     <menuitem
-        id="menu_lims_report_order_line"
-        name="Work Orders"
-        action="action_lims_report_order_line"
+        id="menu_lims_report_result"
+        name="Results"
+        action="action_lims_report_result"
         parent="reporting"
         sequence="10"
+    />
+    <menuitem
+        id="menu_lims_report_order_test"
+        name="Tests"
+        action="action_lims_report_order_test"
+        parent="reporting"
+        sequence="20"
     />
     <menuitem
         id="menu_lims_report_order"
         name="Analysis"
         action="action_lims_report_order"
         parent="reporting"
-        sequence="20"
+        sequence="30"
     />
     <menuitem
-        id="menu_lims_report_equipment"
-        name="Equipments"
-        action="action_lims_report_equipment"
+        id="menu_lims_report_instrument"
+        name="Instruments"
+        action="action_lims_report_instrument"
         parent="reporting"
         sequence="40"
-        groups="group_lims_equipment"
+        groups="group_lims_instrument"
     />
     <!-- Configuration Menu -->
     <menuitem
@@ -149,12 +162,11 @@
         action="action_lims_config"
     />
     <menuitem
-        id="menu_lims_laboratory"
-        name="Laboratories"
-        action="action_lims_laboratory"
+        id="menu_lims_loinc_code"
+        name="LOINC Codes"
+        action="action_lims_loinc_code"
         parent="config"
         sequence="20"
-        groups="lims.group_lims_laboratory"
     />
     <menuitem
         id="menu_lims_stage"
@@ -163,35 +175,49 @@
         parent="config"
         sequence="30"
     />
+    <menuitem
+        id="menu_lims_laboratory"
+        name="Laboratories"
+        action="action_lims_laboratory"
+        parent="config"
+        sequence="40"
+        groups="lims.group_lims_laboratory"
+    />
+    <menuitem
+        id="menu_lims_test"
+        name="Tests"
+        action="action_lims_test"
+        parent="config"
+        sequence="50"
+    />
+    <menuitem
+        id="menu_lims_method"
+        name="Methods"
+        action="action_lims_method"
+        parent="config"
+        sequence="60"
+    />
     <!-- Config / Orders -->
     <menuitem
         id="menu_lims_config_order"
         name="Analysis"
         parent="config"
-        sequence="30"
+        sequence="70"
     />
     <menuitem
         id="menu_lims_tag"
         name="Tags"
         action="action_lims_tag"
         parent="menu_lims_config_order"
-        sequence="30"
+        sequence="10"
         groups="lims.group_lims_tag"
-    />
-    <menuitem
-        id="menu_lims_order_type"
-        name="Analysis Types"
-        action="action_lims_order_type"
-        parent="menu_lims_config_order"
-        sequence="30"
-        groups="lims.group_lims_manager"
     />
     <!-- Config / Operators -->
     <menuitem
         id="menu_lims_config_operator"
         name="Operators"
         parent="config"
-        sequence="60"
+        sequence="80"
     />
     <menuitem
         id="menu_lims_team"

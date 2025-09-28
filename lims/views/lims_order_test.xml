@@ -1,10 +1,10 @@
 <odoo>
     <!-- Operations -->
-    <record id="lims_order_line_form" model="ir.ui.view">
-        <field name="name">lims.order.line.form</field>
-        <field name="model">lims.order.line</field>
+    <record id="lims_order_test_form" model="ir.ui.view">
+        <field name="name">lims.order.test.form</field>
+        <field name="model">lims.order.test</field>
         <field name="arch" type="xml">
-            <form string="Work Orders">
+            <form string="Tests">
                 <header>
                     <field name="team_id" invisible="1" />
                     <button
@@ -19,7 +19,7 @@
                     <button
                         id="action_cancel"
                         name="action_cancel"
-                        string="Cancel Work Order"
+                        string="Cancel Analysis"
                         type="object"
                         groups="lims.group_lims_user"
                         invisible="is_closed"
@@ -40,12 +40,36 @@
                     </div>
                     <group>
                         <group>
+                            <field name="specimen_id" />
+                            <field name="test_id" />
+                            <field name="operator_id" />
                             <field
-                                name="type"
-                                options="{'no_create': True, 'no_open': True}"
+                                name="instrument_id"
+                                groups="lims.group_lims_instrument"
+                                options="{'no_create': True}"
                             />
-                            <field name="sample_id" />
-                            <field name="priority" widget="priority" />
+                        </group>
+                        <group>
+                            <field name="scheduled_date" />
+                            <field name="date" />
+                            <field
+                                name="laboratory_id"
+                                groups="lims.group_lims_laboratory"
+                            />
+                            <field name="team_id" groups="lims.group_lims_team" />
+                            <field name="order_id" invisible="1" />
+                            <field name="batch_id" groups="lims.group_lims_batch" />
+                            <field
+                                name="company_id"
+                                options="{'no_create': True}"
+                                groups="base.group_multi_company"
+                            />
+                            <field
+                                name="category_ids"
+                                widget="many2many_tags"
+                                options="{'color_field': 'color'}"
+                                groups="lims.group_lims_category"
+                            />
                             <field
                                 name="tag_ids"
                                 widget="many2many_tags"
@@ -53,82 +77,21 @@
                                 options="{'color_field': 'color', 'no_create_edit': True}"
                             />
                         </group>
-                        <group>
-                            <field
-                                name="laboratory_id"
-                                groups="lims.group_lims_laboratory"
-                            />
-                            <field name="team_id" groups="lims.group_lims_team" />
-                            <field name="operator_id" />
-                            <field name="order_id" />
-                            <field name="batch_id" groups="lims.group_lims_batch" />
-                            <field name="internal_type" invisible="1" />
-                            <field
-                                name="equipment_id"
-                                invisible="internal_type not in ['maintenance']"
-                                groups="lims.group_lims_equipment"
-                                options="{'no_create': True}"
-                            />
-                            <field
-                                name="company_id"
-                                options="{'no_create': True}"
-                                groups="base.group_multi_company"
-                            />
-                        </group>
+                    </group>
+                    <group string="Instructions" name="instructions">
+                        <field name="todo" nolabel="1" colspan="2" widget="html" />
                     </group>
                     <notebook>
-                        <page string="Planning" name="planning_page">
-                            <group>
-                                <group string="Requirements" name="requirements_grp">
-                                    <field
-                                        name="category_ids"
-                                        widget="many2many_tags"
-                                        options="{'color_field': 'color'}"
-                                        groups="lims.group_lims_category"
-                                    />
-                                    <field name="request_early" />
-                                    <field name="request_late" />
-                                </group>
-                                <group id="schedule" string="Schedule Details">
-                                    <field name="scheduled_date_start" />
-                                    <field name="scheduled_duration" />
-                                    <field name="scheduled_date_end" readonly="1" />
-                                </group>
-                            </group>
-                        </page>
-                        <page string="Instructions" name="instructions_page">
-                            <group string="Instructions" name="instructions_grp">
-                                <field
-                                    name="todo"
-                                    nolabel="1"
-                                    colspan="2"
-                                    widget="html"
-                                />
-                            </group>
-                        </page>
-                        <page string="Execution" name="execution_page">
-                            <group>
-                                <group id="execution-left">
-                                    <field name="date_start" />
-                                    <field name="date_end" />
-                                    <field name="duration" readonly="1" />
-                                </group>
-                                <group id="execution-right" />
-                            </group>
-                        </page>
-                        <page string="Result" name="result_page">
-                            <group>
-                                <group id="result-left">
-                                    <field name="result_type" />
-                                    <field name="result_formula" />
+                        <page string="Results" name="result_page">
+                            <field name="result_ids">
+                                <list>
+                                    <field name="name" />
+                                    <field name="description" />
+                                    <field name="specimen_id" />
                                     <field name="result_value" />
-                                    <field name="success" />
-                                </group>
-                                <group id="result-right">
-                                    <field name="result_min" />
-                                    <field name="result_max" />
-                                </group>
-                            </group>
+                                    <field name="stage_id" />
+                                </list>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
@@ -137,21 +100,16 @@
         </field>
     </record>
 
-    <record id="lims_order_line_list_view" model="ir.ui.view">
-        <field name="name">lims.order.line.list</field>
-        <field name="model">lims.order.line</field>
+    <record id="lims_order_test_list_view" model="ir.ui.view">
+        <field name="name">lims.order.test.list</field>
+        <field name="model">lims.order.test</field>
         <field name="arch" type="xml">
-            <list name="lines" default_order="scheduled_date_start">
-                <field name="scheduled_date_start" />
+            <list name="lines" default_order="scheduled_date">
+                <field name="scheduled_date" />
                 <field name="name" />
                 <field name="operator_id" />
-                <field name="sample_id" />
-                <field name="equipment_id" groups="lims.group_lims_equipment" />
-                <field name="type" />
-                <field name="result_min" />
-                <field name="result_max" />
-                <field name="result_value" />
-                <field name="success" />
+                <field name="specimen_id" />
+                <field name="instrument_id" groups="lims.group_lims_instrument" />
                 <field name="batch_id" groups="lims.group_lims_batch" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="stage_id" string="Stage" />
@@ -159,20 +117,19 @@
         </field>
     </record>
 
-    <record id="action_lims_operation_order_line" model="ir.actions.act_window">
-        <field name="name">Work Orders</field>
-        <field name="res_model">lims.order.line</field>
+    <record id="action_lims_operation_order_test" model="ir.actions.act_window">
+        <field name="name">Tests</field>
+        <field name="res_model">lims.order.test</field>
         <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Create a Work Order.
+                Create a test.
             </p>
         </field>
     </record>
 
     <!-- Dashboard -->
-
-    <record id="lims_order_line_kanban_view" model="ir.ui.view">
+    <record id="lims_order_test_kanban_view" model="ir.ui.view">
         <field name="name">lims.order.kanban</field>
         <field name="model">lims.order</field>
         <field name="arch" type="xml">
@@ -182,7 +139,6 @@
                     options='{"group_by_tooltip": {"description": "Description"}}'
                 />
                 <field name="name" />
-                <field name="priority" />
                 <field name="operator_id" />
                 <field name="color" />
                 <templates>
@@ -249,15 +205,15 @@
         </field>
     </record>
 
-    <!-- Search for lims.order.line -->
-    <record id="lims_order_line_search_view" model="ir.ui.view">
-        <field name="name">lims.order.line.search</field>
-        <field name="model">lims.order.line</field>
+    <!-- Search for lims.order.test -->
+    <record id="lims_order_test_search_view" model="ir.ui.view">
+        <field name="name">lims.order.test.search</field>
+        <field name="model">lims.order.test</field>
         <field name="arch" type="xml">
-            <search string="Work Orders">
+            <search string="Tests">
                 <filter
-                    string="My Orders"
-                    domain="[('operator_id.partner_id.user_ids', '=', uid)]"
+                    string="My Tests"
+                    domain="[('operator_id.user_ids', '=', uid)]"
                     name="my_orders"
                 />
                 <separator />
@@ -281,7 +237,7 @@
                 />
                 <filter
                     string="Unscheduled"
-                    domain="[('scheduled_date_start', '=', False), ('stage_id.is_closed', '=', False)]"
+                    domain="[('scheduled_date', '=', False), ('stage_id.is_closed', '=', False)]"
                     name="unscheduled"
                 />
                 <filter
@@ -293,86 +249,84 @@
                 <filter
                     string="Today Orders"
                     domain="[
-                    ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
-                    ('scheduled_date_start', '&lt;', (datetime.datetime.combine(datetime.date.today(), datetime.time(23,59,59))))
+                    ('scheduled_date', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('scheduled_date', '&lt;', (datetime.datetime.combine(datetime.date.today(), datetime.time(23,59,59))))
                     ]"
                     name="order_today"
                 />
                 <filter
                     string="Future Orders"
-                    domain="[('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0))))]"
+                    domain="[('scheduled_date', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0))))]"
                     name="order_upcoming_all"
                 />
                 <filter
                     string="Due Within 7 Days"
                     domain="[
-                    ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
-                    ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=6)), datetime.time(23,59,59))))
+                    ('scheduled_date', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('scheduled_date', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=6)), datetime.time(23,59,59))))
                     ]"
                     name="order_upcoming_week"
                 />
                 <filter
                     string="Due Within 30 Days"
                     domain="[
-                    ('scheduled_date_start', '&gt;=',(datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
-                    ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=29)), datetime.time(23,59,59))))
+                    ('scheduled_date', '&gt;=',(datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('scheduled_date', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=29)), datetime.time(23,59,59))))
                     ]"
                     name="order_upcoming_month"
                 />
                 <separator />
                 <group expand="0" string="Group By">
                     <filter
-                        name="lims_operator_id"
+                        name="operator_id"
                         domain=""
-                        context="{'group_by':'operator_id'}"
+                        context="{'group_by': 'operator_id'}"
                     />
                 </group>
             </search>
         </field>
     </record>
 
-    <record id="action_lims_dash_order_line" model="ir.actions.act_window">
-        <field name="name">Work Orders</field>
-        <field name="res_model">lims.order.line</field>
+    <record id="action_lims_dash_order_test" model="ir.actions.act_window">
+        <field name="name">Tests</field>
+        <field name="res_model">lims.order.test</field>
         <field name="view_mode">list,form</field>
-        <field name="search_view_id" ref="lims_order_line_search_view" />
+        <field name="search_view_id" ref="lims_order_test_search_view" />
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Create a Work Order.
+                Create a test.
             </p>
         </field>
     </record>
 
     <!-- Reporting -->
 
-    <record id="lims_order_line_graph_view" model="ir.ui.view">
-        <field name="name">lims.order.line.graph</field>
-        <field name="model">lims.order.line</field>
+    <record id="lims_order_test_graph_view" model="ir.ui.view">
+        <field name="name">lims.order.test.graph</field>
+        <field name="model">lims.order.test</field>
         <field name="arch" type="xml">
-            <graph string="Work Orders" type="bar">
+            <graph string="Tests" type="bar">
                 <field name="stage_id" type="row" />
             </graph>
         </field>
     </record>
 
     <record id="lims_order_pivot_line_view" model="ir.ui.view">
-        <field name="name">lims.order.line.pivot</field>
-        <field name="model">lims.order.line</field>
+        <field name="name">lims.order.test.pivot</field>
+        <field name="model">lims.order.test</field>
         <field name="arch" type="xml">
-            <pivot string="Work Orders" display_quantity="true">
+            <pivot string="Tests" display_quantity="true">
                 <field name="stage_id" type="row" />
             </pivot>
         </field>
     </record>
 
-    <record id="action_lims_report_order_line" model="ir.actions.act_window">
-        <field name="name">Work Orders</field>
-        <field name="res_model">lims.order.line</field>
+    <record id="action_lims_report_order_test" model="ir.actions.act_window">
+        <field name="name">Tests</field>
+        <field name="res_model">lims.order.test</field>
         <field name="view_mode">graph,pivot</field>
         <field name="help" type="html">
-            <p>
-                Work Orders Reports.
-            </p>
+            <p>Tests Reports.</p>
         </field>
     </record>
 </odoo>

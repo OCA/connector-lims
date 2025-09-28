@@ -14,6 +14,82 @@
         </field>
     </record>
 
+    <record id="res_partner_lims_search" model="ir.ui.view">
+        <field name="name">res.partner.lims.search</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
+        <field name="arch" type="xml">
+            <filter name="type_company" position="after">
+                <separator />
+                <filter
+                    string="Physicians"
+                    name="type_physician"
+                    domain="[('is_physician', '=', True)]"
+                    groups="lims.group_lims_user_own"
+                />
+                <filter
+                    string="Operators"
+                    name="type_lims_opretaor"
+                    domain="[('is_lims_operator', '=', True)]"
+                    groups="lims.group_lims_user_own"
+                />
+                <filter
+                    string="Laboratories"
+                    name="type_laboratory"
+                    domain="[('is_laboratory', '=', True)]"
+                    groups="lims.group_lims_user_own"
+                />
+            </filter>
+        </field>
+    </record>
+
+    <!-- Laboratories -->
+    <record id="action_lims_laboratory" model="ir.actions.act_window">
+        <field name="name">Laboratories</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_laboratory', '=', True)]</field>
+        <field name="context">{'default_is_laboratory': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a laboratory.</p>
+        </field>
+    </record>
+
+    <record id="action_laboratory_dashboard" model="ir.actions.act_window">
+        <field name="name">Laboratories</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('is_laboratory', '=', True)]</field>
+        <field name="context">{'default_is_laboratory': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a laboratory.</p>
+        </field>
+    </record>
+
+    <!-- Operators -->
+    <record id="action_lims_operator" model="ir.actions.act_window">
+        <field name="name">Operators</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('is_lims_operator', '=', True)]</field>
+        <field name="context">{'default_is_lims_operator': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a LIMS Operator.</p>
+        </field>
+    </record>
+
+    <!-- Physicians -->
+    <record id="action_lims_physician" model="ir.actions.act_window">
+        <field name="name">Physicians</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('is_physician', '=', True)]</field>
+        <field name="context">{'default_is_physician': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a physician.</p>
+        </field>
+    </record>
+
     <!-- LIMS Fields -->
     <record id="lims_partner_fields" model="ir.ui.view">
         <field name="name">res.partner.lims.form</field>
@@ -23,25 +99,15 @@
             <notebook position="inside">
                 <page string="LIMS" groups="lims.group_lims_user_own">
                     <group>
-                        <group>
-                            <field name="lims_laboratory" readonly="1" />
-                            <field name="lims_operator" readonly="1" />
+                        <group name="lims-left">
+                            <field name="is_laboratory" />
+                            <field name="is_lims_operator" />
+                            <field name="is_physician" />
                         </group>
-                        <group />
+                        <group name="lims-right" />
                     </group>
                 </page>
             </notebook>
-        </field>
-    </record>
-
-    <record id="res_partner_search_reference" model="ir.ui.view">
-        <field name="name">res.partner.search.reference</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_res_partner_filter" />
-        <field name="arch" type="xml">
-            <field name="user_id" position="after">
-                <field name="ref" />
-            </field>
         </field>
     </record>
 </odoo>

@@ -1,7 +1,6 @@
 # Copyright (C) 2025 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
@@ -38,9 +37,12 @@ class LIMSBatch(models.Model):
         raise ValidationError(_("You must create an LIMS team first."))
 
     def _default_laboratory_id(self):
-        rec = self.env["lims.laboratory"].search(
-            [("company_id", "in", (self.env.company.id, False))],
-            order="sequence asc",
+        rec = self.env["res.partner"].search(
+            [
+                ("is_laboratory", "=", True),
+                ("company_id", "in", (self.env.company.id, False)),
+            ],
+            order="id asc",
             limit=1,
         )
         if rec:
@@ -66,7 +68,7 @@ class LIMSBatch(models.Model):
         default=lims_stage.AVAILABLE_PRIORITIES[0][0],
     )
     laboratory_id = fields.Many2one(
-        "lims.laboratory",
+        "res.partner",
         string="Laboratory",
         default=lambda self: self._default_laboratory_id(),
         index=True,
@@ -81,17 +83,19 @@ class LIMSBatch(models.Model):
         required=True,
         tracking=True,
     )
-
-    # Request
     name = fields.Char(
         required=True,
         index=True,
         copy=False,
         default=lambda self: _("New"),
     )
-    type = fields.Many2one("lims.order.type")
-    internal_type = fields.Selection(related="type.internal_type")
-    line_ids = fields.One2many("lims.order.line", "batch_id", string="Work Orders")
+    test_id = fields.Many2one("lims.test")
+    test_ids = fields.One2many(
+        "lims.order.test",
+        "batch_id",
+        string="Tests",
+        domain="[('test_id', '=', test_id.id)]",
+    )
     company_id = fields.Many2one(
         "res.company",
         string="Company",
@@ -100,16 +104,15 @@ class LIMSBatch(models.Model):
         default=lambda self: self.env.company,
         help="Company related to this order",
     )
-
     description = fields.Text()
-
-    # Planning
-    operator_id = fields.Many2one("lims.operator", string="Assigned To", index=True)
-    sequence = fields.Integer(default=10)
-    equipment_id = fields.Many2one("lims.equipment", string="Equipment")
-    scheduled_date_start = fields.Datetime(string="Scheduled Start (ETA)")
-    scheduled_duration = fields.Float(help="Scheduled duration in hours")
-    scheduled_date_end = fields.Datetime(string="Scheduled End")
+    operator_id = fields.Many2one(
+        "res.partner",
+        string="Assigned To",
+        index=True,
+        domain="[('is_lims_operator', '=', True)]",
+    )
+    instrument_id = fields.Many2one(related="test_id.instrument_id")
+    scheduled_date = fields.Date()
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order=None):
@@ -142,9 +145,22 @@ class LIMSBatch(models.Model):
     def action_complete(self):
         return self.write(
             {
-                "stage_id": self.env.ref("lims.lims_stage_completed").id,
+                "stage_id": self.env.ref("lims.lims_stage_order_completed").id,
             }
         )
 
     def action_cancel(self):
-        return self.write({"stage_id": self.env.ref("lims.lims_stage_cancelled").id})
+        return self.write(
+            {"stage_id": self.env.ref("lims.lims_stage_order_cancelled").id}
+        )
+
+    @api.onchange("operator_id", "scheduled_date", "instrument_id")
+    def _onchange_test_ids(self):
+        if self.operator_id or self.scheduled_date or self.instrument_id:
+            self.test_ids.write(
+                {
+                    "operator_id": self.operator_id.id,
+                    "scheduled_date": self.scheduled_date,
+                    "instrument_id": self.instrument_id.id,
+                }
+            )

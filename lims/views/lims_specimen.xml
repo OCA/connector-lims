@@ -1,8 +1,8 @@
 <odoo>
-    <!-- LIMS Sample -->
-    <record id="lims_sample_list" model="ir.ui.view">
-        <field name="name">lims.sample.list</field>
-        <field name="model">lims.sample</field>
+    <!-- LIMS Specimen -->
+    <record id="lims_specimen_list" model="ir.ui.view">
+        <field name="name">lims.specimen.list</field>
+        <field name="model">lims.specimen</field>
         <field name="arch" type="xml">
             <list>
                 <field name="name" />
@@ -11,11 +11,11 @@
         </field>
     </record>
 
-    <record id="lims_sample_form" model="ir.ui.view">
-        <field name="name">lims.sample.form</field>
-        <field name="model">lims.sample</field>
+    <record id="lims_specimen_form" model="ir.ui.view">
+        <field name="name">lims.specimen.form</field>
+        <field name="model">lims.specimen</field>
         <field name="arch" type="xml">
-            <form string="LIMS Sample">
+            <form string="Specimen">
                 <header>
                     <button
                         id="previous_stage"
@@ -36,7 +36,7 @@
                     <field
                         name="stage_id"
                         widget="statusbar"
-                        domain="[('stage_type', '=', 'sample')]"
+                        domain="[('stage_type', '=', 'specimen')]"
                     />
                 </header>
                 <sheet>
@@ -56,13 +56,13 @@
         </field>
     </record>
 
-    <record id="action_lims_sample" model="ir.actions.act_window">
-        <field name="name">LIMS Samples</field>
-        <field name="res_model">lims.sample</field>
+    <record id="action_lims_specimen" model="ir.actions.act_window">
+        <field name="name">Specimen</field>
+        <field name="res_model">lims.specimen</field>
         <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Add LIMS Samples here.
+                Add Specimen here.
             </p>
         </field>
     </record>

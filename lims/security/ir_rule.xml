@@ -46,9 +46,9 @@
         <field name="global" eval="True" />
         <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
     </record>
-    <record id="lims_equipment_comp_rule" model="ir.rule">
-        <field name="name">LIMS Equipments Entry</field>
-        <field name="model_id" ref="model_lims_equipment" />
+    <record id="lims_instrument_comp_rule" model="ir.rule">
+        <field name="name">LIMS Instruments Entry</field>
+        <field name="model_id" ref="model_lims_instrument" />
         <field name="global" eval="True" />
         <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
     </record>

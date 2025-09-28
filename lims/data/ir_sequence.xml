@@ -8,11 +8,20 @@
         <field name="company_id" eval="False" />
     </record>
 
-    <!-- Sequence for lims.order.line -->
-    <record id="seq_lims_order_line" model="ir.sequence">
-        <field name="name">LIMS Work Orders</field>
-        <field name="code">lims.order.line</field>
-        <field name="prefix">LWO</field>
+    <!-- Sequence for lims.order.test -->
+    <record id="seq_lims_order_test" model="ir.sequence">
+        <field name="name">LIMS Order Tests</field>
+        <field name="code">lims.order.test</field>
+        <field name="prefix">LT</field>
+        <field name="padding">3</field>
+        <field name="company_id" eval="False" />
+    </record>
+
+    <!-- Sequence for lims.specimen -->
+    <record id="seq_lims_specimen" model="ir.sequence">
+        <field name="name">LIMS Specimen</field>
+        <field name="code">lims.specimen</field>
+        <field name="prefix">LS</field>
         <field name="padding">3</field>
         <field name="company_id" eval="False" />
     </record>
@@ -22,6 +31,15 @@
         <field name="name">LIMS Batch</field>
         <field name="code">lims.batch</field>
         <field name="prefix">LB</field>
+        <field name="padding">3</field>
+        <field name="company_id" eval="False" />
+    </record>
+
+    <!-- Sequence for lims.result -->
+    <record id="seq_lims_result" model="ir.sequence">
+        <field name="name">LIMS Result</field>
+        <field name="code">lims.result</field>
+        <field name="prefix">LR</field>
         <field name="padding">3</field>
         <field name="company_id" eval="False" />
     </record>

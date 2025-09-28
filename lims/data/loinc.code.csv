@@ -1,0 +1,23 @@
+loinc_num,component,property,time_aspect,system,scale_type,method_type,loinc_class,loinc_class_type,long_common_name,short_name,external_copyright_notice,status,version_first_released,version_last_changed
+18725-2,Microbiology studies,Cmplx,-,^Patient,Set,,ATTACH.LAB,3,Microbiology studies (set),,,ACTIVE,1.0l,2.73
+49489-8,Microbiology section,-,-,^FDA package insert,Nar,,DOC.REF,2,FDA package insert Microbiology section,FDA insert Microbiology,,ACTIVE,2.22,2.34
+59464-8,Microbiologist review,Imp,Pt,XXX,Nar,,MICRO,1,Microbiologist review of results,Microbiologist review,,ACTIVE,2.32,2.73
+88836-2,Microbiology CNAMTS panel,-,Pt,Thrt,-,,PANEL.MICRO,1,Microbiology CNAMTS panel - Throat,Micro CNAMTS panel Throat,,ACTIVE,2.64,2.64
+88837-0,Microbiology CNAMTS panel,-,Pt,Sputum,-,,PANEL.MICRO,1,Microbiology CNAMTS panel - Sputum,Micro CNAMTS panel Spt,,ACTIVE,2.64,2.64
+88838-8,Microbiology CNAMTS panel,-,Pt,Semen,-,,PANEL.MICRO,1,Microbiology CNAMTS panel - Semen,Micro CNAMTS panel Smn,,ACTIVE,2.64,2.64
+88839-6,Microbiology CNAMTS panel,-,Pt,Pus,-,,PANEL.MICRO,1,Microbiology CNAMTS panel - Pus,Micro CNAMTS panel Pus,,ACTIVE,2.64,2.64
+88840-4,Microbiology CNAMTS panel,-,Pt,Urethra,-,,PANEL.MICRO,1,Microbiology CNAMTS panel - Urethra,Micro CNAMTS panel Urth,,ACTIVE,2.64,2.64
+88841-2,Microbiology CNAMTS panel,-,Pt,Synv fld,-,,PANEL.MICRO,1,Microbiology CNAMTS panel - Synovial fluid,Micro CNAMTS panel Snv,,ACTIVE,2.64,2.64
+88842-0,Microbiology CNAMTS panel,-,Pt,CSF,-,,PANEL.MICRO,1,Microbiology CNAMTS panel - Cerebral spinal fluid,Micro CNAMTS panel CSF,,ACTIVE,2.64,2.64
+88844-6,Microbiology CNAMTS panel,-,Pt,Bronchial,-,,PANEL.MICRO,1,Microbiology CNAMTS panel - Bronchial specimen,Micro CNAMTS panel Bronch,,ACTIVE,2.64,2.64
+88845-3,Microbiology CNAMTS panel,-,Pt,XXX,-,,PANEL.MICRO,1,Microbiology CNAMTS panel - Specimen,Micro CNAMTS panel Spec,,ACTIVE,2.64,2.69
+88847-9,Microbiology CNAMTS panel,-,Pt,Stool,-,,PANEL.MICRO,1,Microbiology CNAMTS panel - Stool,Micro CNAMTS panel Stl,,ACTIVE,2.64,2.64
+88848-7,Microbiology CNAMTS panel,-,Pt,Urine,-,,PANEL.MICRO,1,Microbiology CNAMTS panel - Urine,Micro CNAMTS panel Ur,,ACTIVE,2.64,2.64
+88849-5,Microbiology CNAMTS panel,-,Pt,Vag,-,,PANEL.MICRO,1,Microbiology CNAMTS panel - Vaginal fluid,Micro CNAMTS panel Vag,,ACTIVE,2.64,2.64
+88850-3,Microbiology CNAMTS panel,-,Pt,Bld,-,,PANEL.MICRO,1,Microbiology CNAMTS panel - Blood,Micro CNAMTS panel Bld,,ACTIVE,2.64,2.64
+88864-4,Microbiology CNAMTS panel,-,Pt,Cornea/Conjunctiva,-,,PANEL.MICRO,1,Microbiology CNAMTS panel - Cornea or Conjunctiva,Micro CNAMTS panel Corn/Cnjt,,ACTIVE,2.64,2.64
+92892-9,Microbiology - parasitic studies,Find,Pt,^Patient,Doc,,DOC.MISC,2,Microbiology - parasitic studies,Parasite studies,,ACTIVE,2.66,2.66
+92893-7,Microbiology - viral studies,Find,Pt,^Patient,Doc,,DOC.MISC,2,Microbiology - viral studies,Viral studies,,ACTIVE,2.66,2.66
+92894-5,Microbiology - bacterial studies,Find,Pt,^Patient,Doc,,DOC.MISC,2,Microbiology - bacterial studies,Bacterial studies,,ACTIVE,2.66,2.66
+96397-5,Microbiology - mycobacteriology studies,Find,Pt,^Patient,Doc,,DOC.MISC,2,Microbiology - mycobacteriology studies Document,Mycobacteriology studies Doc,,ACTIVE,2.69,2.69
+96398-3,Microbiology - mycology studies,Find,Pt,^Patient,Doc,,DOC.MISC,2,Microbiology - mycology studies Document,Mycology studies Doc,,ACTIVE,2.69,2.69

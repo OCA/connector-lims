@@ -1,0 +1,102 @@
+<odoo>
+    <record id="view_result_form" model="ir.ui.view">
+        <field name="name">lims.result.form</field>
+        <field name="model">lims.result</field>
+        <field name="arch" type="xml">
+            <form string="Result">
+                <header>
+                    <field name="team_id" invisible="1" />
+                    <field
+                        name="stage_id"
+                        widget="statusbar"
+                        options="{'fold_field': 'fold', 'clickable': True}"
+                        domain="[('stage_type', '=', 'result'), '|', ('team_ids', 'in', team_id), ('team_ids', '=', False)]"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" string="Result" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group name="result">
+                        <group name="result-left">
+                            <field name="description" />
+                            <field name="result_value" />
+                            <field name="interpretation" />
+                            <field name="validated_by_user_id" />
+                            <field name="specimen_id" />
+                            <field name="partner_id" />
+                        </group>
+                        <group name="result-right">
+                            <field name="result_date" />
+                            <field name="result_min" />
+                            <field name="result_max" />
+                        </group>
+                    </group>
+                    <notebook />
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_result_list" model="ir.ui.view">
+        <field name="name">lims.result.list</field>
+        <field name="model">lims.result</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="description" />
+                <field name="order_test_id" />
+                <field name="specimen_id" />
+                <field name="partner_id" />
+                <field name="result_min" />
+                <field name="result_max" />
+                <field name="result_value" />
+                <field name="interpretation" />
+                <field name="result_date" />
+                <field name="stage_id" />
+            </list>
+        </field>
+    </record>
+
+    <record id="action_lims_result" model="ir.actions.act_window">
+        <field name="name">Results</field>
+        <field name="res_model">lims.result</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a new result.</p>
+        </field>
+    </record>
+
+    <!-- Reporting -->
+    <record id="lims_result_graph_view" model="ir.ui.view">
+        <field name="name">lims.result.graph</field>
+        <field name="model">lims.result</field>
+        <field name="arch" type="xml">
+            <graph string="Results" type="bar">
+                <field name="stage_id" type="row" />
+            </graph>
+        </field>
+    </record>
+
+    <record id="lims_result_pivot_view" model="ir.ui.view">
+        <field name="name">lims.result.pivot</field>
+        <field name="model">lims.result</field>
+        <field name="arch" type="xml">
+            <pivot string="Results" display_quantity="true">
+                <field name="stage_id" type="row" />
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_lims_report_result" model="ir.actions.act_window">
+        <field name="name">Results</field>
+        <field name="res_model">lims.result</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="help" type="html">
+            <p>Results Reports.</p>
+        </field>
+    </record>
+</odoo>

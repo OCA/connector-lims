@@ -38,8 +38,8 @@
         <field name="name">Manage LIMS Tags</field>
         <field name="category_id" ref="base.module_category_hidden" />
     </record>
-    <record id="group_lims_equipment" model="res.groups">
-        <field name="name">Manage LIMS Equipments</field>
+    <record id="group_lims_instrument" model="res.groups">
+        <field name="name">Manage LIMS Instruments</field>
         <field name="category_id" ref="base.module_category_hidden" />
     </record>
     <record id="group_lims_template" model="res.groups">

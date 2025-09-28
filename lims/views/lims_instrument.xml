@@ -1,11 +1,11 @@
 <odoo>
-    <!-- LIMS Equipment -->
-    <record id="lims_equipment_search_view" model="ir.ui.view">
-        <field name="name">lims.equipment.search</field>
-        <field name="model">lims.equipment</field>
+    <!-- LIMS Instrument -->
+    <record id="lims_instrument_search_view" model="ir.ui.view">
+        <field name="name">lims.instrument.search</field>
+        <field name="model">lims.instrument</field>
         <field name="arch" type="xml">
-            <search string="Equipments">
-                <field name="name" string="LIMS Equipment Name" />
+            <search string="Instruments">
+                <field name="name" />
                 <field name="laboratory_id" />
                 <field name="operator_id" />
                 <group expand="0" string="Group By">
@@ -19,9 +19,10 @@
             </search>
         </field>
     </record>
-    <record id="lims_equipment_list_view" model="ir.ui.view">
-        <field name="name">lims.equipment.list</field>
-        <field name="model">lims.equipment</field>
+
+    <record id="lims_instrument_list_view" model="ir.ui.view">
+        <field name="name">lims.instrument.list</field>
+        <field name="model">lims.instrument</field>
         <field name="arch" type="xml">
             <list>
                 <field name="name" />
@@ -31,11 +32,12 @@
             </list>
         </field>
     </record>
-    <record id="lims_equipment_form_view" model="ir.ui.view">
-        <field name="name">lims.equipment.form</field>
-        <field name="model">lims.equipment</field>
+
+    <record id="lims_instrument_form_view" model="ir.ui.view">
+        <field name="name">lims.instrument.form</field>
+        <field name="model">lims.instrument</field>
         <field name="arch" type="xml">
-            <form string="Equipment">
+            <form string="Instrument">
                 <header>
                     <button
                         id="previous_stage"
@@ -56,7 +58,7 @@
                     <field
                         name="stage_id"
                         widget="statusbar"
-                        domain="[('stage_type', '=', 'equipment')]"
+                        domain="[('stage_type', '=', 'instrument')]"
                     />
                 </header>
                 <sheet>
@@ -87,25 +89,26 @@
         </field>
     </record>
 
-    <!-- LIMS Equipment -->
-    <record id="action_lims_equipment" model="ir.actions.act_window">
-        <field name="name">LIMS Equipments</field>
-        <field name="res_model">lims.equipment</field>
+    <!-- LIMS Instrument -->
+    <record id="action_lims_instrument" model="ir.actions.act_window">
+        <field name="name">LIMS Instruments</field>
+        <field name="res_model">lims.instrument</field>
         <field name="view_mode">list,form</field>
-        <field name="search_view_id" ref="lims_equipment_search_view" />
+        <field name="search_view_id" ref="lims_instrument_search_view" />
         <field name="context">{'default_laboratory_id':
             context.get('laboratory_id', False)}
         </field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Add an equipment here.
+                Add an instrument here.
             </p>
         </field>
     </record>
-    <!-- LIMS Equipment Dashboard -->
-    <record id="lims_equipment_kanban_view" model="ir.ui.view">
-        <field name="name">lims.equipment.kanban</field>
-        <field name="model">lims.equipment</field>
+
+    <!-- LIMS Instrument Dashboard -->
+    <record id="lims_instrument_kanban_view" model="ir.ui.view">
+        <field name="name">lims.instrument.kanban</field>
+        <field name="model">lims.instrument</field>
         <field name="arch" type="xml">
             <kanban default_group_by="operator_id" class="o_kanban_small_column">
                 <field name="name" />
@@ -157,43 +160,45 @@
             </kanban>
         </field>
     </record>
-    <record id="action_lims_dash_equipment" model="ir.actions.act_window">
-        <field name="name">LIMS Equipment</field>
-        <field name="res_model">lims.equipment</field>
+
+    <record id="action_lims_dash_instrument" model="ir.actions.act_window">
+        <field name="name">LIMS Instrument</field>
+        <field name="res_model">lims.instrument</field>
         <field name="view_mode">list,kanban,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Add a LIMS Equipment here.
+                Add a LIMS Instrument here.
             </p>
         </field>
     </record>
+
     <!-- Reporting -->
-    <record id="lims_equipment_graph_view" model="ir.ui.view">
-        <field name="name">lims.equipment.graph</field>
-        <field name="model">lims.equipment</field>
+    <record id="lims_instrument_graph_view" model="ir.ui.view">
+        <field name="name">lims.instrument.graph</field>
+        <field name="model">lims.instrument</field>
         <field name="arch" type="xml">
-            <graph string="Equipments" type="bar">
+            <graph string="Instruments" type="bar">
                 <field name="operator_id" type="row" />
             </graph>
         </field>
     </record>
-    <record id="lims_equipment_pivot_view" model="ir.ui.view">
-        <field name="name">lims.equipment.pivot</field>
-        <field name="model">lims.equipment</field>
+
+    <record id="lims_instrument_pivot_view" model="ir.ui.view">
+        <field name="name">lims.instrument.pivot</field>
+        <field name="model">lims.instrument</field>
         <field name="arch" type="xml">
-            <pivot string="Equipments" display_quantity="true">
+            <pivot string="Instruments" display_quantity="true">
                 <field name="operator_id" type="row" />
             </pivot>
         </field>
     </record>
-    <record id="action_lims_report_equipment" model="ir.actions.act_window">
-        <field name="name">Equipments</field>
-        <field name="res_model">lims.equipment</field>
+
+    <record id="action_lims_report_instrument" model="ir.actions.act_window">
+        <field name="name">Instruments</field>
+        <field name="res_model">lims.instrument</field>
         <field name="view_mode">graph,pivot</field>
         <field name="help" type="html">
-            <p>
-                Equipments Report
-            </p>
+            <p>Instruments Report</p>
         </field>
     </record>
 </odoo>

@@ -36,19 +36,16 @@ class FSMStage(models.Model):
         "Is a close stage", help="Services in this stage are considered as closed."
     )
     is_default = fields.Boolean("Is a default stage", help="Used a default stage")
-    custom_color = fields.Char(
-        "Color Code", default="#FFFFFF", help="Use Hex Code only Ex:-#FFFFFF"
-    )
     description = fields.Text(translate=True)
     stage_type = fields.Selection(
         [
             ("order", "Order"),
             ("batch", "Batch"),
-            ("sample", "Sample"),
-            ("equipment", "Equipment"),
-            ("operator", "Operator"),
+            ("specimen", "Specimen"),
+            ("instrument", "Instrument"),
+            ("result", "Result"),
         ],
-        "Type",
+        "Apply on",
         required=True,
         default="order",
     )
@@ -66,21 +63,6 @@ class FSMStage(models.Model):
         default=lambda self: self._default_team_ids(),
     )
 
-    def get_color_information(self):
-        # get stage ids
-        stage_ids = self.search([])
-        color_information_dict = []
-        for stage in stage_ids:
-            color_information_dict.append(
-                {
-                    "color": stage.custom_color,
-                    "field": "stage_id",
-                    "opt": "==",
-                    "value": stage.name,
-                }
-            )
-        return color_information_dict
-
     @api.model_create_multi
     def create(self, vals_list):
         stages = self.search([])
@@ -97,12 +79,3 @@ class FSMStage(models.Model):
                         )
                     )
         return super().create(vals_list)
-
-    @api.constrains("custom_color")
-    def _check_custom_color_hex_code(self):
-        if (
-            self.custom_color
-            and not self.custom_color.startswith("#")
-            or len(self.custom_color) != 7
-        ):
-            raise ValidationError(_("Color code should be Hex Code. Ex:-#FFFFFF"))

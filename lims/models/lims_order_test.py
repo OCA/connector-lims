@@ -1,18 +1,16 @@
 # Copyright (C) 2025 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
-from . import lims_stage
 
-
-class LIMSOrderLine(models.Model):
-    _name = "lims.order.line"
-    _description = "LIMS Order Line"
-    _inherit = ["mail.thread", "mail.activity.mixin"]
+class LIMSOrderTest(models.Model):
+    _name = "lims.order.test"
+    _description = "LIMS Order Test"
+    _inherit = ["mail.thread", "mail.activity.mixin", "lims.model.mixin"]
+    _stage_type = "order"
 
     def _default_stage_id(self):
         stage = self.env["lims.stage"].search(
@@ -28,23 +26,12 @@ class LIMSOrderLine(models.Model):
             return stage
         raise ValidationError(_("You must create a LIMS order stage first."))
 
-    @api.depends("date_start", "date_end")
-    def _compute_duration(self):
-        for rec in self:
-            duration = 0.0
-            if rec.date_start and rec.date_end:
-                start = fields.Datetime.from_string(rec.date_start)
-                end = fields.Datetime.from_string(rec.date_end)
-                delta = end - start
-                duration = delta.total_seconds() / 3600
-            rec.duration = duration
-
     def _track_subtype(self, init_values):
         self.ensure_one()
         if "stage_id" in init_values:
-            if self.stage_id.id == self.env.ref("lims.lims_stage_completed").id:
+            if self.stage_id.id == self.env.ref("lims.lims_stage_order_completed").id:
                 return self.env.ref("lims.mt_order_completed")
-            elif self.stage_id.id == self.env.ref("lims.lims_stage_cancelled").id:
+            elif self.stage_id.id == self.env.ref("lims.lims_stage_order_cancelled").id:
                 return self.env.ref("lims.mt_order_cancelled")
         return super()._track_subtype(init_values)
 
@@ -61,11 +48,6 @@ class LIMSOrderLine(models.Model):
         "Is closed",
         related="stage_id.is_closed",
     )
-    priority = fields.Selection(
-        lims_stage.AVAILABLE_PRIORITIES,
-        index=True,
-        default=lims_stage.AVAILABLE_PRIORITIES[0][0],
-    )
     category_ids = fields.Many2many("lims.category", string="Categories")
     tag_ids = fields.Many2many(
         "lims.tag",
@@ -75,14 +57,13 @@ class LIMSOrderLine(models.Model):
         string="Tags",
         help="Classify and analyze your work orders",
     )
-    color = fields.Integer("Color Index", default=0)
     batch_id = fields.Many2one(
         "lims.batch",
         string="Batch",
         index=True,
     )
     laboratory_id = fields.Many2one(
-        "lims.laboratory",
+        "res.partner",
         string="Laboratory",
         related="order_id.laboratory_id",
         index=True,
@@ -97,8 +78,6 @@ class LIMSOrderLine(models.Model):
         required=True,
         tracking=True,
     )
-
-    # Request
     name = fields.Char(
         required=True,
         index=True,
@@ -111,10 +90,6 @@ class LIMSOrderLine(models.Model):
         required=True,
         index=True,
     )
-    request_early = fields.Datetime(
-        string="Earliest Request Date", default=datetime.now()
-    )
-    request_late = fields.Datetime(string="Latest Request Date")
     company_id = fields.Many2one(
         "res.company",
         string="Company",
@@ -123,47 +98,21 @@ class LIMSOrderLine(models.Model):
         default=lambda self: self.env.company,
         help="Company related to this order",
     )
-
-    # Planning
-    sample_id = fields.Many2one(
-        "lims.sample", string="Sample", related="order_id.sample_id", index=True
+    specimen_id = fields.Many2one(
+        "lims.specimen", string="Specimen", related="order_id.specimen_id", index=True
     )
-    operator_id = fields.Many2one("lims.operator", string="Assigned To", index=True)
-    scheduled_date_start = fields.Datetime(string="Scheduled Start (ETA)")
-    scheduled_duration = fields.Float(help="Scheduled duration of the work in hours")
-    scheduled_date_end = fields.Datetime(string="Scheduled End")
-
-    # Execution
-    date_start = fields.Datetime(string="Actual Start")
-    date_end = fields.Datetime(string="Actual End")
-    duration = fields.Float(
-        string="Actual duration",
-        compute=_compute_duration,
-        help="Actual duration in hours",
+    operator_id = fields.Many2one(
+        "res.partner",
+        string="Assigned To",
+        index=True,
+        domain="[('is_lims_operator', '=', True)]",
     )
-    todo = fields.Text(string="Instructions")
-    current_date = fields.Datetime(default=fields.Datetime.now, store=True)
-
-    # Equipment used for Maintenance
-    equipment_id = fields.Many2one("lims.equipment", string="Equipment")
-
-    type = fields.Many2one("lims.order.type")
-    internal_type = fields.Selection(related="type.internal_type")
-
-    # Result
-    result_type = fields.Selection(
-        [
-            ("manual", "Manual"),
-            ("calculated", "Calculated"),
-        ],
-        required=True,
-        default="manual",
-    )
-    result_formula = fields.Text()
-    result_min = fields.Float(string="Minimum")
-    result_max = fields.Float(string="Maximum")
-    result_value = fields.Float(string="Value")
-    success = fields.Boolean()
+    scheduled_date = fields.Datetime()
+    date = fields.Datetime()
+    todo = fields.Text(string="Instructions", related="test_id.method_id.description")
+    instrument_id = fields.Many2one("lims.instrument")
+    test_id = fields.Many2one("lims.test")
+    result_ids = fields.One2many("lims.result", "order_test_id", string="Results")
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order=None):
@@ -180,7 +129,7 @@ class LIMSOrderLine(models.Model):
         for vals in vals_list:
             if vals.get("name", _("New")) == _("New"):
                 vals["name"] = self.env["ir.sequence"].next_by_code(
-                    "lims.order.line"
+                    "lims.order.test"
                 ) or _("New")
         return super().create(vals_list)
 
@@ -194,7 +143,11 @@ class LIMSOrderLine(models.Model):
         raise ValidationError(_("You cannot delete this order."))
 
     def action_complete(self):
-        return self.write({"stage_id": self.env.ref("lims.lims_stage_completed").id})
+        return self.write(
+            {"stage_id": self.env.ref("lims.lims_stage_order_completed").id}
+        )
 
     def action_cancel(self):
-        return self.write({"stage_id": self.env.ref("lims.lims_stage_cancelled").id})
+        return self.write(
+            {"stage_id": self.env.ref("lims.lims_stage_order_cancelled").id}
+        )

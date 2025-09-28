@@ -40,7 +40,7 @@ class LIMSTeam(models.Model):
         order_data = self.env["lims.order"].read_group(
             [
                 ("team_id", "in", self.ids),
-                ("scheduled_date_start", "=", False),
+                ("scheduled_date", "=", False),
                 ("stage_id.is_closed", "=", False),
             ],
             ["team_id"],
@@ -86,4 +86,6 @@ class LIMSTeam(models.Model):
         help="Company related to this team",
     )
 
-    _sql_constraints = [("name_uniq", "unique (name)", "Team name already exists!")]
+    _sql_constraints = [
+        ("name_uniq", "unique (name, company_id)", "Team name already exists!")
+    ]
