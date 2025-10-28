@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_lims_order_form_inherit_sale_button" model="ir.ui.view">
+        <field name="name">lims.order.form.inherit.sale.button</field>
+        <field name="model">lims.order</field>
+        <field name="inherit_id" ref="lims.lims_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form/header/button[@id='action_cancel']" position="after">
+                <button
+                    name="action_open_sale_order"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-shopping-cart"
+                    string="Sale Order"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

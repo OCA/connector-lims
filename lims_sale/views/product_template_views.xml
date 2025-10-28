@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_product_template_form_lims" model="ir.ui.view">
+        <field name="name">product.template.form.lims</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="lims_tracking" />
+                <field name="lims_template_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
