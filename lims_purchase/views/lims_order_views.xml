@@ -1,0 +1,53 @@
+<odoo>
+    <!-- Add smart button on LIMS Order to view Purchase Orders -->
+    <record id="view_lims_order_form_inherit_purchase_button" model="ir.ui.view">
+        <field name="name">lims.order.form.purchase.button</field>
+        <field name="model">lims.order</field>
+        <field name="inherit_id" ref="lims.lims_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_view_purchase_orders"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-shopping-cart"
+                    invisible="purchase_order_count == 0"
+                >
+                    <field name="purchase_order_count" widget="statinfo" string="Purchase Orders" />
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Optional: add a tree inside the form (tab) to show linked POs -->
+    <record id="view_lims_order_form_add_po_tab" model="ir.ui.view">
+        <field name="name">lims.order.form.add.purchase.tab</field>
+        <field name="model">lims.order</field>
+        <field name="inherit_id" ref="lims.lims_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Linked Purchase Orders">
+                    <field name="purchase_order_m2m_ids" widget="many2many">
+                        <list>
+                            <field name="name" />
+                            <field name="partner_id" />
+                            <field name="state" />
+                            <field name="date_order" />
+                            <field name="amount_total" />
+                        </list>
+                        <form>
+                            <sheet>
+                                <group>
+                                    <field name="name" readonly="1" />
+                                    <field name="partner_id" readonly="1" />
+                                    <field name="state" readonly="1" />
+                                    <field name="amount_total" readonly="1" />
+                                </group>
+                            </sheet>
+                        </form>
+                    </field>
+                </page>
+
+            </xpath>
+        </field>
+    </record>
+</odoo>
