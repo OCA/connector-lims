@@ -1,0 +1,1 @@
+odoo-addon-lims @ git+https://github.com/OCA/connector-lims.git@refs/pull/20/head#subdirectory=lims

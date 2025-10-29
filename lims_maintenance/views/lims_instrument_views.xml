@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="lims_instrument_form_view_inherit" model="ir.ui.view">
+        <field name="name">lims.instrument.form.inherit</field>
+        <field name="model">lims.instrument</field>
+        <field name="inherit_id" ref="lims.lims_instrument_form_view" />
+        <field name="arch" type="xml">
+            <field name="operator_id" position="after">
+                <field name="equipment_id" options="{'no_create': True" />
+            </field>
+        </field>
+    </record>
+</odoo>
