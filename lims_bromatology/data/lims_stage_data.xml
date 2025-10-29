@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Bromatology Stages -->
+    <record id="lims_stage_bromatology_new" model="lims.stage">
+        <field name="name">New</field>
+        <field name="sequence">1</field>
+        <field name="stage_type">bromatology</field>
+        <field name="description">Initial creation of the bromatology order.</field>
+        <field name="is_default">True</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="lims_stage_bromatology_reception" model="lims.stage">
+        <field name="name">Reception</field>
+        <field name="sequence">2</field>
+        <field name="stage_type">bromatology</field>
+        <field name="description">Sample reception and labeling.</field>
+    </record>
+
+    <record id="lims_stage_bromatology_drying" model="lims.stage">
+        <field name="name">Drying</field>
+        <field name="sequence">3</field>
+        <field name="stage_type">bromatology</field>
+        <field name="description">Sample drying process before grinding.</field>
+    </record>
+
+    <record id="lims_stage_bromatology_grinding" model="lims.stage">
+        <field name="name">Grinding</field>
+        <field name="sequence">4</field>
+        <field name="stage_type">bromatology</field>
+        <field name="description">Sample grinding for uniform analysis.</field>
+    </record>
+
+    <record id="lims_stage_bromatology_analysis" model="lims.stage">
+        <field name="name">Analysis</field>
+        <field name="sequence">5</field>
+        <field name="stage_type">bromatology</field>
+        <field name="description">Performing bromatology tests and measurements.</field>
+    </record>
+
+    <record id="lims_stage_bromatology_validation" model="lims.stage">
+        <field name="name">Validation</field>
+        <field name="sequence">6</field>
+        <field name="stage_type">bromatology</field>
+        <field name="description">Validation and quality control of analysis results.</field>
+    </record>
+
+    <record id="lims_stage_bromatology_done" model="lims.stage">
+        <field name="name">Done</field>
+        <field name="sequence">7</field>
+        <field name="stage_type">bromatology</field>
+        <field name="description">Bromatology process completed successfully.</field>
+        <field name="is_closed">True</field>
+    </record>
+</odoo>
