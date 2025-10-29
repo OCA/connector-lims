@@ -1,0 +1,31 @@
+<odoo>
+    <record id="view_move_form_inherit" model="ir.ui.view">
+        <field name="name">account.move.form.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <button name="open_created_caba_entries" position="after">
+                <button
+                    name="action_open_lims_orders"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-flask"
+                    invisible="lims_order_count == 0"
+                >
+                    <field
+                        name="lims_order_count"
+                        widget="statinfo"
+                        string="LIMS Orders"
+                    />
+                </button>
+            </button>
+            <page name="other_info" position="after">
+                <page string="LIMS Orders" name="lims_orders">
+                    <group name="lims_orders" string="LIMS Orders">
+                        <field name="lims_order_ids" nolabel="1" />
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>
