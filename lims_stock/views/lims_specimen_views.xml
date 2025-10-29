@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit the existing LIMS Specimen form view -->
+    <record id="view_lims_specimen_form_inherit_stock" model="ir.ui.view">
+        <field name="name">lims.specimen.form.inherit.stock</field>
+        <field name="model">lims.specimen</field>
+        <field name="inherit_id" ref="lims.lims_specimen_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Add specimen stock tracking fields into the form body -->
+            <xpath expr="//sheet/group" position="inside">
+                <group string="Stock Information">
+                    <field name="product_id"/>
+                    <field name="lot_id"/>
+                    <field name="location_id" readonly="1"/>
+                </group>
+            </xpath>
+
+            <!-- Add Open Lot button in the header (after existing buttons) -->
+            <xpath expr="//header" position="inside">
+                <button
+                    name="action_open_lot"
+                    string="Open Lot"
+                    type="object"
+                    class="btn-secondary"
+                    icon="fa-barcode"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- Inherit specimen list (tree/list view) -->
+    <record id="view_lims_specimen_tree_inherit_stock" model="ir.ui.view">
+        <field name="name">lims.specimen.tree.inherit.stock</field>
+        <field name="model">lims.specimen</field>
+        <field name="inherit_id" ref="lims.lims_specimen_list"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list/field[@name='stage_id']" position="after">
+                <field name="product_id"/>
+                <field name="lot_id"/>
+                <field name="location_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
