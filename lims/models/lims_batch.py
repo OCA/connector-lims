@@ -143,11 +143,25 @@ class LIMSBatch(models.Model):
         raise ValidationError(_("You cannot delete this batch."))
 
     def action_complete(self):
-        return self.write(
-            {
-                "stage_id": self.env.ref("lims.lims_stage_order_completed").id,
-            }
+        completed_stage = self.env.ref(
+            "lims.lims_stage_order_completed", raise_if_not_found=False
         )
+        for batch in self:
+            # Find tests that are not completed
+            incomplete_tests = batch.test_ids.filtered(
+                lambda t: t.stage_id != completed_stage
+            )
+            if incomplete_tests:
+                raise ValidationError(
+                    _(
+                        "You cannot complete this batch because some associated tests "
+                        "are not yet completed:\n %s"
+                    )
+                    % ", ".join(incomplete_tests.mapped("name"))
+                )
+
+            batch.stage_id = completed_stage.id
+        return True
 
     def action_cancel(self):
         return self.write(

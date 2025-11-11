@@ -167,16 +167,16 @@ Authors
 Contributors
 ------------
 
--  Rodrigo Madrid Carmona <rmadrid@opensourceintegrators.com>
--  Johannan Jasiel Luna García<jluna@opensourceintegrators.com>
--  Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
+- Rodrigo Madrid Carmona <rmadrid@opensourceintegrators.com>
+- Johannan Jasiel Luna García<jluna@opensourceintegrators.com>
+- Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
 
 Other credits
 -------------
 
 The development of this module has been financially supported by:
 
--  Ganaderos Asociados de Querétaro <https://www.gaqsa.com>
+- Ganaderos Asociados de Querétaro <https://www.gaqsa.com>
 
 Maintainers
 -----------

@@ -168,10 +168,20 @@ class LIMSOrder(models.Model):
         return super().create(vals_list)
 
     def write(self, vals):
-        if vals.get("stage_id", False):
-            stage_id = self.env["lims.stage"].browse(vals.get("stage_id"))
-            if stage_id == self.env.ref("lims.lims_stage_order_completed"):
-                raise UserError(_("Cannot move to completed from Kanban"))
+        context = dict(self.env.context or {})
+        completed_stage = self.env.ref(
+            "lims.lims_stage_order_completed", raise_if_not_found=False
+        )
+        if (
+            context.get("default_stage_id")
+            and vals.get("stage_id") == completed_stage.id
+        ):
+            raise UserError(
+                _(
+                    "You cannot move an order to the Completed stage"
+                    " directly from Kanban view."
+                )
+            )
         return super().write(vals)
 
     def can_unlink(self):
