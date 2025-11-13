@@ -44,7 +44,7 @@
 
     <record id="lims_stage_order_ready_for_planning" model="lims.stage">
         <field name="name">Ready For Planning</field>
-        <field name="sequence">20</field>
+        <field name="sequence">40</field>
         <field name="stage_type">order</field>
     </record>
 

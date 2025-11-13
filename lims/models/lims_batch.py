@@ -143,6 +143,9 @@ class LIMSBatch(models.Model):
         raise ValidationError(_("You cannot delete this batch."))
 
     def action_complete(self):
+        batch_completed_stage = self.env.ref(
+            "lims.lims_stage_batch_completed", raise_if_not_found=False
+        )
         completed_stage = self.env.ref(
             "lims.lims_stage_order_completed", raise_if_not_found=False
         )
@@ -160,12 +163,12 @@ class LIMSBatch(models.Model):
                     % ", ".join(incomplete_tests.mapped("name"))
                 )
 
-            batch.stage_id = completed_stage.id
+            batch.stage_id = batch_completed_stage.id
         return True
 
     def action_cancel(self):
         return self.write(
-            {"stage_id": self.env.ref("lims.lims_stage_order_cancelled").id}
+            {"stage_id": self.env.ref("lims.lims_stage_batch_cancelled").id}
         )
 
     @api.onchange("operator_id", "scheduled_date", "instrument_id")
