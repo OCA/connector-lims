@@ -47,7 +47,8 @@ class LIMSSpecimen(models.Model):
         return res
 
     def _ensure_lot_for_specimen(self):
-        """If product is serial tracked and lot not provided, create a lot/serial automatically."""
+        """If product is serial tracked and lot not provided,
+        create a lot/serial automatically."""
         for rec in self:
             product = rec.product_id
             if not product:
@@ -69,7 +70,6 @@ class LIMSSpecimen(models.Model):
                 lot_vals = {
                     "product_id": product.id,
                     "name": lot_name or rec.name,
-                    # company_id not always present on lot historically, but set if available
                 }
                 new_lot = self.env["stock.lot"].create(lot_vals)
                 rec.lot_id = new_lot
@@ -79,8 +79,10 @@ class LIMSSpecimen(models.Model):
                 lot_product = getattr(rec.lot_id, "product_id", False)
                 if lot_product and lot_product.id != rec.product_id.id:
                     raise ValidationError(
-                        _("Selected lot %s is not for product %s")
-                        % (rec.lot_id.name, rec.product_id.display_name)
+                        _(
+                            f"""Selected lot {rec.lot_id.name} is not for
+                            product {rec.product_id.display_name}"""
+                        )
                     )
 
     @api.depends("lot_id")
@@ -109,7 +111,6 @@ class LIMSSpecimen(models.Model):
             # assign value silently (no write)
             object.__setattr__(rec, "location_id", location)
 
-
     # helper action to open the lot record
 
     def action_open_lot(self):
@@ -120,11 +121,13 @@ class LIMSSpecimen(models.Model):
 
         # Use the canonical action for stock lots/serials
         action = self.env.ref("stock.action_product_production_lot_form").read()[0]
-        action.update({
-            "name": "Lot / Serial",
-            "view_mode": "form",
-            "res_id": self.lot_id.id,
-            "views": [(False, "form")],
-            "target": "current",
-        })
+        action.update(
+            {
+                "name": "Lot / Serial",
+                "view_mode": "form",
+                "res_id": self.lot_id.id,
+                "views": [(False, "form")],
+                "target": "current",
+            }
+        )
         return action
