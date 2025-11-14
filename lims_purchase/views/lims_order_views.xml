@@ -6,13 +6,18 @@
         <field name="inherit_id" ref="lims.lims_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
-                <button name="action_view_purchase_orders"
+                <button
+                    name="action_view_purchase_orders"
                     type="object"
                     class="oe_stat_button"
                     icon="fa-shopping-cart"
                     invisible="purchase_order_count == 0"
                 >
-                    <field name="purchase_order_count" widget="statinfo" string="Purchase Orders" />
+                    <field
+                        name="purchase_order_count"
+                        widget="statinfo"
+                        string="Purchase Orders"
+                    />
                 </button>
             </xpath>
         </field>
@@ -46,7 +51,6 @@
                         </form>
                     </field>
                 </page>
-
             </xpath>
         </field>
     </record>

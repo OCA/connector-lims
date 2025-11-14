@@ -2,7 +2,7 @@
     "name": "LIMS Purchase Integration",
     "version": "18.0.1.0.0",
     "depends": ["purchase", "lims"],
-    "author": "Hardik-OSI",
+    "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/connector-lims",
     "category": "LIMS",
     "summary": "Link LIMS orders and Purchase Orders; Smart buttons for navigation",

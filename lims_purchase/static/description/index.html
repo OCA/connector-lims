@@ -2,18 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
 <title>LIMS Purchase Integration</title>
 <style type="text/css">
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 7952 2016-07-26 18:15:59Z milde $
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
 
-See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
 customize this style sheet.
 */
 
@@ -274,7 +275,7 @@ pre.literal-block, pre.doctest-block, pre.math, pre.code {
   margin-left: 2em ;
   margin-right: 2em }
 
-pre.code .ln { color: grey; } /* line numbers */
+pre.code .ln { color: gray; } /* line numbers */
 pre.code, code { background-color: #eeeeee }
 pre.code .comment, code .comment { color: #5C6576 }
 pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
@@ -300,7 +301,7 @@ span.option {
 span.pre {
   white-space: pre }
 
-span.problematic {
+span.problematic, pre.problematic {
   color: red }
 
 span.section-subtitle {
@@ -368,8 +369,8 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:7f9de5ed863d2f67657f763651bbb8e1770c27dcf8e277c0ef707c03cc054f43
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external" href="https://github.com/OCA/connector-lims/tree/18.0/lims_purchase"><img alt="OCA/connector-lims" src="https://img.shields.io/badge/github-OCA%2Fconnector--lims-lightgray.png?logo=github" /></a> <a class="reference external" href="https://translation.odoo-community.org/projects/connector-lims-18-0/connector-lims-18-0-lims_purchase"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external" href="https://runboat.odoo-community.org/builds?repo=OCA/connector-lims&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<div class="section" id="id1">
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/connector-lims/tree/18.0/lims_purchase"><img alt="OCA/connector-lims" src="https://img.shields.io/badge/github-OCA%2Fconnector--lims-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/connector-lims-18-0/connector-lims-18-0-lims_purchase"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/connector-lims&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<div class="section" id="lims-purchase-integration-1">
 <h1>========================== LIMS Purchase Integration</h1>
 <p>This module integrates <strong>Odoo LIMS</strong> with <strong>Purchase Orders</strong>, allowing
 laboratories to sell LIMS services directly as products.</p>
@@ -380,7 +381,7 @@ laboratories to sell LIMS services directly as products.</p>
 <div class="section" id="configuration">
 <h1>Configuration</h1>
 </div>
-<div class="section" id="id2">
+<div class="section" id="lims-purchase-integration-2">
 <h1>========================== LIMS Purchase Integration</h1>
 <p>This module integrates <strong>Odoo LIMS</strong> with <strong>Purchase Orders</strong>, allowing
 laboratories to sell LIMS services directly as products.</p>
@@ -390,7 +391,7 @@ laboratories to sell LIMS services directly as products.</p>
 <div class="section" id="usage">
 <h1>Usage</h1>
 </div>
-<div class="section" id="id3">
+<div class="section" id="usage-1">
 <h1>Usage</h1>
 <p>Link a LIMS order to a purchase order</p>
 </div>
@@ -407,7 +408,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <div class="section" id="authors">
 <h2>Authors</h2>
 <ul class="simple">
-<li>Hardik-OSI</li>
+<li>Open Source Integrators</li>
 </ul>
 </div>
 <div class="section" id="contributors">
@@ -419,7 +420,9 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <div class="section" id="maintainers">
 <h2>Maintainers</h2>
 <p>This module is maintained by the OCA.</p>
-<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>

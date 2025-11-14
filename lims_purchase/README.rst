@@ -80,12 +80,12 @@ Credits
 Authors
 -------
 
-* Hardik-OSI
+* Open Source Integrators
 
 Contributors
 ------------
 
--  Hardik-OSI hsuthar@opensourceintegrators.com
+- Hardik-OSI hsuthar@opensourceintegrators.com
 
 Maintainers
 -----------

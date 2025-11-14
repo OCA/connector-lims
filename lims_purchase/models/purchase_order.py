@@ -1,12 +1,14 @@
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     lims_order_id = fields.Many2one(
-        "lims.order", string="LIMS Order", ondelete="set null",
-        help="Link to the LIMS Order related to this Purchase Order"
+        "lims.order",
+        string="LIMS Order",
+        ondelete="set null",
+        help="Link to the LIMS Order related to this Purchase Order",
     )
 
     def action_open_linked_lims_order(self):
@@ -24,9 +26,13 @@ class PurchaseOrder(models.Model):
         # If you want to open the form directly:
         action = self.env.ref("lims.action_lims_operation_order").read()[0]
         # If the action supports views, prefer to open the form for the single record
-        action.update({
-            "views": [(self.env.ref("lims.lims_order_form").id, "form")] if self.env.ref("lims.lims_order_form", False) else action.get("views"),
-            "res_id": self.lims_order_id.id,
-            "target": "current",
-        })
+        action.update(
+            {
+                "views": [(self.env.ref("lims.lims_order_form").id, "form")]
+                if self.env.ref("lims.lims_order_form", False)
+                else action.get("views"),
+                "res_id": self.lims_order_id.id,
+                "target": "current",
+            }
+        )
         return action

@@ -3,22 +3,27 @@
     <record id="view_purchase_order_form_inherit_lims" model="ir.ui.view">
         <field name="name">purchase.order.form.lims</field>
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <!-- Place LIMS field in the header next to vendor / partner info -->
             <xpath expr="//field[@name='partner_ref']" position="after">
-                <field name="lims_order_id" widget="many2one" options="{'no_create': True}" />
+                <field
+                    name="lims_order_id"
+                    widget="many2one"
+                    options="{'no_create': True}"
+                />
             </xpath>
 
             <!-- Add a smart button in the button area (or any place you prefer) -->
             <xpath expr="//div[@name='button_box']" position="inside">
-                <button name="action_open_linked_lims_order"
-                        type="object"
-                        class="oe_stat_button"
-                        icon="fa-flask"
-                        invisible="lims_order_id == False"
-                        >
-                    <field name="lims_order_id" widget="statinfo" string="LIMS Order"/>
+                <button
+                    name="action_open_linked_lims_order"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-flask"
+                    invisible="lims_order_id == False"
+                >
+                    <field name="lims_order_id" widget="statinfo" string="LIMS Order" />
                 </button>
             </xpath>
         </field>
