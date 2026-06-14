@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_lims_sample_kanban" model="ir.ui.view">
+        <field name="name">lims.sample.kanban</field>
+        <field name="model">lims.sample</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage_id">
+                <field name="identifier" />
+                <field name="customer_id" />
+                <field name="sample_type_id" />
+                <field name="stage_id" />
+                <field name="is_closed" />
+                <field name="progress" />
+                <field name="operator_id" />
+                <field name="team_id" />
+                <field name="color" />
+                <templates>
+                    <t t-name="card" class="flex-row">
+                        <aside>
+                            <field name="workflow_priority" widget="priority" />
+                        </aside>
+                        <main>
+                            <div class="fw-bold">
+                                <field name="identifier" />
+                            </div>
+                            <div>
+                                <field name="customer_id" />
+                            </div>
+                            <div>
+                                <field name="sample_type_id" />
+                            </div>
+                            <div>
+                                <field name="progress" widget="progressbar" />
+                            </div>
+                            <footer>
+                                <field
+                                    name="operator_id"
+                                    widget="many2one_avatar_user"
+                                />
+                                <field
+                                    name="team_id"
+                                    groups="lims_advanced.group_lims_team"
+                                />
+                            </footer>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="lims.lims_sample_act_window" model="ir.actions.act_window">
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+
+    <record id="view_lims_sample_form_advanced" model="ir.ui.view">
+        <field name="name">lims.sample.form.advanced</field>
+        <field name="model">lims.sample</field>
+        <field name="inherit_id" ref="lims.lims_sample_form_view" />
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <field name="priority" position="after">
+                <field name="workflow_priority" />
+                <field name="team_id" groups="lims_advanced.group_lims_team" />
+                <field
+                    name="laboratory_id"
+                    groups="lims_advanced.group_lims_laboratory"
+                />
+                <field name="operator_id" />
+                <field name="physician_id" />
+                <field
+                    name="tag_ids"
+                    widget="many2many_tags"
+                    groups="lims_advanced.group_lims_tag"
+                />
+                <field
+                    name="category_ids"
+                    widget="many2many_tags"
+                    groups="lims_advanced.group_lims_category"
+                />
+            </field>
+            <field name="analysis_ids" position="replace">
+                <field name="analysis_ids">
+                    <list editable="bottom" open_form_view="1">
+                        <field name="sample_id" column_invisible="1" />
+                        <field name="identifier" column_invisible="1" />
+                        <field name="is_first_stage" column_invisible="1" />
+                        <field name="can_analyze" column_invisible="1" />
+                        <field name="can_retract" column_invisible="1" />
+                        <field name="can_reject" column_invisible="1" />
+                        <field name="can_verify" column_invisible="1" />
+                        <field
+                            name="product_id"
+                            context="{'default_laboratory_ok': True, 'default_sale_ok': False, 'default_purchase_ok': False}"
+                            options="{'no_quick_create': true}"
+                            readonly="not is_first_stage"
+                        />
+                        <field name="name" readonly="not is_first_stage" />
+                        <field name="test_id" optional="hide" />
+                        <field
+                            name="instrument_id"
+                            optional="hide"
+                            groups="lims_advanced.group_lims_instrument"
+                        />
+                        <field
+                            name="batch_id"
+                            optional="hide"
+                            groups="lims_advanced.group_lims_batch"
+                        />
+                        <field name="operator_id" optional="hide" />
+                        <field name="stage_id" readonly="1" />
+                        <field name="progress" widget="progressbar" />
+                        <button
+                            name="analyze_action"
+                            groups="lims.group_lims_analyst"
+                            type="object"
+                            icon="fa-check-square-o"
+                            title="Analyze"
+                            invisible="not can_analyze"
+                        />
+                        <button
+                            name="verify_action"
+                            groups="lims.group_lims_verifier"
+                            type="object"
+                            title="Verify"
+                            icon="fa-check-circle-o"
+                            invisible="not can_verify"
+                        />
+                        <button
+                            name="retract_action"
+                            groups="lims.group_lims_verifier"
+                            type="object"
+                            title="Retract"
+                            icon="fa-undo"
+                            invisible="not can_retract"
+                        />
+                        <button
+                            name="reject_action"
+                            groups="lims.group_lims_analyst,lims.group_lims_verifier"
+                            type="object"
+                            title="Reject"
+                            icon="fa-times-circle"
+                            invisible="not can_reject"
+                        />
+                    </list>
+                </field>
+            </field>
+        </field>
+    </record>
+</odoo>

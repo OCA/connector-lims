@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2025 Gray Matter Logic
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo noupdate="1">
+    <!-- Glucose -->
+    <record id="lims_test_result_glucose_adult" model="lims.test.result">
+        <field name="name">Adult (fasting)</field>
+        <field name="test_id" ref="lims_test_glucose_adv" />
+        <field name="result_min">70</field>
+        <field name="result_max">99</field>
+        <field name="description">Normal fasting glucose for adults</field>
+    </record>
+    <record id="lims_test_result_glucose_postprandial" model="lims.test.result">
+        <field name="name">Adult (2h post-meal)</field>
+        <field name="test_id" ref="lims_test_glucose_adv" />
+        <field name="result_min">70</field>
+        <field name="result_max">140</field>
+        <field name="description">Normal glucose 2 hours after a meal</field>
+    </record>
+    <!-- HbA1c -->
+    <record id="lims_test_result_hba1c_normal" model="lims.test.result">
+        <field name="name">Normal</field>
+        <field name="test_id" ref="lims_test_hba1c" />
+        <field name="result_min">4.0</field>
+        <field name="result_max">5.6</field>
+    </record>
+    <record id="lims_test_result_hba1c_prediabetes" model="lims.test.result">
+        <field name="name">Prediabetes</field>
+        <field name="test_id" ref="lims_test_hba1c" />
+        <field name="result_min">5.7</field>
+        <field name="result_max">6.4</field>
+    </record>
+    <!-- Hemoglobin -->
+    <record id="lims_test_result_hemoglobin_male" model="lims.test.result">
+        <field name="name">Adult male</field>
+        <field name="test_id" ref="lims_test_hemoglobin" />
+        <field name="result_min">13.5</field>
+        <field name="result_max">17.5</field>
+    </record>
+    <record id="lims_test_result_hemoglobin_female" model="lims.test.result">
+        <field name="name">Adult female</field>
+        <field name="test_id" ref="lims_test_hemoglobin" />
+        <field name="result_min">12.0</field>
+        <field name="result_max">15.5</field>
+    </record>
+    <!-- WBC -->
+    <record id="lims_test_result_wbc_adult" model="lims.test.result">
+        <field name="name">Adult</field>
+        <field name="test_id" ref="lims_test_wbc" />
+        <field name="result_min">4.5</field>
+        <field name="result_max">11.0</field>
+    </record>
+    <!-- Platelets -->
+    <record id="lims_test_result_platelets_adult" model="lims.test.result">
+        <field name="name">Adult</field>
+        <field name="test_id" ref="lims_test_platelets" />
+        <field name="result_min">150</field>
+        <field name="result_max">400</field>
+    </record>
+    <!-- Cholesterol -->
+    <record id="lims_test_result_cholesterol_desirable" model="lims.test.result">
+        <field name="name">Desirable</field>
+        <field name="test_id" ref="lims_test_total_cholesterol" />
+        <field name="result_min">0</field>
+        <field name="result_max">200</field>
+    </record>
+    <record id="lims_test_result_ldl_optimal" model="lims.test.result">
+        <field name="name">Optimal</field>
+        <field name="test_id" ref="lims_test_ldl" />
+        <field name="result_min">0</field>
+        <field name="result_max">100</field>
+    </record>
+    <record id="lims_test_result_hdl_adult" model="lims.test.result">
+        <field name="name">Adult</field>
+        <field name="test_id" ref="lims_test_hdl" />
+        <field name="result_min">40</field>
+        <field name="result_max">60</field>
+    </record>
+    <!-- Creatinine -->
+    <record id="lims_test_result_creatinine_male" model="lims.test.result">
+        <field name="name">Adult male</field>
+        <field name="test_id" ref="lims_test_creatinine" />
+        <field name="result_min">0.7</field>
+        <field name="result_max">1.2</field>
+    </record>
+    <record id="lims_test_result_creatinine_female" model="lims.test.result">
+        <field name="name">Adult female</field>
+        <field name="test_id" ref="lims_test_creatinine" />
+        <field name="result_min">0.5</field>
+        <field name="result_max">1.1</field>
+    </record>
+    <!-- TSH -->
+    <record id="lims_test_result_tsh_adult" model="lims.test.result">
+        <field name="name">Adult</field>
+        <field name="test_id" ref="lims_test_tsh" />
+        <field name="result_min">0.4</field>
+        <field name="result_max">4.0</field>
+    </record>
+</odoo>

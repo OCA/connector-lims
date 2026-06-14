@@ -1,0 +1,93 @@
+<odoo noupdate="1">
+    <!-- Batch Stages -->
+    <record id="lims_stage_batch_new" model="lims.stage">
+        <field name="name">New</field>
+        <field name="sequence">10</field>
+        <field name="is_default">True</field>
+        <field name="stage_type">batch</field>
+    </record>
+
+    <record id="lims_stage_batch_pending" model="lims.stage">
+        <field name="name">Pending</field>
+        <field name="sequence">20</field>
+        <field name="stage_type">batch</field>
+    </record>
+
+    <record id="lims_stage_batch_completed" model="lims.stage">
+        <field name="name">Completed</field>
+        <field name="sequence">90</field>
+        <field name="stage_type">batch</field>
+        <field name="is_closed">True</field>
+    </record>
+
+    <record id="lims_stage_batch_cancelled" model="lims.stage">
+        <field name="name">Cancelled</field>
+        <field name="sequence">100</field>
+        <field name="fold">True</field>
+        <field name="stage_type">batch</field>
+        <field name="is_closed">True</field>
+    </record>
+
+    <!-- Instrument Stages -->
+    <record id="lims_stage_instrument_new" model="lims.stage">
+        <field name="name">New</field>
+        <field name="sequence">10</field>
+        <field name="is_default">True</field>
+        <field name="stage_type">instrument</field>
+    </record>
+
+    <record id="lims_stage_instrument_active" model="lims.stage">
+        <field name="name">Active</field>
+        <field name="sequence">20</field>
+        <field name="stage_type">instrument</field>
+    </record>
+
+    <record id="lims_stage_instrument_maintenance" model="lims.stage">
+        <field name="name">Maintenance</field>
+        <field name="sequence">30</field>
+        <field name="stage_type">instrument</field>
+        <field name="is_closed">True</field>
+    </record>
+
+    <record id="lims_stage_instrument_scrapped" model="lims.stage">
+        <field name="name">Scrapped</field>
+        <field name="sequence">100</field>
+        <field name="fold">True</field>
+        <field name="stage_type">instrument</field>
+        <field name="is_closed">True</field>
+    </record>
+
+    <!-- Result Stages (sequences start at 50 to avoid conflicts with lims analysis stages) -->
+    <record id="lims_stage_result_undefined" model="lims.stage">
+        <field name="name">Undefined</field>
+        <field name="sequence">50</field>
+        <field name="is_default">True</field>
+        <field name="stage_type">result</field>
+    </record>
+
+    <record id="lims_stage_result_preliminary" model="lims.stage">
+        <field name="name">Preliminary</field>
+        <field name="sequence">60</field>
+        <field name="stage_type">result</field>
+    </record>
+
+    <record id="lims_stage_result_final" model="lims.stage">
+        <field name="name">Final</field>
+        <field name="sequence">70</field>
+        <field name="stage_type">result</field>
+    </record>
+
+    <record id="lims_stage_result_approved" model="lims.stage">
+        <field name="name">Approved</field>
+        <field name="sequence">80</field>
+        <field name="stage_type">result</field>
+        <field name="is_closed">True</field>
+    </record>
+
+    <record id="lims_stage_result_rejected" model="lims.stage">
+        <field name="name">Rejected</field>
+        <field name="sequence">110</field>
+        <field name="stage_type">result</field>
+        <field name="is_closed">True</field>
+    </record>
+</odoo>

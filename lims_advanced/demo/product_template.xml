@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2025 Gray Matter Logic
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo noupdate="1">
+    <!-- Diabetes panel -->
+    <record id="product_tmpl_glucose_adv" model="product.template">
+        <field name="name">Glucose (mg/dL)</field>
+        <field name="type">service</field>
+        <field name="laboratory_ok">True</field>
+        <field name="normal_range_min">70</field>
+        <field name="normal_range_max">99</field>
+    </record>
+    <record id="product_tmpl_hba1c" model="product.template">
+        <field name="name">HbA1c (%)</field>
+        <field name="type">service</field>
+        <field name="laboratory_ok">True</field>
+        <field name="normal_range_min">4.0</field>
+        <field name="normal_range_max">5.6</field>
+    </record>
+    <!-- Hematology panel -->
+    <record id="product_tmpl_hemoglobin" model="product.template">
+        <field name="name">Hemoglobin (g/dL)</field>
+        <field name="type">service</field>
+        <field name="laboratory_ok">True</field>
+        <field name="normal_range_min">12.0</field>
+        <field name="normal_range_max">17.5</field>
+    </record>
+    <record id="product_tmpl_wbc" model="product.template">
+        <field name="name">White Blood Cells (10³/µL)</field>
+        <field name="type">service</field>
+        <field name="laboratory_ok">True</field>
+        <field name="normal_range_min">4.5</field>
+        <field name="normal_range_max">11.0</field>
+    </record>
+    <record id="product_tmpl_platelets" model="product.template">
+        <field name="name">Platelets (10³/µL)</field>
+        <field name="type">service</field>
+        <field name="laboratory_ok">True</field>
+        <field name="normal_range_min">150</field>
+        <field name="normal_range_max">400</field>
+    </record>
+    <!-- Lipid panel -->
+    <record id="product_tmpl_total_cholesterol" model="product.template">
+        <field name="name">Total Cholesterol (mg/dL)</field>
+        <field name="type">service</field>
+        <field name="laboratory_ok">True</field>
+        <field name="normal_range_min">0</field>
+        <field name="normal_range_max">200</field>
+    </record>
+    <record id="product_tmpl_ldl" model="product.template">
+        <field name="name">LDL Cholesterol (mg/dL)</field>
+        <field name="type">service</field>
+        <field name="laboratory_ok">True</field>
+        <field name="normal_range_min">0</field>
+        <field name="normal_range_max">100</field>
+    </record>
+    <record id="product_tmpl_hdl" model="product.template">
+        <field name="name">HDL Cholesterol (mg/dL)</field>
+        <field name="type">service</field>
+        <field name="laboratory_ok">True</field>
+        <field name="normal_range_min">40</field>
+        <field name="normal_range_max">60</field>
+    </record>
+    <!-- Kidney function -->
+    <record id="product_tmpl_creatinine" model="product.template">
+        <field name="name">Creatinine (mg/dL)</field>
+        <field name="type">service</field>
+        <field name="laboratory_ok">True</field>
+        <field name="normal_range_min">0.6</field>
+        <field name="normal_range_max">1.2</field>
+    </record>
+    <!-- Thyroid -->
+    <record id="product_tmpl_tsh" model="product.template">
+        <field name="name">TSH (mIU/L)</field>
+        <field name="type">service</field>
+        <field name="laboratory_ok">True</field>
+        <field name="normal_range_min">0.4</field>
+        <field name="normal_range_max">4.0</field>
+    </record>
+</odoo>

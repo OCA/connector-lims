@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_product_template_form_lims_advanced" model="ir.ui.view">
+        <field name="name">product.template.form.lims.advanced</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="lims.product_template_form_view" />
+        <field name="arch" type="xml">
+            <field name="laboratory_uom_id" position="after">
+                <field name="loinc_code_id" />
+                <field name="lims_method_id" />
+                <field
+                    name="lims_instrument_id"
+                    groups="lims_advanced.group_lims_instrument"
+                />
+                <field name="normal_range_min" />
+                <field name="normal_range_max" />
+                <field name="lims_test_id" groups="base.group_no_one" />
+            </field>
+        </field>
+    </record>
+</odoo>

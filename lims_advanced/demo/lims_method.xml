@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2025 Gray Matter Logic
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo noupdate="1">
+    <record id="lims_method_demo_hba1c" model="lims.method">
+        <field name="name">HPLC</field>
+        <field
+            name="description"
+        >High-Performance Liquid Chromatography for HbA1c measurement</field>
+    </record>
+    <record id="lims_method_demo_glucose" model="lims.method">
+        <field name="name">Enzymatic colorimetric</field>
+        <field
+            name="description"
+        >Enzymatic colorimetric method for glucose quantification using hexokinase</field>
+    </record>
+    <record id="lims_method_demo_cbc" model="lims.method">
+        <field name="name">Impedance / optical</field>
+        <field
+            name="description"
+        >Electrical impedance and optical scatter for complete blood count</field>
+    </record>
+</odoo>

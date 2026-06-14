@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2025 Gray Matter Logic
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo noupdate="1">
+    <record id="lims_instrument_glucose_analyzer" model="lims.instrument">
+        <field name="name">Glucose Analyzer YSI 2900</field>
+        <field name="laboratory_id" ref="res_partner_demo_laboratory" />
+        <field name="operator_id" ref="res_partner_demo_operator" />
+    </record>
+    <record id="lims_instrument_hba1c_analyzer" model="lims.instrument">
+        <field name="name">HbA1c Analyzer Bio-Rad D-10</field>
+        <field name="laboratory_id" ref="res_partner_demo_laboratory" />
+        <field name="operator_id" ref="res_partner_demo_operator_2" />
+    </record>
+    <record id="lims_instrument_hematology_analyzer" model="lims.instrument">
+        <field name="name">Hematology Analyzer Sysmex XN-1000</field>
+        <field name="laboratory_id" ref="res_partner_demo_laboratory" />
+        <field name="operator_id" ref="res_partner_demo_operator_3" />
+    </record>
+</odoo>

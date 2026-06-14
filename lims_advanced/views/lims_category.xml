@@ -1,0 +1,53 @@
+<odoo>
+    <!-- LIMS Category -->
+    <record id="lims_category_list_view" model="ir.ui.view">
+        <field name="name">lims.category.list</field>
+        <field name="model">lims.category</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="full_name" />
+                <field name="description" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </list>
+        </field>
+    </record>
+    <record id="lims_category_form_view" model="ir.ui.view">
+        <field name="name">lims.category.form</field>
+        <field name="model">lims.category</field>
+        <field name="arch" type="xml">
+            <form string="Category">
+                <sheet>
+                    <label for="name" class="oe_edit_only" />
+                    <h1>
+                        <field name="name" />
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="description" />
+                        </group>
+                        <group>
+                            <field name="parent_id" />
+                            <field
+                                name="company_id"
+                                options="{'no_create': True}"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                    </group>
+                    <notebook />
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- LIMS Category -->
+    <record id="action_lims_category" model="ir.actions.act_window">
+        <field name="name">LIMS Category</field>
+        <field name="res_model">lims.category</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a LIMS Operator Category here.
+            </p>
+        </field>
+    </record>
+</odoo>

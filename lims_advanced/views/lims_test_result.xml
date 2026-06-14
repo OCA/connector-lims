@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_lims_test_result_form" model="ir.ui.view">
+        <field name="name">lims.test.result.form</field>
+        <field name="model">lims.test.result</field>
+        <field name="arch" type="xml">
+            <form string="Test Result Definition">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="test_id" />
+                            <field name="uom_id" groups="uom.group_uom" />
+                            <field
+                                name="company_id"
+                                options="{'no_create': True}"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <group>
+                            <field name="result_min" string="Min" />
+                            <field name="result_max" string="Max" />
+                        </group>
+                    </group>
+                    <group string="Description">
+                        <field
+                            name="description"
+                            nolabel="1"
+                            colspan="2"
+                            placeholder="Additional information about this result range..."
+                        />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_lims_test_result_list" model="ir.ui.view">
+        <field name="name">lims.test.result.list</field>
+        <field name="model">lims.test.result</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="result_min" string="Min" />
+                <field name="result_max" string="Max" />
+                <field name="uom_id" groups="uom.group_uom" />
+                <field name="description" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </list>
+        </field>
+    </record>
+
+    <record id="action_lims_test_result" model="ir.actions.act_window">
+        <field name="name">Test Result Definitions</field>
+        <field name="res_model">lims.test.result</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a test result definition.
+            </p>
+        </field>
+    </record>
+
+    <!-- Add Result Definitions page to the test form -->
+    <record id="view_lims_test_result_inline" model="ir.ui.view">
+        <field name="name">lims.test.result.inline</field>
+        <field name="model">lims.test</field>
+        <field name="inherit_id" ref="lims_advanced.view_test_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Result Definitions" name="test_results">
+                    <field name="test_result_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle" />
+                            <field name="name" />
+                            <field name="result_min" string="Min" />
+                            <field name="result_max" string="Max" />
+                            <field name="uom_id" groups="uom.group_uom" />
+                            <field name="description" />
+                        </list>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

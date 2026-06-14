@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        id="dashboard_root"
+        name="Dashboard"
+        parent="lims.lims_root"
+        sequence="5"
+        groups="lims.group_lims_base"
+    />
+    <menuitem
+        id="operations_root"
+        name="Operations"
+        parent="lims.lims_root"
+        sequence="15"
+        groups="lims.group_lims_base"
+    />
+    <menuitem
+        id="master_data_root"
+        name="Master Data"
+        parent="lims.lims_root"
+        sequence="20"
+        groups="lims.group_lims_base"
+    />
+    <menuitem
+        id="reporting_root"
+        name="Reporting"
+        parent="lims.lims_root"
+        sequence="40"
+        groups="lims.group_lims_manager"
+    />
+
+    <record id="lims.lims_sample_menu" model="ir.ui.menu">
+        <field name="parent_id" ref="lims_advanced.dashboard_root" />
+        <field name="sequence">10</field>
+    </record>
+
+    <menuitem
+        id="menu_lims_dash_team"
+        name="Teams"
+        action="action_team_dashboard"
+        parent="dashboard_root"
+        sequence="5"
+        groups="lims_advanced.group_lims_team"
+    />
+    <menuitem
+        id="menu_lims_operation_batch"
+        name="Batches"
+        action="action_lims_operation_batch"
+        parent="operations_root"
+        sequence="10"
+        groups="lims_advanced.group_lims_batch"
+    />
+    <menuitem
+        id="menu_lims_analysis"
+        name="Analysis"
+        action="lims.lims_analysis_act_window"
+        parent="operations_root"
+        sequence="15"
+    />
+    <menuitem
+        id="menu_lims_result"
+        name="Results"
+        action="action_lims_result"
+        parent="operations_root"
+        sequence="20"
+    />
+
+    <menuitem
+        id="menu_lims_test"
+        name="Tests"
+        action="action_lims_test"
+        parent="master_data_root"
+        sequence="20"
+    />
+    <menuitem
+        id="menu_lims_instrument"
+        name="Instruments"
+        action="action_lims_instrument"
+        parent="master_data_root"
+        sequence="30"
+        groups="lims_advanced.group_lims_instrument"
+    />
+    <menuitem
+        id="menu_lims_operator"
+        name="Operators"
+        action="action_lims_operator"
+        parent="master_data_root"
+        sequence="40"
+    />
+    <menuitem
+        id="menu_lims_physician"
+        name="Physicians"
+        action="action_lims_physician"
+        parent="master_data_root"
+        sequence="50"
+    />
+
+    <menuitem
+        id="menu_lims_report_analysis"
+        name="Analysis"
+        action="action_lims_report_analysis"
+        parent="reporting_root"
+        sequence="10"
+        groups="lims.group_lims_manager"
+    />
+    <menuitem
+        id="menu_lims_report_result"
+        name="Results"
+        action="action_lims_report_result"
+        parent="reporting_root"
+        sequence="20"
+        groups="lims.group_lims_manager"
+    />
+
+    <!-- Override base lims sequences to fit the logical order -->
+    <record id="lims.menu_lims_config_settings" model="ir.ui.menu">
+        <field name="sequence">5</field>
+    </record>
+    <record id="lims.lims_sample_type_menu" model="ir.ui.menu">
+        <field name="sequence">30</field>
+    </record>
+    <record id="lims.lims_department_menu" model="ir.ui.menu">
+        <field name="sequence">20</field>
+    </record>
+    <record id="lims.menu_product_template_action" model="ir.ui.menu">
+        <field name="sequence">40</field>
+    </record>
+
+    <!-- Setup -->
+    <menuitem
+        id="menu_lims_config_stage"
+        name="Stages"
+        action="action_lims_stage"
+        parent="lims.lims_config_root"
+        sequence="10"
+    />
+    <!-- Organization -->
+    <menuitem
+        id="menu_lims_config_team"
+        name="Teams"
+        action="action_team_settings"
+        parent="lims.lims_config_root"
+        sequence="25"
+        groups="lims_advanced.group_lims_team"
+    />
+    <menuitem
+        id="menu_lims_config_laboratory"
+        name="Laboratories"
+        action="action_lims_laboratory"
+        parent="lims.lims_config_root"
+        sequence="15"
+        groups="lims_advanced.group_lims_laboratory"
+    />
+    <!-- Tests -->
+    <menuitem
+        id="menu_lims_config_method"
+        name="Methods"
+        action="action_lims_method"
+        parent="lims.lims_config_root"
+        sequence="50"
+    />
+    <menuitem
+        id="menu_lims_config_loinc"
+        name="LOINC Codes"
+        action="action_lims_loinc_code"
+        parent="lims.lims_config_root"
+        sequence="55"
+    />
+    <!-- Classification -->
+    <menuitem
+        id="menu_lims_config_category"
+        name="Categories"
+        action="action_lims_category"
+        parent="lims.lims_config_root"
+        sequence="70"
+        groups="lims_advanced.group_lims_category"
+    />
+    <menuitem
+        id="menu_lims_config_tag"
+        name="Tags"
+        action="action_lims_tag"
+        parent="lims.lims_config_root"
+        sequence="75"
+        groups="lims_advanced.group_lims_tag"
+    />
+    <menuitem
+        id="menu_lims_test_result"
+        name="Test Result Definitions"
+        action="action_lims_test_result"
+        parent="lims.lims_config_root"
+        sequence="60"
+        groups="lims.group_lims_manager"
+    />
+</odoo>

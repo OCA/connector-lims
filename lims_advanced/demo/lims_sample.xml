@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2025 Gray Matter Logic
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo noupdate="1">
+    <record id="lims_adv_sample_demo" model="lims.sample">
+        <field name="customer_id" ref="base.res_partner_1" />
+        <field name="sample_type_id" ref="lims.lims_blood_sample_type" />
+        <field name="sample_date" eval="datetime.now()" />
+        <field name="team_id" ref="lims_team_hematology" />
+        <field name="laboratory_id" ref="res_partner_demo_laboratory" />
+        <field name="physician_id" ref="res_partner_demo_physician" />
+        <field name="operator_id" ref="res_partner_demo_operator" />
+        <field name="stage_id" ref="lims.lims_stage_sample_received" />
+        <field name="priority">3</field>
+        <field name="workflow_priority">1</field>
+    </record>
+</odoo>

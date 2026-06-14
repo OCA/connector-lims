@@ -1,0 +1,19 @@
+<odoo noupdate="1">
+    <!-- Sequence for lims.batch -->
+    <record id="seq_lims_batch" model="ir.sequence">
+        <field name="name">LIMS Batch</field>
+        <field name="code">lims.batch</field>
+        <field name="prefix">LB</field>
+        <field name="padding">3</field>
+        <field name="company_id" eval="False" />
+    </record>
+
+    <!-- Sequence for lims.result -->
+    <record id="seq_lims_result" model="ir.sequence">
+        <field name="name">LIMS Result</field>
+        <field name="code">lims.result</field>
+        <field name="prefix">LR</field>
+        <field name="padding">3</field>
+        <field name="company_id" eval="False" />
+    </record>
+</odoo>

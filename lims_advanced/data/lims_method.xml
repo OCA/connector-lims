@@ -1,0 +1,9 @@
+<odoo noupdate="1">
+    <record id="lims_method_nonprob_amp_tar" model="lims.method">
+        <field name="name">Non-probe.amp.tar</field>
+        <field
+            name="description"
+        >Influenza A virus 2009 H1N1 RNA [Presence] in Nasopharynx by NAA with non-probe detection</field>
+        <field name="partner_id" ref="lims_advanced.res_partner_biofire_diagnostics" />
+    </record>
+</odoo>

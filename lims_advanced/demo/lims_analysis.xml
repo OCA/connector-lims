@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2025 Gray Matter Logic
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo noupdate="1">
+    <record id="lims_adv_analysis_demo_glucose" model="lims.analysis">
+        <field name="sample_id" ref="lims_adv_sample_demo" />
+        <field
+            name="product_id"
+            model="product.product"
+            search="[('product_tmpl_id', '=', ref('lims_advanced.product_tmpl_glucose_adv'))]"
+        />
+        <field name="name">Glucose (mg/dL)</field>
+        <field name="test_id" ref="lims_test_glucose_adv" />
+        <field name="stage_id" ref="lims.lims_stage_analysis_to_analyze" />
+        <field name="operator_id" ref="res_partner_demo_operator" />
+        <field name="batch_id" ref="lims_adv_batch_demo" />
+        <field name="scheduled_date" eval="time.strftime('%Y-%m-%d')" />
+    </record>
+    <record id="lims_adv_analysis_demo_hba1c" model="lims.analysis">
+        <field name="sample_id" ref="lims_adv_sample_demo" />
+        <field
+            name="product_id"
+            model="product.product"
+            search="[('product_tmpl_id', '=', ref('lims_advanced.product_tmpl_hba1c'))]"
+        />
+        <field name="name">HbA1c (%)</field>
+        <field name="test_id" ref="lims_test_hba1c" />
+        <field name="stage_id" ref="lims.lims_stage_analysis_to_analyze" />
+        <field name="operator_id" ref="res_partner_demo_operator" />
+        <field name="scheduled_date" eval="time.strftime('%Y-%m-%d')" />
+    </record>
+</odoo>

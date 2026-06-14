@@ -1,0 +1,376 @@
+<odoo>
+    <record id="lims_sample_action_from_dashboard" model="ir.actions.act_window">
+        <field name="name">Samples</field>
+        <field name="res_model">lims.sample</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="context">{'default_team_id': active_id}</field>
+        <field name="domain">[('team_id', '=', active_id)]</field>
+    </record>
+    <record id="view_team_form" model="ir.ui.view">
+        <field name="name">lims.team.form</field>
+        <field name="model">lims.team</field>
+        <field name="arch" type="xml">
+            <form string="Order Team">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" string="Team Name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="description" colspan="2" />
+                            <field name="sequence" />
+                        </group>
+                        <group>
+                            <field
+                                name="company_id"
+                                options="{'no_create': True}"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="view_team_list" model="ir.ui.view">
+        <field name="name">lims.team.list</field>
+        <field name="model">lims.team</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle" groups="base.group_no_one" />
+                <field name="name" />
+                <field name="description" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </list>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_team_kanban">
+        <field name="name">lims.team.kanban</field>
+        <field name="model">lims.team</field>
+        <field name="arch" type="xml">
+            <kanban
+                class="oe_background_grey o_kanban_dashboard o_emphasize_colors o_lims_team_kanban"
+                create="0"
+            >
+                <field name="name" />
+                <field name="color" />
+                <field name="sample_count" />
+                <field name="sample_need_assign_count" />
+                <field name="analysis_late_count" />
+                <field name="analysis_today_count" />
+                <field name="analysis_week_count" />
+                <field name="analysis_month_count" />
+                <field name="analysis_later_count" />
+                <field name="batch_late_count" />
+                <field name="batch_today_count" />
+                <field name="batch_week_count" />
+                <field name="batch_month_count" />
+                <field name="batch_later_count" />
+                <templates>
+                    <t t-name="card">
+                        <div
+                            t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click"
+                        >
+                            <div>
+                                <div t-attf-class="o_kanban_card_header">
+                                    <div class="o_kanban_card_header_title">
+                                        <div class="o_primary">
+                                            <span>
+                                                <t t-esc="record.name.value" />
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container o_kanban_card_content">
+                                    <div class="row mb-2">
+                                        <div class="col-6 o_kanban_primary_left">
+                                            <button
+                                                class="btn btn-primary"
+                                                name="%(lims_advanced.lims_sample_action_from_dashboard)d"
+                                                type="action"
+                                                context="{'search_default_todo': 1}"
+                                            >
+                                                <t t-esc="record.sample_count.value" />
+                                                Samples
+                                            </button>
+                                        </div>
+                                        <div class="col-6 o_kanban_primary_right">
+                                            <div
+                                                class="row"
+                                                t-if="record.sample_need_assign_count.value > 0"
+                                            >
+                                                <div class="col-9">
+                                                    <a
+                                                        name="%(lims_advanced.lims_sample_action_from_dashboard)d"
+                                                        type="action"
+                                                        context="{'search_default_unassigned': 1}"
+                                                    >
+                                                        Need Assigned
+                                                    </a>
+                                                </div>
+                                                <div class="col-3">
+                                                    <t
+                                                        t-esc="record.sample_need_assign_count.value"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row o_kanban_card_content_scheduled">
+                                        <div class="col-12">
+                                            <table class="table table-sm mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th />
+                                                        <th
+                                                            class="text-center text-danger"
+                                                        >Late</th>
+                                                        <th
+                                                            class="text-center"
+                                                        >Today</th>
+                                                        <th
+                                                            class="text-center"
+                                                        >Week</th>
+                                                        <th
+                                                            class="text-center"
+                                                        >Month</th>
+                                                        <th
+                                                            class="text-center"
+                                                        >Later</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Analyses</td>
+                                                        <td
+                                                            class="text-center text-danger"
+                                                        >
+                                                            <a
+                                                                name="%(lims_advanced.action_lims_analysis_from_team)d"
+                                                                type="action"
+                                                                context="{'search_default_dashboard_late': 1}"
+                                                            >
+                                                                <t
+                                                                    t-esc="record.analysis_late_count.value"
+                                                                />
+                                                            </a>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <a
+                                                                name="%(lims_advanced.action_lims_analysis_from_team)d"
+                                                                type="action"
+                                                                context="{'search_default_dashboard_today': 1}"
+                                                            >
+                                                                <t
+                                                                    t-esc="record.analysis_today_count.value"
+                                                                />
+                                                            </a>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <a
+                                                                name="%(lims_advanced.action_lims_analysis_from_team)d"
+                                                                type="action"
+                                                                context="{'search_default_dashboard_week': 1}"
+                                                            >
+                                                                <t
+                                                                    t-esc="record.analysis_week_count.value"
+                                                                />
+                                                            </a>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <a
+                                                                name="%(lims_advanced.action_lims_analysis_from_team)d"
+                                                                type="action"
+                                                                context="{'search_default_dashboard_month': 1}"
+                                                            >
+                                                                <t
+                                                                    t-esc="record.analysis_month_count.value"
+                                                                />
+                                                            </a>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <a
+                                                                name="%(lims_advanced.action_lims_analysis_from_team)d"
+                                                                type="action"
+                                                                context="{'search_default_dashboard_later': 1}"
+                                                            >
+                                                                <t
+                                                                    t-esc="record.analysis_later_count.value"
+                                                                />
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Batches</td>
+                                                        <td
+                                                            class="text-center text-danger"
+                                                        >
+                                                            <a
+                                                                name="%(lims_advanced.action_lims_batch_from_team)d"
+                                                                type="action"
+                                                                context="{'search_default_dashboard_late': 1}"
+                                                            >
+                                                                <t
+                                                                    t-esc="record.batch_late_count.value"
+                                                                />
+                                                            </a>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <a
+                                                                name="%(lims_advanced.action_lims_batch_from_team)d"
+                                                                type="action"
+                                                                context="{'search_default_dashboard_today': 1}"
+                                                            >
+                                                                <t
+                                                                    t-esc="record.batch_today_count.value"
+                                                                />
+                                                            </a>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <a
+                                                                name="%(lims_advanced.action_lims_batch_from_team)d"
+                                                                type="action"
+                                                                context="{'search_default_dashboard_week': 1}"
+                                                            >
+                                                                <t
+                                                                    t-esc="record.batch_week_count.value"
+                                                                />
+                                                            </a>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <a
+                                                                name="%(lims_advanced.action_lims_batch_from_team)d"
+                                                                type="action"
+                                                                context="{'search_default_dashboard_month': 1}"
+                                                            >
+                                                                <t
+                                                                    t-esc="record.batch_month_count.value"
+                                                                />
+                                                            </a>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <a
+                                                                name="%(lims_advanced.action_lims_batch_from_team)d"
+                                                                type="action"
+                                                                context="{'search_default_dashboard_later': 1}"
+                                                            >
+                                                                <t
+                                                                    t-esc="record.batch_later_count.value"
+                                                                />
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                    <t t-name="kanban-menu" groups="lims.group_lims_manager">
+                        <div class="container">
+                            <div class="row">
+                                <div
+                                    class="col-6 o_kanban_card_manage_section o_kanban_manage_view"
+                                >
+                                    <h5
+                                        role="menuitem"
+                                        class="o_kanban_card_manage_title"
+                                    >
+                                        <span>View</span>
+                                    </h5>
+                                    <div role="menuitem">
+                                        <a
+                                            name="%(lims_advanced.lims_sample_action_from_dashboard)d"
+                                            type="action"
+                                        >
+                                            All
+                                        </a>
+                                    </div>
+                                    <div role="menuitem">
+                                        <a
+                                            name="%(lims_advanced.lims_sample_action_from_dashboard)d"
+                                            type="action"
+                                            context="{'search_default_unassigned': 1}"
+                                        >
+                                            To Assign
+                                        </a>
+                                    </div>
+                                    <div role="menuitem">
+                                        <a
+                                            name="%(lims_advanced.lims_sample_action_from_dashboard)d"
+                                            type="action"
+                                            context="{'search_default_done': 1}"
+                                        >
+                                            Done
+                                        </a>
+                                    </div>
+                                </div>
+                                <div
+                                    class="col-6 o_kanban_card_manage_section o_kanban_manage_view"
+                                >
+                                    <h5
+                                        role="menuitem"
+                                        class="o_kanban_card_manage_title"
+                                    >
+                                        <span>Reporting</span>
+                                    </h5>
+                                    <div role="menuitem">
+                                        <a
+                                            name="%(lims_advanced.action_lims_report_result)d"
+                                            type="action"
+                                            context="{'search_default_team_id': id}"
+                                        >
+                                            Results
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o_kanban_card_manage_settings row">
+                                <div role="menuitem" aria-haspopup="true" class="col-6">
+                                    <ul
+                                        class="oe_kanban_colorpicker"
+                                        data-field="color"
+                                        role="popup"
+                                    />
+                                </div>
+                                <div role="menuitem" class="col-4">
+                                    <a
+                                        class="dropdown-item"
+                                        role="menuitem"
+                                        type="edit"
+                                    >Configuration</a>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_team_dashboard" model="ir.actions.act_window">
+        <field name="name">Teams</field>
+        <field name="res_model">lims.team</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="view_id" ref="view_team_kanban" />
+    </record>
+
+    <record id="action_team_settings" model="ir.actions.act_window">
+        <field name="name">Teams</field>
+        <field name="res_model">lims.team</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new team
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2025 Gray Matter Logic
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo noupdate="1">
+    <record id="lims_adv_batch_demo" model="lims.batch">
+        <field name="name">BATCH/DEMO/001</field>
+        <field name="test_id" ref="lims_test_glucose_adv" />
+        <field name="team_id" ref="lims_team_hematology" />
+        <field name="laboratory_id" ref="res_partner_demo_laboratory" />
+        <field name="operator_id" ref="res_partner_demo_operator" />
+        <field name="scheduled_date" eval="time.strftime('%Y-%m-%d')" />
+    </record>
+    <record id="lims_adv_batch_demo_2" model="lims.batch">
+        <field name="name">BATCH/DEMO/002</field>
+        <field name="test_id" ref="lims_test_hba1c" />
+        <field name="team_id" ref="lims_team_hematology" />
+        <field name="laboratory_id" ref="res_partner_demo_laboratory" />
+        <field name="operator_id" ref="res_partner_demo_operator" />
+        <field name="scheduled_date" eval="time.strftime('%Y-%m-%d')" />
+    </record>
+</odoo>

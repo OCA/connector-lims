@@ -1,0 +1,75 @@
+<odoo>
+    <!-- LOINC Code -->
+    <record id="lims_loinc_code_list" model="ir.ui.view">
+        <field name="name">lims.loinc.code.list</field>
+        <field name="model">loinc.code</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="loinc_num" />
+                <field name="short_name" />
+                <field name="component" />
+                <field name="property" />
+                <field name="time_aspect" />
+                <field name="system" />
+                <field name="scale_type" />
+                <field name="method_type" />
+                <field name="unit_code" />
+                <field name="loinc_class" />
+                <field name="loinc_class_type" />
+                <field name="version_first_released" />
+                <field name="version_last_changed" />
+                <field name="status" />
+            </list>
+        </field>
+    </record>
+
+    <record id="lims_loinc_code_form" model="ir.ui.view">
+        <field name="name">lims.loinc.code.form</field>
+        <field name="model">loinc.code</field>
+        <field name="arch" type="xml">
+            <form string="LOINC Codes">
+                <sheet>
+                    <div name="button_box" class="oe_button_box" />
+                    <label for="loinc_num" class="oe_edit_only" />
+                    <h1>
+                        <field name="loinc_num" required="True" />
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="short_name" />
+                            <field name="component" />
+                            <field name="property" />
+                            <field name="time_aspect" />
+                            <field name="system" />
+                            <field name="scale_type" />
+                            <field name="method_type" />
+                        </group>
+                        <group>
+                            <field name="status" />
+                            <field name="unit_code" />
+                            <field name="loinc_class" />
+                            <field name="loinc_class_type" />
+                            <field name="version_first_released" />
+                            <field name="version_last_changed" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="long_common_name" />
+                        <field name="external_copyright_notice" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_lims_loinc_code" model="ir.actions.act_window">
+        <field name="name">LOINC Codes</field>
+        <field name="res_model">loinc.code</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Manage the LOINC Codes here.
+            </p>
+        </field>
+    </record>
+</odoo>

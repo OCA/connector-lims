@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2025 Open Source Integrators
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="res_config_settings_view_form_advanced" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.lims.advanced</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="lims.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block name="advanced_features_container" position="after">
+                <block title="Laboratories" name="laboratories_setting_container">
+                    <setting
+                        string="Manage Multiple Laboratories"
+                        help="Manage multiple laboratories"
+                    >
+                        <field name="group_lims_laboratory" />
+                    </setting>
+                </block>
+
+                <block title="Instruments" name="instruments_setting_container">
+                    <setting string="Manage Instruments" help="Manage instruments">
+                        <field name="group_lims_instrument" />
+                    </setting>
+                    <setting
+                        string="Manage Maintenance"
+                        help="Maintain your instruments"
+                        invisible="not group_lims_instrument"
+                    >
+                        <field name="module_lims_maintenance" />
+                    </setting>
+                </block>
+
+                <block title="Operators" name="operators_setting_container">
+                    <setting
+                        string="Manage Teams"
+                        help="Manage different teams of LIMS operators"
+                    >
+                        <field name="group_lims_team" />
+                    </setting>
+                    <setting
+                        string="Manage Categories"
+                        help="Manage different categories of LIMS operators"
+                    >
+                        <field name="group_lims_category" />
+                    </setting>
+                    <setting
+                        string="Manage your lab purchases"
+                        help="Manage subcontractors"
+                    >
+                        <field name="module_lims_purchase" />
+                    </setting>
+                </block>
+
+                <block title="Analysis" name="order_setting_container">
+                    <setting string="Manage Batches" help="Manage batches of analysis">
+                        <field name="group_lims_batch" />
+                    </setting>
+                    <setting string="Manage Tags" help="Manage tags on analysis">
+                        <field name="group_lims_tag" />
+                    </setting>
+                    <setting
+                        string="Invoice your analysis"
+                        help="Create vendor bills and customer invoices when completing an analysis."
+                    >
+                        <field name="module_lims_account" />
+                    </setting>
+                    <setting
+                        string="Manage Logistics"
+                        help="Manage materials and stock operations. Automatically activate Lots &amp; Serial Numbers."
+                    >
+                        <field name="module_lims_stock" />
+                    </setting>
+                    <setting
+                        string="Bromatology"
+                        help="Track samples with bromatology (food science) analysis."
+                        invisible="not module_lims_stock"
+                    >
+                        <field name="module_lims_bromatology" />
+                    </setting>
+                    <setting
+                        string="Sell analysis"
+                        help="Sell services that generate laboratory analysis"
+                    >
+                        <field name="module_lims_sale" />
+                    </setting>
+                </block>
+
+                <block title="Integrations" name="integrations_setting_container">
+                    <setting string="HL7" help="Exchange data using HL7v2">
+                        <field name="module_lims_hl7" />
+                    </setting>
+                </block>
+            </block>
+        </field>
+    </record>
+</odoo>

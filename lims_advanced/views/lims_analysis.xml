@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_lims_analysis_kanban" model="ir.ui.view">
+        <field name="name">lims.analysis.kanban</field>
+        <field name="model">lims.analysis</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage_id">
+                <field name="identifier" />
+                <field name="sample_id" />
+                <field name="product_id" />
+                <field name="analyst_id" />
+                <field name="stage_id" />
+                <field name="is_closed" />
+                <templates>
+                    <t t-name="card">
+                        <div class="fw-bold">
+                            <field name="identifier" />
+                        </div>
+                        <div>
+                            <field name="sample_id" />
+                        </div>
+                        <div>
+                            <field name="product_id" />
+                        </div>
+                        <footer>
+                            <field name="analyst_id" widget="many2one_avatar_user" />
+                        </footer>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="lims.lims_analysis_act_window" model="ir.actions.act_window">
+        <field name="view_mode">kanban,list,calendar,form</field>
+    </record>
+
+    <record id="view_lims_analysis_calendar" model="ir.ui.view">
+        <field name="name">lims.analysis.calendar</field>
+        <field name="model">lims.analysis</field>
+        <field name="arch" type="xml">
+            <calendar string="Analyses" date_start="scheduled_date" color="stage_id">
+                <field name="name" />
+                <field name="sample_id" />
+                <field name="stage_id" filters="1" />
+                <field name="operator_id" avatar_field="image_128" filters="1" />
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_lims_analysis_list_advanced" model="ir.ui.view">
+        <field name="name">lims.analysis.list.advanced</field>
+        <field name="model">lims.analysis</field>
+        <field name="inherit_id" ref="lims.lims_analysis_list_view" />
+        <field name="arch" type="xml">
+            <list position="attributes">
+                <attribute name="editable" />
+            </list>
+            <field name="value" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </field>
+            <field name="product_id" position="before">
+                <field name="sample_id" readonly="1" />
+            </field>
+            <field name="product_id" position="after">
+                <field name="test_id" optional="hide" />
+                <field
+                    name="instrument_id"
+                    optional="hide"
+                    groups="lims_advanced.group_lims_instrument"
+                />
+                <field
+                    name="batch_id"
+                    optional="hide"
+                    groups="lims_advanced.group_lims_batch"
+                />
+                <field name="operator_id" optional="hide" />
+            </field>
+        </field>
+    </record>
+    <record id="view_lims_analysis_graph" model="ir.ui.view">
+        <field name="name">lims.analysis.graph</field>
+        <field name="model">lims.analysis</field>
+        <field name="arch" type="xml">
+            <graph string="Analysis" type="bar">
+                <field name="stage_id" type="row" />
+                <field name="product_id" type="col" />
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_lims_analysis_pivot" model="ir.ui.view">
+        <field name="name">lims.analysis.pivot</field>
+        <field name="model">lims.analysis</field>
+        <field name="arch" type="xml">
+            <pivot string="Analysis" display_quantity="true">
+                <field name="stage_id" type="row" />
+                <field name="product_id" type="col" />
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Dashboard search filters for team kanban -->
+    <record id="lims_analysis_search_view_dashboard" model="ir.ui.view">
+        <field name="name">lims.analysis.search.dashboard</field>
+        <field name="model">lims.analysis</field>
+        <field name="inherit_id" ref="lims.lims_analysis_search_view" />
+        <field name="arch" type="xml">
+            <search position="inside">
+                <separator />
+                <filter
+                    string="Late"
+                    name="dashboard_late"
+                    domain="[('scheduled_date', '&lt;', context_today())]"
+                />
+                <filter
+                    string="Today"
+                    name="dashboard_today"
+                    domain="[
+                        ('scheduled_date', '&gt;=', context_today()),
+                        ('scheduled_date', '&lt;', context_today() + datetime.timedelta(days=1))
+                    ]"
+                />
+                <filter
+                    string="This Week"
+                    name="dashboard_week"
+                    domain="[
+                        ('scheduled_date', '&gt;=', context_today() + datetime.timedelta(days=1)),
+                        ('scheduled_date', '&lt;', context_today() + datetime.timedelta(days=8))
+                    ]"
+                />
+                <filter
+                    string="This Month"
+                    name="dashboard_month"
+                    domain="[
+                        ('scheduled_date', '&gt;=', context_today() + datetime.timedelta(days=8)),
+                        ('scheduled_date', '&lt;', context_today() + datetime.timedelta(days=31))
+                    ]"
+                />
+                <filter
+                    string="Later"
+                    name="dashboard_later"
+                    domain="[('scheduled_date', '&gt;=', context_today() + datetime.timedelta(days=31))]"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_lims_analysis_from_team" model="ir.actions.act_window">
+        <field name="name">Analyses</field>
+        <field name="res_model">lims.analysis</field>
+        <field name="view_mode">list,form</field>
+        <field
+            name="domain"
+        >[('sample_id.team_id', '=', active_id), ('stage_id.is_closed', '=', False), ('scheduled_date', '!=', False)]</field>
+        <field name="context">{'default_team_id': active_id}</field>
+    </record>
+
+    <record id="action_lims_report_analysis" model="ir.actions.act_window">
+        <field name="name">Analysis</field>
+        <field name="res_model">lims.analysis</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="help" type="html">
+            <p>Analysis Reports.</p>
+        </field>
+    </record>
+
+    <record id="view_lims_analysis_form_advanced" model="ir.ui.view">
+        <field name="name">lims.analysis.form.advanced</field>
+        <field name="model">lims.analysis</field>
+        <field name="inherit_id" ref="lims.lims_analysis_form_view" />
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <field name="stage_id" position="attributes">
+                <attribute
+                    name="options"
+                >{'fold_field': 'fold', 'clickable': True}</attribute>
+                <attribute name="readonly">0</attribute>
+            </field>
+            <group position="replace">
+                <group>
+                    <group string="Sample">
+                        <field name="sample_id" />
+                        <field
+                            name="product_id"
+                            context="{'default_laboratory_ok': True, 'default_sale_ok': False, 'default_purchase_ok': False}"
+                            options="{'no_quick_create': true}"
+                        />
+                        <field name="name" />
+                        <field name="uom_id" groups="uom.group_uom" />
+                        <field name="progress" widget="progressbar" />
+                        <field
+                            name="company_id"
+                            options="{'no_create': True}"
+                            groups="base.group_multi_company"
+                        />
+                    </group>
+                    <group string="Assignment">
+                        <field name="test_id" />
+                        <field
+                            name="instrument_id"
+                            groups="lims_advanced.group_lims_instrument"
+                        />
+                        <field
+                            name="batch_id"
+                            groups="lims_advanced.group_lims_batch"
+                        />
+                        <field name="operator_id" />
+                        <field name="analyst_id" />
+                        <field name="scheduled_date" />
+                        <field name="submitted_date" />
+                    </group>
+                </group>
+            </group>
+            <sheet position="inside">
+                <notebook>
+                    <page string="Results" name="results">
+                        <field name="result_ids">
+                            <list>
+                                <field name="test_result_id" />
+                                <field name="description" />
+                                <field name="result_value" string="Value" />
+                                <field name="result_min" string="Min" />
+                                <field name="result_max" string="Max" />
+                                <field name="interpretation" />
+                                <field name="result_date" />
+                                <field name="stage_id" />
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+            </sheet>
+            <xpath expr="//sheet" position="after">
+                <chatter />
+            </xpath>
+        </field>
+    </record>
+</odoo>

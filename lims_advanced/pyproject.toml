@@ -1,0 +1,16 @@
+[build-system]
+requires = ["whool"]
+build-backend = "whool.buildapi"
+
+[project]
+name = "odoo-addon-lims-advanced"
+version = "18.0.1.0.0"
+dependencies = ["odoo-addon-lims==18.0.*"]
+classifiers = [
+    "Framework :: Odoo",
+    "Framework :: Odoo :: 18.0",
+]
+
+[tool.whool]
+odoo-version = "18.0"
+odoo-addon-name = "lims_advanced"

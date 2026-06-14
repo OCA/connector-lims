@@ -1,0 +1,55 @@
+<odoo>
+    <!-- Copyright (C) 2025 Gray Matter Logic
+         License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+    <record id="lims_batch_comp_rule" model="ir.rule">
+        <field name="name">LIMS Batches Entry</field>
+        <field name="model_id" ref="model_lims_batch" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+
+    <record id="lims_batch_own_rule" model="ir.rule">
+        <field name="name">LIMS Batches Entry (only own)</field>
+        <field name="model_id" ref="model_lims_batch" />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+        <field name="groups" eval="[(4, ref('lims.group_lims_base'))]" />
+    </record>
+
+    <record id="lims_batch_user" model="ir.rule">
+        <field name="name">LIMS Batches Entry</field>
+        <field name="model_id" ref="model_lims_batch" />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+        <field name="groups" eval="[(4, ref('lims.group_lims_manager'))]" />
+    </record>
+
+    <record id="lims_team_comp_rule" model="ir.rule">
+        <field name="name">LIMS Teams Entry</field>
+        <field name="model_id" ref="model_lims_team" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+    <record id="lims_tag_comp_rule" model="ir.rule">
+        <field name="name">LIMS Tags Entry</field>
+        <field name="model_id" ref="model_lims_tag" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+    <record id="lims_category_comp_rule" model="ir.rule">
+        <field name="name">LIMS Categories Entry</field>
+        <field name="model_id" ref="model_lims_category" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+    <record id="lims_instrument_comp_rule" model="ir.rule">
+        <field name="name">LIMS Instruments Entry</field>
+        <field name="model_id" ref="model_lims_instrument" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+    <record id="lims_stage_comp_rule" model="ir.rule">
+        <field name="name">LIMS Stage Entry</field>
+        <field name="model_id" ref="model_lims_stage" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+</odoo>

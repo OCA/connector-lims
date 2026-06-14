@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2025 Gray Matter Logic
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo noupdate="1">
+    <record id="lims_team_hematology" model="lims.team">
+        <field name="name">Hematology</field>
+        <field name="description">Hematology lab team</field>
+    </record>
+</odoo>

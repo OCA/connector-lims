@@ -1,0 +1,10 @@
+<odoo noupdate="1">
+    <record id="base.main_partner" model="res.partner">
+        <field name="is_laboratory">True</field>
+    </record>
+
+    <record id="res_partner_biofire_diagnostics" model="res.partner">
+        <field name="name">Biofire Diagnostics LLC</field>
+        <field name="company_type">company</field>
+    </record>
+</odoo>

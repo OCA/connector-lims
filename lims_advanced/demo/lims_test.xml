@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2025 Gray Matter Logic
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo noupdate="1">
+    <!-- Diabetes panel -->
+    <record id="lims_test_glucose_adv" model="lims.test">
+        <field name="name">Glucose</field>
+        <field name="product_tmpl_id" ref="product_tmpl_glucose_adv" />
+        <field name="instrument_id" ref="lims_instrument_glucose_analyzer" />
+    </record>
+    <record id="lims_test_hba1c" model="lims.test">
+        <field name="name">HbA1c</field>
+        <field name="product_tmpl_id" ref="product_tmpl_hba1c" />
+        <field name="instrument_id" ref="lims_instrument_hba1c_analyzer" />
+    </record>
+    <!-- Hematology panel -->
+    <record id="lims_test_hemoglobin" model="lims.test">
+        <field name="name">Hemoglobin</field>
+        <field name="product_tmpl_id" ref="product_tmpl_hemoglobin" />
+        <field name="instrument_id" ref="lims_instrument_hematology_analyzer" />
+    </record>
+    <record id="lims_test_wbc" model="lims.test">
+        <field name="name">White Blood Cell Count</field>
+        <field name="product_tmpl_id" ref="product_tmpl_wbc" />
+        <field name="instrument_id" ref="lims_instrument_hematology_analyzer" />
+    </record>
+    <record id="lims_test_platelets" model="lims.test">
+        <field name="name">Platelet Count</field>
+        <field name="product_tmpl_id" ref="product_tmpl_platelets" />
+        <field name="instrument_id" ref="lims_instrument_hematology_analyzer" />
+    </record>
+    <!-- Lipid panel -->
+    <record id="lims_test_total_cholesterol" model="lims.test">
+        <field name="name">Total Cholesterol</field>
+        <field name="product_tmpl_id" ref="product_tmpl_total_cholesterol" />
+    </record>
+    <record id="lims_test_ldl" model="lims.test">
+        <field name="name">LDL Cholesterol</field>
+        <field name="product_tmpl_id" ref="product_tmpl_ldl" />
+    </record>
+    <record id="lims_test_hdl" model="lims.test">
+        <field name="name">HDL Cholesterol</field>
+        <field name="product_tmpl_id" ref="product_tmpl_hdl" />
+    </record>
+    <!-- Kidney function -->
+    <record id="lims_test_creatinine" model="lims.test">
+        <field name="name">Creatinine</field>
+        <field name="product_tmpl_id" ref="product_tmpl_creatinine" />
+    </record>
+    <!-- Thyroid -->
+    <record id="lims_test_tsh" model="lims.test">
+        <field name="name">TSH</field>
+        <field name="product_tmpl_id" ref="product_tmpl_tsh" />
+    </record>
+</odoo>
