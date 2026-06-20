@@ -12,30 +12,50 @@
                         name="receive_sample_action"
                         type="object"
                         string="Receive"
-                        invisible="state != 'due'"
+                        class="btn-primary"
+                        invisible="is_closed or received_date"
                     />
-                    <field name="state" widget="statusbar" readonly="1" />
+                    <button
+                        name="action_next_workflow_stage"
+                        type="object"
+                        string="Next Stage"
+                        invisible="is_closed or not stage_id"
+                    />
+                    <field
+                        name="stage_id"
+                        widget="statusbar"
+                        options="{'fold_field': 'fold'}"
+                        readonly="1"
+                    />
                 </header>
                 <sheet>
+                    <field name="is_closed" invisible="1" />
+                    <field name="is_default_stage" invisible="1" />
                     <div name="button_box" class="oe_button_box" />
-                    <h1>
+                    <div class="oe_title">
                         <label for="identifier" />
-                        <field name="identifier" />
-                    </h1>
+                        <h1>
+                            <field name="identifier" readonly="1" />
+                        </h1>
+                    </div>
                     <group>
-                        <group>
+                        <group string="Sample Information">
                             <field name="customer_id" />
+                            <field
+                                name="sample_type_id"
+                                readonly="not is_default_stage"
+                            />
+                            <field name="external_identifier" />
                             <field
                                 name="company_id"
                                 groups="base.group_multi_company"
                             />
-                            <field name="sample_date" readonly="state != 'due'" />
-                            <field name="progress" widget="progressbar" />
                         </group>
-                        <group>
-                            <field name="sample_type_id" readonly="state != 'due'" />
-                            <field name="received_date" />
-                            <field name="priority" />
+                        <group string="Dates &amp; Status">
+                            <field name="sample_date" readonly="not is_default_stage" />
+                            <field name="received_date" readonly="1" />
+                            <field name="priority" widget="priority" />
+                            <field name="progress" widget="progressbar" />
                         </group>
                     </group>
                     <notebook>
@@ -57,10 +77,33 @@
         <field name="arch" type="xml">
             <search>
                 <field name="identifier" />
+                <field name="external_identifier" />
                 <field name="sample_type_id" />
                 <field name="sample_date" />
                 <field name="customer_id" />
                 <field name="company_id" groups="base.group_multi_company" />
+                <filter
+                    name="open"
+                    string="Open"
+                    domain="[('is_closed', '=', False)]"
+                />
+                <filter
+                    name="closed"
+                    string="Closed"
+                    domain="[('is_closed', '=', True)]"
+                />
+                <group expand="1" string="Group By">
+                    <filter
+                        name="group_stage"
+                        string="Stage"
+                        context="{'group_by': 'stage_id'}"
+                    />
+                    <filter
+                        name="group_sample_type"
+                        string="Sample Type"
+                        context="{'group_by': 'sample_type_id'}"
+                    />
+                </group>
             </search>
         </field>
     </record>
@@ -69,31 +112,22 @@
         <field name="model">lims.sample</field>
         <field name="arch" type="xml">
             <list>
-                <!-- TODO -->
                 <field name="identifier" />
+                <field name="customer_id" />
                 <field name="sample_type_id" />
                 <field name="sample_date" />
-                <field name="customer_id" />
+                <field name="received_date" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="progress" widget="progressbar" />
-                <field name="state" />
+                <field name="stage_id" />
             </list>
         </field>
     </record>
     <record model="ir.actions.act_window" id="lims_sample_act_window">
-        <field name="name">Lims Sample</field>
-        <!-- TODO -->
+        <field name="name">Samples</field>
         <field name="res_model">lims.sample</field>
         <field name="view_mode">list,form</field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
-    </record>
-    <record model="ir.ui.menu" id="lims_sample_menu">
-        <field name="name">Sample</field>
-        <field name="parent_id" ref="lims_sample_root" />
-        <!-- TODO -->
-        <field name="action" ref="lims_sample_act_window" />
-        <field name="sequence" eval="16" />
-        <!-- TODO -->
     </record>
 </odoo>

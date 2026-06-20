@@ -60,10 +60,4 @@
                 </p>
         </field>
     </record>
-    <menuitem
-        action="product_template_action"
-        id="menu_product_template_action"
-        parent="lims_config_root"
-        sequence="1"
-    />
 </odoo>

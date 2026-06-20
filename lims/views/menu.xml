@@ -9,12 +9,53 @@
         groups="lims.group_lims_base"
         web_icon="lims,static/description/icon.png"
     />
-    <menuitem id="lims_sample_root" name="Sample" parent="lims_root" sequence="1" />
+
+    <menuitem id="lims_sample_root" name="Samples" parent="lims_root" sequence="1" />
     <menuitem
         id="lims_config_root"
         name="Configuration"
         parent="lims_root"
         groups="lims.group_lims_manager"
         sequence="99"
+    />
+
+    <!-- Samples menu -->
+    <menuitem
+        id="lims_sample_menu"
+        name="Samples"
+        parent="lims_sample_root"
+        action="lims_sample_act_window"
+        sequence="10"
+    />
+
+    <!-- Configuration menu items -->
+    <menuitem
+        id="menu_lims_config_settings"
+        name="Settings"
+        action="action_lims_config"
+        parent="lims_config_root"
+        sequence="1"
+        groups="lims.group_lims_manager"
+    />
+    <menuitem
+        id="menu_product_template_action"
+        name="Products"
+        action="product_template_action"
+        parent="lims_config_root"
+        sequence="5"
+    />
+    <menuitem
+        id="lims_department_menu"
+        name="Departments"
+        parent="lims_config_root"
+        action="lims_department_act_window"
+        sequence="70"
+    />
+    <menuitem
+        id="lims_sample_type_menu"
+        name="Sample Types"
+        parent="lims_config_root"
+        action="lims_sample_type_act_window"
+        sequence="80"
     />
 </odoo>

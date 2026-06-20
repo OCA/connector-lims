@@ -9,4 +9,31 @@
         <field name="name">Hematology</field>
         <field name="user_ids" eval="[(4, ref('base.user_admin'))]" />
     </record>
+    <record model="product.product" id="lims_product_glucose">
+        <field name="name">Glucose</field>
+        <field name="type">service</field>
+        <field name="laboratory_ok">True</field>
+    </record>
+    <record model="product.product" id="lims_product_hemoglobin">
+        <field name="name">Hemoglobin</field>
+        <field name="type">service</field>
+        <field name="laboratory_ok">True</field>
+    </record>
+    <record model="lims.sample" id="lims_sample_demo_received">
+        <field name="customer_id" ref="base.res_partner_1" />
+        <field name="sample_type_id" ref="lims_blood_sample_type" />
+        <field name="stage_id" ref="lims_stage_sample_received" />
+    </record>
+    <record model="lims.analysis" id="lims_analysis_demo_glucose">
+        <field name="sample_id" ref="lims_sample_demo_received" />
+        <field name="product_id" ref="lims_product_glucose" />
+        <field name="name">Glucose</field>
+        <field name="stage_id" ref="lims_stage_analysis_to_analyze" />
+    </record>
+    <record model="lims.analysis" id="lims_analysis_demo_hemoglobin">
+        <field name="sample_id" ref="lims_sample_demo_received" />
+        <field name="product_id" ref="lims_product_hemoglobin" />
+        <field name="name">Hemoglobin</field>
+        <field name="stage_id" ref="lims_stage_analysis_to_analyze" />
+    </record>
 </odoo>

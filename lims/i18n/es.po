@@ -1,0 +1,249 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* lims
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-21 03:32+0000\n"
+"PO-Revision-Date: 2026-06-21 03:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: lims
+msgid "Advanced Features"
+msgstr "Funciones avanzadas"
+
+#. module: lims
+msgid "Analysis"
+msgstr "Análisis"
+
+#. module: lims
+msgid "Analyst"
+msgstr "Analista"
+
+#. module: lims
+msgid "Analyze"
+msgstr "Analizar"
+
+#. module: lims
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: lims
+msgid "Batch"
+msgstr "Lote"
+
+#. module: lims
+msgid "Can use on Lab"
+msgstr "Se puede usar en laboratorio"
+
+#. module: lims
+msgid "Closed"
+msgstr "Cerrado"
+
+#. module: lims
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: lims
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: lims
+msgid "Create a new product"
+msgstr "Crear un nuevo producto"
+
+#. module: lims
+msgid "Dates & Status"
+msgstr "Fechas y estado"
+
+#. module: lims
+msgid "Department"
+msgstr "Departamento"
+
+#. module: lims
+msgid "Departments"
+msgstr "Departamentos"
+
+#. module: lims
+msgid ""
+"Enable advanced LIMS features: LOINC, stages, teams, instruments, batches "
+"and order workflow"
+msgstr ""
+"Habilitar funciones avanzadas de LIMS: LOINC, etapas, equipos, "
+"instrumentos, lotes y flujo de trabajo de órdenes"
+
+#. module: lims
+msgid "Glucose"
+msgstr "Glucosa"
+
+#. module: lims
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: lims
+msgid "Hazardous"
+msgstr "Peligroso"
+
+#. module: lims
+msgid "Hemoglobin"
+msgstr "Hemoglobina"
+
+#. module: lims
+msgid "High"
+msgstr "Alto"
+
+#. module: lims
+msgid "Instrument"
+msgstr "Instrumento"
+
+#. module: lims
+msgid "Interpretation"
+msgstr "Interpretación"
+
+#. module: lims
+msgid "LIMS"
+msgstr "LIMS"
+
+#. module: lims
+msgid "LIMS Advanced"
+msgstr "LIMS Avanzado"
+
+#. module: lims
+msgid "LIMS Base Root Menu"
+msgstr "Menú principal de LIMS"
+
+#. module: lims
+msgid "LIMS Stage"
+msgstr "Etapa LIMS"
+
+#. module: lims
+msgid "Low"
+msgstr "Bajo"
+
+#. module: lims
+msgid "Manager"
+msgstr "Gerente"
+
+#. module: lims
+msgid "Next Stage"
+msgstr "Etapa siguiente"
+
+#. module: lims
+msgid "Normal"
+msgstr "Normal"
+
+#. module: lims
+msgid "Open"
+msgstr "Abierto"
+
+#. module: lims
+msgid "Order"
+msgstr "Orden"
+
+#. module: lims
+msgid "Product"
+msgstr "Producto"
+
+#. module: lims
+msgid "Products"
+msgstr "Productos"
+
+#. module: lims
+msgid "Publisher"
+msgstr "Publicador"
+
+#. module: lims
+msgid "Receive"
+msgstr "Recibir"
+
+#. module: lims
+msgid "Reject"
+msgstr "Rechazar"
+
+#. module: lims
+msgid "Result"
+msgstr "Resultado"
+
+#. module: lims
+msgid "Retract"
+msgstr "Retirar"
+
+#. module: lims
+msgid "Sample"
+msgstr "Muestra"
+
+#. module: lims
+msgid "Sample Information"
+msgstr "Información de la muestra"
+
+#. module: lims
+msgid "Sample Type"
+msgstr "Tipo de muestra"
+
+#. module: lims
+msgid "Sample Types"
+msgstr "Tipos de muestra"
+
+#. module: lims
+msgid "Sample identifier must be unique"
+msgstr "El identificador de muestra debe ser único"
+
+#. module: lims
+msgid "Sampler"
+msgstr "Muestreador"
+
+#. module: lims
+msgid "Samples"
+msgstr "Muestras"
+
+#. module: lims
+msgid "Settings"
+msgstr "Configuración"
+
+#. module: lims
+msgid "Stage"
+msgstr "Etapa"
+
+#. module: lims
+msgid "Units of Measure"
+msgstr "Unidades de medida"
+
+#. module: lims
+msgid "Use different units of measure for analysis results"
+msgstr "Usar diferentes unidades de medida para los resultados de análisis"
+
+#. module: lims
+msgid "User"
+msgstr "Usuario"
+
+#. module: lims
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: lims
+msgid "Verifier"
+msgstr "Verificador"
+
+#. module: lims
+msgid "Verify"
+msgstr "Verificar"
+
+#. module: lims
+msgid ""
+"You must define a product for everything you sell or purchase,\n"
+"                    whether it's a storable product, a consumable or a service."
+msgstr ""
+"Debe definir un producto para todo lo que venda o compre,\n"
+"                    ya sea un producto almacenable, un consumible o un servicio."
+
+#. module: lims
+msgid "Critical"
+msgstr "Crítico"

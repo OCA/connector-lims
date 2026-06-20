@@ -1,9 +1,5 @@
-The following characteristics are still Work In Progress:
-
-- Usage of worklist
-- Integration with devices
-- Integration with sales / accounting
-- Calculations
-- Quality controls
-- Batching of samples
-- Sample storage
+- Worklist view for bulk result entry
+- Device / instrument integration
+- Calculated results (formulas across analyses)
+- Quality control rules and reference ranges
+- Sample storage location tracking

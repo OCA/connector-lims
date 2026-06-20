@@ -8,14 +8,21 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <field name="state" widget="statusbar" readonly="1" />
+                    <field
+                        name="stage_id"
+                        widget="statusbar"
+                        options="{'fold_field': 'fold'}"
+                        readonly="1"
+                    />
                 </header>
                 <sheet>
                     <div name="button_box" class="oe_button_box" />
-                    <h1>
+                    <div class="oe_title">
                         <label for="identifier" />
-                        <field name="identifier" />
-                    </h1>
+                        <h1>
+                            <field name="identifier" readonly="1" />
+                        </h1>
+                    </div>
                     <group>
                         <field name="sample_id" />
                         <field name="company_id" />
@@ -31,6 +38,13 @@
         <field name="arch" type="xml">
             <search>
                 <field name="identifier" />
+                <group expand="1" string="Group By">
+                    <filter
+                        name="group_stage"
+                        string="Stage"
+                        context="{'group_by': 'stage_id'}"
+                    />
+                </group>
             </search>
         </field>
     </record>
@@ -40,16 +54,24 @@
         <field name="arch" type="xml">
             <list editable="bottom">
                 <field name="identifier" column_invisible="1" />
+                <field name="is_first_stage" column_invisible="1" />
+                <field name="can_analyze" column_invisible="1" />
+                <field name="can_retract" column_invisible="1" />
+                <field name="can_reject" column_invisible="1" />
                 <field
                     name="product_id"
                     context="{'default_laboratory_ok': True, 'default_sale_ok':False, 'default_purchase_ok':False}"
                     options="{'no_quick_create': true}"
-                    readonly="state!='registered'"
+                    readonly="not is_first_stage"
                 />
-                <field name="name" readonly="state!='registered'" />
-                <field name="value" readonly="state!='to_analyze'" />
-                <field name="uom_id" readonly="state!='registered'" />
-                <field name="state" force_save="1" />
+                <field name="name" readonly="not is_first_stage" />
+                <field name="value" readonly="not can_analyze" />
+                <field
+                    name="uom_id"
+                    readonly="not is_first_stage"
+                    groups="uom.group_uom"
+                />
+                <field name="stage_id" readonly="1" />
                 <field name="progress" widget="progressbar" />
                 <field name="can_verify" column_invisible="1" />
                 <button
@@ -58,7 +80,7 @@
                     type="object"
                     icon="fa-check-square-o"
                     title="Analyze"
-                    invisible="value == False or state != 'to_analyze'"
+                    invisible="not can_analyze"
                 />
                 <button
                     name="verify_action"
@@ -66,7 +88,7 @@
                     type="object"
                     title="Verify"
                     icon="fa-check-circle-o"
-                    invisible="can_verify == False or state != 'to_be_verified'"
+                    invisible="not can_verify"
                 />
                 <button
                     name="retract_action"
@@ -74,7 +96,15 @@
                     type="object"
                     title="Retract"
                     icon="fa-undo"
-                    invisible="state != 'to_be_verified'"
+                    invisible="not can_retract"
+                />
+                <button
+                    name="reject_action"
+                    groups="lims.group_lims_analyst,lims.group_lims_verifier"
+                    type="object"
+                    title="Reject"
+                    icon="fa-times-circle"
+                    invisible="not can_reject"
                 />
             </list>
         </field>

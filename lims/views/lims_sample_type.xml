@@ -57,17 +57,11 @@
         </field>
     </record>
     <record model="ir.actions.act_window" id="lims_sample_type_act_window">
-        <field name="name">Sample Type</field>
+        <field name="name">Sample Types</field>
         <!-- TODO -->
         <field name="res_model">lims.sample.type</field>
         <field name="view_mode">list,form</field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
-    </record>
-    <record model="ir.ui.menu" id="lims_sample_type_menu">
-        <field name="name">Sample Type</field>
-        <field name="parent_id" ref="lims_config_root" />
-        <field name="action" ref="lims_sample_type_act_window" />
-        <field name="sequence" eval="80" />
     </record>
 </odoo>

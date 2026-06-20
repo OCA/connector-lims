@@ -1,0 +1,310 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* lims
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0-20241022\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-21 03:32+0000\n"
+"PO-Revision-Date: 2026-06-21 03:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.res_config_settings_view_form
+msgid "Advanced Features"
+msgstr ""
+
+#. module: lims
+#: model:ir.actions.act_window,name:lims.lims_analysis_act_window
+#: model:ir.model,name:lims.model_lims_analysis
+#: model_terms:ir.ui.view,arch_db:lims.lims_sample_form_view
+msgid "Analysis"
+msgstr ""
+
+#. module: lims
+#: model:res.groups,name:lims.group_lims_analyst
+msgid "Analyst"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.lims_analysis_list_view
+msgid "Analyze"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.lims_department_search_view
+#: model_terms:ir.ui.view,arch_db:lims.lims_sample_type_search_view
+msgid "Archived"
+msgstr ""
+
+#. module: lims
+#: model:ir.model.fields.selection,name:lims.selection__lims_stage__stage_type__batch
+msgid "Batch"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.product_template_search_view
+msgid "Can use on Lab"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.lims_sample_search_view
+msgid "Closed"
+msgstr ""
+
+#. module: lims
+#: model:ir.model,name:lims.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: lims
+#: model:ir.ui.menu,name:lims.lims_config_root
+msgid "Configuration"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.actions.act_window,help:lims.product_template_action
+msgid "Create a new product"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.lims_sample_form_view
+msgid "Dates & Status"
+msgstr ""
+
+#. module: lims
+#: model:ir.model,name:lims.model_lims_department
+msgid "Department"
+msgstr ""
+
+#. module: lims
+#: model:ir.actions.act_window,name:lims.lims_department_act_window
+#: model:ir.ui.menu,name:lims.lims_department_menu
+msgid "Departments"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.res_config_settings_view_form
+msgid ""
+"Enable advanced LIMS features: LOINC, stages, teams, instruments, batches "
+"and order workflow"
+msgstr ""
+
+#. module: lims
+#: model:product.template,name:lims.lims_product_glucose_product_template
+msgid "Glucose"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.lims_analysis_search_view
+#: model_terms:ir.ui.view,arch_db:lims.lims_sample_search_view
+msgid "Group By"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.lims_sample_type_search_view
+msgid "Hazardous"
+msgstr ""
+
+#. module: lims
+#: model:product.template,name:lims.lims_product_hemoglobin_product_template
+msgid "Hemoglobin"
+msgstr ""
+
+#. module: lims
+#: model:ir.model.fields.selection,name:lims.selection__lims_sample__priority__2
+msgid "High"
+msgstr ""
+
+#. module: lims
+#: model:ir.model.fields.selection,name:lims.selection__lims_stage__stage_type__instrument
+msgid "Instrument"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.lims_sample_form_view
+msgid "Interpretation"
+msgstr ""
+
+#. module: lims
+#: model:ir.module.category,name:lims.ir_module_category_lims
+#: model:ir.ui.menu,name:lims.lims_root
+#: model_terms:ir.ui.view,arch_db:lims.res_config_settings_view_form
+msgid "LIMS"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.res_config_settings_view_form
+msgid "LIMS Advanced"
+msgstr ""
+
+#. module: lims
+#: model:res.groups,name:lims.group_lims_base
+msgid "LIMS Base Root Menu"
+msgstr ""
+
+#. module: lims
+#: model:ir.model,name:lims.model_lims_stage
+msgid "LIMS Stage"
+msgstr ""
+
+#. module: lims
+#: model:ir.model.fields.selection,name:lims.selection__lims_sample__priority__1
+msgid "Low"
+msgstr ""
+
+#. module: lims
+#: model:res.groups,name:lims.group_lims_manager
+msgid "Manager"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.lims_sample_form_view
+msgid "Next Stage"
+msgstr ""
+
+#. module: lims
+#: model:ir.model.fields.selection,name:lims.selection__lims_sample__priority__0
+msgid "Normal"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.lims_sample_search_view
+msgid "Open"
+msgstr ""
+
+#. module: lims
+#: model:ir.model.fields.selection,name:lims.selection__lims_stage__stage_type__order
+msgid "Order"
+msgstr ""
+
+#. module: lims
+#: model:ir.model,name:lims.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: lims
+#: model:ir.actions.act_window,name:lims.product_template_action
+#: model:ir.ui.menu,name:lims.menu_product_template_action
+msgid "Products"
+msgstr ""
+
+#. module: lims
+#: model:res.groups,name:lims.group_lims_publisher
+msgid "Publisher"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.lims_sample_form_view
+msgid "Receive"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.lims_analysis_list_view
+msgid "Reject"
+msgstr ""
+
+#. module: lims
+#: model:ir.model.fields.selection,name:lims.selection__lims_stage__stage_type__result
+msgid "Result"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.lims_analysis_list_view
+msgid "Retract"
+msgstr ""
+
+#. module: lims
+#: model:ir.model,name:lims.model_lims_sample
+msgid "Sample"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.lims_sample_form_view
+msgid "Sample Information"
+msgstr ""
+
+#. module: lims
+#: model:ir.model,name:lims.model_lims_sample_type
+#: model_terms:ir.ui.view,arch_db:lims.lims_sample_search_view
+msgid "Sample Type"
+msgstr ""
+
+#. module: lims
+#: model:ir.actions.act_window,name:lims.lims_sample_type_act_window
+#: model:ir.ui.menu,name:lims.lims_sample_type_menu
+msgid "Sample Types"
+msgstr ""
+
+#. module: lims
+#: model:ir.model.constraint,message:lims.constraint_lims_analysis_identifier_unique
+#: model:ir.model.constraint,message:lims.constraint_lims_sample_identifier_unique
+msgid "Sample identifier must be unique"
+msgstr ""
+
+#. module: lims
+#: model:res.groups,name:lims.group_lims_sampler
+msgid "Sampler"
+msgstr ""
+
+#. module: lims
+#: model:ir.actions.act_window,name:lims.lims_sample_act_window
+#: model:ir.ui.menu,name:lims.lims_sample_menu
+#: model:ir.ui.menu,name:lims.lims_sample_root
+msgid "Samples"
+msgstr ""
+
+#. module: lims
+#: model:ir.actions.act_window,name:lims.action_lims_config
+#: model:ir.ui.menu,name:lims.menu_lims_config_settings
+msgid "Settings"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.lims_analysis_search_view
+#: model_terms:ir.ui.view,arch_db:lims.lims_sample_search_view
+msgid "Stage"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.res_config_settings_view_form
+msgid "Units of Measure"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.res_config_settings_view_form
+msgid "Use different units of measure for analysis results"
+msgstr ""
+
+#. module: lims
+#: model:ir.model,name:lims.model_res_users
+msgid "User"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.lims_department_form_view
+msgid "Users"
+msgstr ""
+
+#. module: lims
+#: model:res.groups,name:lims.group_lims_verifier
+msgid "Verifier"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.ui.view,arch_db:lims.lims_analysis_list_view
+msgid "Verify"
+msgstr ""
+
+#. module: lims
+#: model_terms:ir.actions.act_window,help:lims.product_template_action
+msgid ""
+"You must define a product for everything you sell or purchase,\n"
+"                    whether it's a storable product, a consumable or a service."
+msgstr ""

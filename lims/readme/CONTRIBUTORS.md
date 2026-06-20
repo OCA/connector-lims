@@ -1,2 +1,4 @@
-- Dixmit  
-  - Enric Tobella
+- [Dixmit](https://dixmit.com)
+  - Enric Tobella \<etobella@dixmit.com\>
+- [Gray Matter Logic](https://www.graymatterlogic.com)
+  - Maxime Chambreuil \<mchambreuil@opensourceintegrators.com\>

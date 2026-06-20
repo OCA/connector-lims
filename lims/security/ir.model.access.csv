@@ -1,4 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_lims_stage_user,lims.stage.user,model_lims_stage,lims.group_lims_base,1,0,0,0
+access_lims_stage_manager,lims.stage.manager,model_lims_stage,lims.group_lims_manager,1,1,1,1
 access_lims_sample_type,access_lims_analysis,model_lims_sample_type,lims.group_lims_base,1,0,0,0
 manage_lims_sample_type,access_lims_analysis,model_lims_sample_type,lims.group_lims_manager,1,1,1,1
 access_lims_department,access_lims_analysis,model_lims_department,lims.group_lims_base,1,0,0,0
