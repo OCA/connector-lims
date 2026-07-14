@@ -18,7 +18,11 @@ connector-lims
 
 [//]: # (addons)
 
-This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
+Available addons
+----------------
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[lims](lims/) | 19.0.1.0.0 |  | Laboratory Information Management System
 
 [//]: # (end addons)
 
