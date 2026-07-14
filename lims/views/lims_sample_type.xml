@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Dixmit
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record model="ir.ui.view" id="lims_sample_type_form_view">
+        <field name="name">lims.sample.type.form (in lims)</field>
+        <field name="model">lims.sample.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        text="Archived"
+                        bg_color="bg-danger"
+                        invisible="active"
+                    />
+                    <field name="active" invisible="1" />
+                    <group>
+                        <field name="name" />
+                        <field name="description" />
+                        <field name="hazardous" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="lims_sample_type_search_view">
+        <field name="name">lims.sample.type.search (in lims)</field>
+        <field name="model">lims.sample.type</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="description" />
+                <filter
+                    name="hazardous"
+                    domain="[('hazardous', '=', 1)]"
+                    string="Hazardous"
+                />
+                <separator />
+                <filter
+                    name="archived"
+                    domain="[('active', '=', False)]"
+                    string="Archived"
+                />
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="lims_sample_type_list_view">
+        <field name="name">lims.sample.type.list (in lims)</field>
+        <field name="model">lims.sample.type</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="hazardous" />
+            </list>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="lims_sample_type_act_window">
+        <field name="name">Sample Type</field>
+        <field name="res_model">lims.sample.type</field>
+        <field name="view_mode">list,form</field>
+        <field name="path">lims_sample_type</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+    <record model="ir.ui.menu" id="lims_sample_type_menu">
+        <field name="name">Sample Types</field>
+        <field name="parent_id" ref="lims_config_root" />
+        <field name="action" ref="lims_sample_type_act_window" />
+        <field name="sequence" eval="80" />
+    </record>
+</odoo>
