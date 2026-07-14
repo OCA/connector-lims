@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2023 Dixmit
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo noupdate="1">
+    <record id="seq_lims_sample" model="ir.sequence" forcecreate="1">
+        <field name="name">LIMS Sample sequence</field>
+        <field name="code">lims.sample</field>
+        <field name="prefix">SPL</field>
+        <field name="padding">6</field>
+    </record>
+    <record id="seq_lims_analysis" model="ir.sequence" forcecreate="1">
+        <field name="name">LIMS Analysis sequence</field>
+        <field name="code">lims.analysis</field>
+        <field name="prefix">LA</field>
+        <field name="padding">6</field>
+    </record>
+</odoo>

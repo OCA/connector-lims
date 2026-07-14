@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Dixmit
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record model="ir.ui.view" id="lims_analyte_form_view">
+        <field name="model">lims.analyte</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="text-bg-danger"
+                        invisible="active"
+                    />
+                    <group>
+                        <field name="code" />
+                        <field name="name" />
+                        <field name="uom_id" />
+                        <field name="result_type" />
+                    </group>
+                    <notebook>
+                        <page name="general" string="General Information">
+                            <field name="description" />
+                        </page>
+                        <page string="Specifications">
+                            <field name="specification_ids">
+                                <list editable="bottom">
+                                    <field name="sample_type_id" />
+                                    <field name="min_operator" />
+                                    <field name="min_warning_value" />
+                                    <field name="min_value" />
+                                    <field name="max_operator" />
+                                    <field name="max_warning_value" />
+                                    <field name="max_value" />
+                                </list>
+                            </field>
+                        </page>
+                        <page
+                            name="options"
+                            string="Options"
+                            invisible="result_type not in ['selection', 'multiselection', 'multiselection-check']"
+                        >
+                            <field name="option_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle" />
+                                    <field name="value" />
+                                </list>
+                            </field>
+                        </page>
+                        <page name="advanced" string="Advanced">
+                            <group>
+                                <field name="autoverify" />
+                                <field
+                                    name="precision_digits"
+                                    invisible="result_type != 'float'"
+                                />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="lims_analyte_search_view">
+        <field name="model">lims.analyte</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="code" />
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="lims_analyte_tree_view">
+        <field name="model">lims.analyte</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="code" />
+                <field name="name" />
+            </list>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="lims_analyte_act_window">
+        <field name="name">Analytes</field>
+        <field name="res_model">lims.analyte</field>
+        <field name="path">lims_analyte</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="lims_analyte_menu">
+        <field name="name">Analytes</field>
+        <field name="parent_id" ref="lims_config_root" />
+        <field name="action" ref="lims_analyte_act_window" />
+        <field name="sequence" eval="16" />
+    </record>
+</odoo>

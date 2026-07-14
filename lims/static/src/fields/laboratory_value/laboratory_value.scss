@@ -1,0 +1,20 @@
+.o_field_laboratory_value {
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        li:before {
+            content: "\f096";
+            font-family: "FontAwesome";
+            font-weight: 900;
+        }
+        li & {
+            .selected:before {
+                content: "\f046";
+            }
+        }
+    }
+    .o_lims_laboratory_value_text {
+        white-space: pre-wrap;
+    }
+}
