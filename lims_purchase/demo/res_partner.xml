@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2026 Gray Matter Logic (<https://www.graymatterlogic.com>).
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo noupdate="1">
+    <record id="demo_vendor_lab_supplies" model="res.partner">
+        <field name="name">Lab Supplies Vendor</field>
+        <field name="supplier_rank">1</field>
+    </record>
+</odoo>

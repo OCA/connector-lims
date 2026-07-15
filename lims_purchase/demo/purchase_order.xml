@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2026 Gray Matter Logic (<https://www.graymatterlogic.com>).
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo noupdate="1">
+    <record id="demo_purchase_order_lims" model="purchase.order">
+        <field name="partner_id" ref="demo_vendor_lab_supplies" />
+        <field name="lims_sample_id" ref="demo_lims_sample_purchase" />
+    </record>
+</odoo>

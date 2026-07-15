@@ -1,0 +1,2 @@
+- Hardik Suthar <hsuthar@opensourceintegrators.com>
+- Maxime Chambreuil <maxime.chambreuil@graymatterlogic.com> (Gray Matter Logic)
