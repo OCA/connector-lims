@@ -6,104 +6,106 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-07-22 11:46+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_sample_report_template
 msgid "<span>Sample Report</span>"
-msgstr ""
+msgstr "<span>Resoconto campione</span>"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_sample_report_template
 msgid "<strong>Published on</strong>"
-msgstr ""
+msgstr "<strong>Pubblicato su</strong>"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_sample_report_template
 msgid "<strong>Received on</strong>"
-msgstr ""
+msgstr "<strong>Ricevuto su</strong>"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_sample_report_template
 msgid "<strong>Sample Type</strong>"
-msgstr ""
+msgstr "<strong>Tipo campione</strong>"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__message_needaction
 #: model:ir.model.fields,field_description:lims.field_lims_sample__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Azione richiesta"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__active
 #: model:ir.model.fields,field_description:lims.field_lims_sample_type__active
 msgid "Active"
-msgstr ""
+msgstr "Attivo"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__activity_ids
 #: model:ir.model.fields,field_description:lims.field_lims_sample__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Attività"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__activity_exception_decoration
 #: model:ir.model.fields,field_description:lims.field_lims_sample__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Decorazione eccezione attività"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__activity_state
 #: model:ir.model.fields,field_description:lims.field_lims_sample__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Stato attività"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__activity_type_icon
 #: model:ir.model.fields,field_description:lims.field_lims_sample__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Icona tipo attività"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_list_creation_view
 msgid "Add a line"
-msgstr ""
+msgstr "Aggiungi una riga"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_list_creation_view
 msgid "Add a note"
-msgstr ""
+msgstr "Aggiungi una nota"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_list_creation_view
 msgid "Add a section"
-msgstr ""
+msgstr "Aggiungi una sezione"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_list_creation_view
 msgid "Add a subsection"
-msgstr ""
+msgstr "Aggiungi una sotto sezione"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analyte_form_view
 msgid "Advanced"
-msgstr ""
+msgstr "Avanzato"
 
 #. module: lims
 #: model:ir.model.fields,help:lims.field_res_config_settings__lims_unforce_double_verification_manager
 msgid "Allow managers to validate analyses without double verification"
-msgstr ""
+msgstr "Consenti ai responsabili di validare le analisi senza doppia verifica"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.res_config_settings_view_form
 msgid "Allows manager to make a double approval of analyses"
-msgstr ""
+msgstr "Consente ai responsabili di fare una doppia approvazione dell'analisi"
 
 #. module: lims
 #: model:ir.actions.act_window,name:lims.lims_analysis_act_window
@@ -112,18 +114,18 @@ msgstr ""
 #: model:ir.ui.menu,name:lims.lims_analysis_menu
 #: model_terms:ir.ui.view,arch_db:lims.lims_sample_form_view
 msgid "Analysis"
-msgstr ""
+msgstr "Analisi"
 
 #. module: lims
 #: model:ir.model.constraint,message:lims.constraint_lims_analysis_identifier_unique
 msgid "Analysis identifier must be unique"
-msgstr ""
+msgstr "L'identificatore analisi deve essere univoco"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__analyst_id
 #: model:res.groups,name:lims.group_lims_analyst
 msgid "Analyst"
-msgstr ""
+msgstr "Analista"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__analyte_id
@@ -132,86 +134,86 @@ msgstr ""
 #: model:ir.model.fields.selection,name:lims.selection__lims_analysis__display_type__analyte
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_search_view
 msgid "Analyte"
-msgstr ""
+msgstr "Analite"
 
 #. module: lims
 #: model:ir.actions.act_window,name:lims.lims_analyte_act_window
 #: model:ir.ui.menu,name:lims.lims_analyte_menu
 msgid "Analytes"
-msgstr ""
+msgstr "Analiti"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_list_base_view
 msgid "Analyze"
-msgstr ""
+msgstr "Analizza"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.res_config_settings_view_form
 msgid "Approval"
-msgstr ""
+msgstr "Approvazione"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analyte_form_view
 #: model_terms:ir.ui.view,arch_db:lims.lims_sample_type_search_view
 msgid "Archived"
-msgstr ""
+msgstr "In archivio"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__message_attachment_count
 #: model:ir.model.fields,field_description:lims.field_lims_sample__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Conteggio allegati"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__autoverify
 msgid "Autoverify"
-msgstr ""
+msgstr "Autoverifica"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analyte__result_type__boolean
 msgid "Boolean"
-msgstr ""
+msgstr "Booleano"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__can_verify
 msgid "Can Verify"
-msgstr ""
+msgstr "Può verificare"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_sample__state__cancelled
 msgid "Cancelled"
-msgstr ""
+msgstr "Annullato"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__capture_date
 msgid "Capture Date"
-msgstr ""
+msgstr "Calcola data"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__code
 msgid "Code"
-msgstr ""
+msgstr "Codice"
 
 #. module: lims
 #: model:ir.model.constraint,message:lims.constraint_lims_analyte_code_unique
 msgid "Code must be unique."
-msgstr ""
+msgstr "Il codice deve essere univoco."
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__company_id
 #: model:ir.model.fields,field_description:lims.field_lims_sample__company_id
 msgid "Company"
-msgstr ""
+msgstr "Azienda"
 
 #. module: lims
 #: model:ir.model,name:lims.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: lims
 #: model:ir.ui.menu,name:lims.lims_config_root
 msgid "Configuration"
-msgstr ""
+msgstr "Configurazione"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__create_uid
@@ -221,7 +223,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lims.field_lims_sample__create_uid
 #: model:ir.model.fields,field_description:lims.field_lims_sample_type__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__create_date
@@ -231,23 +233,23 @@ msgstr ""
 #: model:ir.model.fields,field_description:lims.field_lims_sample__create_date
 #: model:ir.model.fields,field_description:lims.field_lims_sample_type__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analyte__result_type__date
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analyte__result_type__datetime
 msgid "Datetime"
-msgstr ""
+msgstr "Datetime"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__description
 #: model:ir.model.fields,field_description:lims.field_lims_sample_type__description
 msgid "Description"
-msgstr ""
+msgstr "Descrizione"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__display_name
@@ -258,72 +260,72 @@ msgstr ""
 #: model:ir.model.fields,field_description:lims.field_lims_sample_type__display_name
 #: model:ir.model.fields,field_description:lims.field_res_config_settings__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__display_type
 msgid "Display Type"
-msgstr ""
+msgstr "Tipo visualizzazione"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__due_date
 msgid "Due Date"
-msgstr ""
+msgstr "Scadenza"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_list_base_view
 msgid "Evaluation"
-msgstr ""
+msgstr "Valutazione"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_sample__external_identifier
 msgid "External Identifier"
-msgstr ""
+msgstr "Identificatore esterno"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__message_follower_ids
 #: model:ir.model.fields,field_description:lims.field_lims_sample__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguito da"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__message_partner_ids
 #: model:ir.model.fields,field_description:lims.field_lims_sample__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguito da (partner)"
 
 #. module: lims
 #: model:ir.model.fields,help:lims.field_lims_analyte__activity_type_icon
 #: model:ir.model.fields,help:lims.field_lims_sample__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Icona Font Awesome es. fa-tasks"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analyte_form_view
 msgid "General Information"
-msgstr ""
+msgstr "Informazioni generali"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__has_message
 #: model:ir.model.fields,field_description:lims.field_lims_sample__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Ha un messaggio"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_sample_type__hazardous
 #: model_terms:ir.ui.view,arch_db:lims.lims_sample_type_search_view
 msgid "Hazardous"
-msgstr ""
+msgstr "Pericoloso"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_sample__priority__2
 msgid "High"
-msgstr ""
+msgstr "Alta"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_sample__priority__1
 msgid "Highest"
-msgstr ""
+msgstr "Massima"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__id
@@ -334,101 +336,101 @@ msgstr ""
 #: model:ir.model.fields,field_description:lims.field_lims_sample_type__id
 #: model:ir.model.fields,field_description:lims.field_res_config_settings__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__activity_exception_icon
 #: model:ir.model.fields,field_description:lims.field_lims_sample__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Icona"
 
 #. module: lims
 #: model:ir.model.fields,help:lims.field_lims_analyte__activity_exception_icon
 #: model:ir.model.fields,help:lims.field_lims_sample__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Icona per indicare un'attività eccezione."
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__identifier
 #: model:ir.model.fields,field_description:lims.field_lims_sample__identifier
 msgid "Identifier"
-msgstr ""
+msgstr "Identificativo"
 
 #. module: lims
 #: model:ir.model.fields,help:lims.field_lims_analyte__message_needaction
 #: model:ir.model.fields,help:lims.field_lims_sample__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: lims
 #: model:ir.model.fields,help:lims.field_lims_analyte__message_has_error
 #: model:ir.model.fields,help:lims.field_lims_sample__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_sample__interpretation
 #: model_terms:ir.ui.view,arch_db:lims.lims_sample_form_view
 msgid "Interpretation"
-msgstr ""
+msgstr "Interpretazione"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_sample__state__invalid
 msgid "Invalid"
-msgstr ""
+msgstr "Non valido"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__message_is_follower
 #: model:ir.model.fields,field_description:lims.field_lims_sample__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Segue"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_search_view
 msgid "Items rejected"
-msgstr ""
+msgstr "Elementi respinti"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_search_view
 msgid "Items to be verified"
-msgstr ""
+msgstr "Elementi da verificare"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_search_view
 msgid "Items to receive"
-msgstr ""
+msgstr "Elementi da ricevere"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_search_view
 msgid "Items to work on"
-msgstr ""
+msgstr "Elementi da lavorare"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_search_view
 msgid "Items verified"
-msgstr ""
+msgstr "Elementi verificati"
 
 #. module: lims
 #: model:ir.module.category,name:lims.ir_module_category_lims
 #: model:ir.ui.menu,name:lims.lims_root
 #: model:res.groups.privilege,name:lims.res_groups_privilege_lims
 msgid "LIMS"
-msgstr ""
+msgstr "LIMS"
 
 #. module: lims
 #: model:res.groups,name:lims.group_lims_base
 msgid "LIMS Base Root Menu"
-msgstr ""
+msgstr "Menu radice base LIMS"
 
 #. module: lims
 #: model:ir.actions.report,name:lims.lims_sample_report
 msgid "LIMS Sample Report"
-msgstr ""
+msgstr "Resoconto campione LIMS"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.res_config_settings_view_form
 msgid "Laboratory"
-msgstr ""
+msgstr "Laboratorio"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__write_uid
@@ -438,7 +440,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:lims.field_lims_sample__write_uid
 #: model:ir.model.fields,field_description:lims.field_lims_sample_type__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__write_date
@@ -448,161 +450,161 @@ msgstr ""
 #: model:ir.model.fields,field_description:lims.field_lims_sample__write_date
 #: model:ir.model.fields,field_description:lims.field_lims_sample_type__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: lims
 #: model:ir.model,name:lims.model_lims_analyte
 msgid "Lims Analyte"
-msgstr ""
+msgstr "Analite LIMS"
 
 #. module: lims
 #: model:ir.model,name:lims.model_lims_analyte_option
 msgid "Lims Analyte Option"
-msgstr ""
+msgstr "Opzione analite LIMS"
 
 #. module: lims
 #: model:ir.model,name:lims.model_lims_analyte_specs
 msgid "Lims Analyte Specs"
-msgstr ""
+msgstr "Specifiche analite LIMS"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_sample__priority__4
 msgid "Low"
-msgstr ""
+msgstr "Bassa"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_sample__priority__5
 msgid "Lowest"
-msgstr ""
+msgstr "Minore"
 
 #. module: lims
 #: model:res.groups,name:lims.group_lims_manager
 msgid "Manager"
-msgstr ""
+msgstr "Responsabile"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte_specs__max_operator
 msgid "Max Operator"
-msgstr ""
+msgstr "Operatore massimo"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte_specs__max_value
 msgid "Max Value"
-msgstr ""
+msgstr "Valore massimo"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte_specs__max_warning_value
 msgid "Max Warning Value"
-msgstr ""
+msgstr "Valore avviso massimo"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analysis__value_state__max
 msgid "Maximum"
-msgstr ""
+msgstr "Massimo"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analysis__value_state__max_warning
 msgid "Maximum Warning"
-msgstr ""
+msgstr "Avviso massimo"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__message_has_error
 #: model:ir.model.fields,field_description:lims.field_lims_sample__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Errore di consegna messaggio"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__message_ids
 #: model:ir.model.fields,field_description:lims.field_lims_sample__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Messaggi"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte_specs__min_operator
 msgid "Min Operator"
-msgstr ""
+msgstr "Operatore minimo"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte_specs__min_value
 msgid "Min Value"
-msgstr ""
+msgstr "Valore minimo"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte_specs__min_warning_value
 msgid "Min Warning Value"
-msgstr ""
+msgstr "Valore avviso minimo"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analysis__value_state__min
 msgid "Minimum"
-msgstr ""
+msgstr "Minimo"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analysis__value_state__min_warning
 msgid "Minimum Warning"
-msgstr ""
+msgstr "Avviso minimo"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analyte__result_type__multiselection
 msgid "Multi-selection"
-msgstr ""
+msgstr "Multisessione"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analyte__result_type__multiselection-check
 msgid "Multi-selection with checks"
-msgstr ""
+msgstr "Multisessione con controlli"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__my_activity_date_deadline
 #: model:ir.model.fields,field_description:lims.field_lims_sample__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "Scadenza mia attività"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_sample_report_template
 msgid "My Sample Report"
-msgstr ""
+msgstr "Mio resoconto campione"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__name
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__name
 #: model:ir.model.fields,field_description:lims.field_lims_sample_type__name
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__activity_date_deadline
 #: model:ir.model.fields,field_description:lims.field_lims_sample__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Scadenza prossima attività"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__activity_summary
 #: model:ir.model.fields,field_description:lims.field_lims_sample__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Riepilogo prossima attività"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__activity_type_id
 #: model:ir.model.fields,field_description:lims.field_lims_sample__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Tipo prossima attività"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_sample__priority__3
 msgid "Normal"
-msgstr ""
+msgstr "Normale"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analysis__display_type__line_note
 msgid "Note"
-msgstr ""
+msgstr "Nota"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__message_needaction_counter
 #: model:ir.model.fields,field_description:lims.field_lims_sample__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Numero di azioni"
 
 #. module: lims
 #: model:ir.model.fields,help:lims.field_lims_analyte__precision_digits
@@ -610,119 +612,121 @@ msgid ""
 "Number of decimals to consider when comparing numeric results with\n"
 "        specifications. Ignored for other result types."
 msgstr ""
+"Numero di cifre decimali da considerare quando si confrontano i risultati \n"
+"        numerici con le specifiche. Ignorato per altri tipi di risultato."
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__message_has_error_counter
 #: model:ir.model.fields,field_description:lims.field_lims_sample__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Numero di errori"
 
 #. module: lims
 #: model:ir.model.fields,help:lims.field_lims_analyte__message_needaction_counter
 #: model:ir.model.fields,help:lims.field_lims_sample__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "Numero di messaggi che richiedono un'azione"
 
 #. module: lims
 #: model:ir.model.fields,help:lims.field_lims_analyte__message_has_error_counter
 #: model:ir.model.fields,help:lims.field_lims_sample__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Numero di messaggi con errore di consegna"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analyte__result_type__float
 msgid "Numeric"
-msgstr ""
+msgstr "Numerico"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__option_ids
 msgid "Option"
-msgstr ""
+msgstr "Opzione"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analyte_form_view
 msgid "Options"
-msgstr ""
+msgstr "Opzioni"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_sample__partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__precision_digits
 msgid "Precision Digits"
-msgstr ""
+msgstr "Cifre precisione"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_sample__priority
 msgid "Priority"
-msgstr ""
+msgstr "Priorità"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__progress
 #: model:ir.model.fields,field_description:lims.field_lims_sample__progress
 msgid "Progress"
-msgstr ""
+msgstr "Avanzamento"
 
 #. module: lims
 #: model:res.groups,name:lims.group_lims_publisher
 msgid "Publisher"
-msgstr ""
+msgstr "Editore"
 
 #. module: lims
 #. odoo-python
 #: code:addons/lims/models/lims_analysis.py:0
 msgid "RV: "
-msgstr ""
+msgstr "RV: "
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_sample_form_view
 msgid "Receive"
-msgstr ""
+msgstr "Ricevi"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_sample__state__received
 msgid "Received"
-msgstr ""
+msgstr "Ricevuto"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_sample__received_date
 msgid "Received Date"
-msgstr ""
+msgstr "Data ricezione"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analysis__state__registered
 #: model:ir.model.fields.selection,name:lims.selection__lims_sample__state__registered
 msgid "Registered"
-msgstr ""
+msgstr "Registrato"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_list_base_view
 msgid "Reject"
-msgstr ""
+msgstr "Respingi"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analysis__state__rejected
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_search_view
 msgid "Rejected"
-msgstr ""
+msgstr "Respinta"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__activity_user_id
 #: model:ir.model.fields,field_description:lims.field_lims_sample__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Utente responsabile"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__result_type
 msgid "Result Type"
-msgstr ""
+msgstr "Tipo risultato"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_list_base_view
 msgid "Retract"
-msgstr ""
+msgstr "Ritrai"
 
 #. module: lims
 #: model:ir.actions.act_window,name:lims.lims_sample_act_window
@@ -731,12 +735,12 @@ msgstr ""
 #: model:ir.ui.menu,name:lims.lims_sample_root
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_search_view
 msgid "Sample"
-msgstr ""
+msgstr "Campione"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_sample__sample_date
 msgid "Sample Date"
-msgstr ""
+msgstr "Data campione"
 
 #. module: lims
 #: model:ir.actions.act_window,name:lims.lims_sample_type_act_window
@@ -744,75 +748,75 @@ msgstr ""
 #: model:ir.model.fields,field_description:lims.field_lims_analyte_specs__sample_type_id
 #: model:ir.model.fields,field_description:lims.field_lims_sample__sample_type_id
 msgid "Sample Type"
-msgstr ""
+msgstr "Tipo campione"
 
 #. module: lims
 #: model:ir.ui.menu,name:lims.lims_sample_type_menu
 msgid "Sample Types"
-msgstr ""
+msgstr "Tipi campione"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_sample__state__due
 msgid "Sample due"
-msgstr ""
+msgstr "Campione richiesto"
 
 #. module: lims
 #: model:ir.model.constraint,message:lims.constraint_lims_sample_identifier_unique
 msgid "Sample identifier must be unique"
-msgstr ""
+msgstr "L'identificatore del campione deve essere univoco"
 
 #. module: lims
 #: model:res.groups,name:lims.group_lims_sampler
 msgid "Sampler"
-msgstr ""
+msgstr "Campionatore"
 
 #. module: lims
 #: model:ir.ui.menu,name:lims.lims_sample_menu
 msgid "Samples"
-msgstr ""
+msgstr "Campioni"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_sample__state__scheduled_sampling
 msgid "Scheduled Sampling"
-msgstr ""
+msgstr "Campionatura pianificata"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analysis__display_type__line_section
 msgid "Section"
-msgstr ""
+msgstr "Sezione"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analyte__result_type__selection
 msgid "Selection"
-msgstr ""
+msgstr "Selezione"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__sequence
 #: model:ir.model.fields,field_description:lims.field_lims_analyte_option__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sequenza"
 
 #. module: lims
 #: model:ir.actions.act_window,name:lims.action_lims_config
 #: model:ir.ui.menu,name:lims.lims_settings_menu
 msgid "Settings"
-msgstr ""
+msgstr "Impostazioni"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__specification_ids
 msgid "Specification"
-msgstr ""
+msgstr "Specifiche"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analyte_form_view
 msgid "Specifications"
-msgstr ""
+msgstr "Specifiche"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__state
 #: model:ir.model.fields,field_description:lims.field_lims_sample__state
 msgid "State"
-msgstr ""
+msgstr "Stato"
 
 #. module: lims
 #: model:ir.model.fields,help:lims.field_lims_analyte__activity_state
@@ -823,150 +827,154 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Stato in base alle attività\n"
+"Scaduto: la data richiesta è trascorsa\n"
+"Oggi: la data attività è oggi\n"
+"Pianificato: attività future."
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analyte__result_type__char
 msgid "String"
-msgstr ""
+msgstr "Stringa"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__submitted_date
 msgid "Submitted Date"
-msgstr ""
+msgstr "Data inserimento"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analysis__display_type__line_subsection
 msgid "Subsection"
-msgstr ""
+msgstr "Sottosezione"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analyte__result_type__text
 msgid "Text"
-msgstr ""
+msgstr "Testo"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analysis__state__to_analyze
 msgid "To Analyze"
-msgstr ""
+msgstr "Da analizzare"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_search_view
 msgid "To analyze"
-msgstr ""
+msgstr "Da analizzare"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analysis__state__to_be_verified
 #: model:ir.model.fields.selection,name:lims.selection__lims_sample__state__to_be_verified
 msgid "To be verified"
-msgstr ""
+msgstr "Da verificare"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_search_view
 msgid "To receive"
-msgstr ""
+msgstr "Da ricevere"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_search_view
 msgid "To verify"
-msgstr ""
+msgstr "Da verificare"
 
 #. module: lims
 #: model:ir.model.fields,help:lims.field_lims_analyte__activity_exception_decoration
 #: model:ir.model.fields,help:lims.field_lims_sample__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tipo di attività eccezione sul record."
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_res_config_settings__lims_unforce_double_verification_manager
 msgid "Unforce double verification for managers"
-msgstr ""
+msgstr "Non forzare doppia verifica per i responsabili"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__uom_id
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__uom_id
 msgid "Uom"
-msgstr ""
+msgstr "UdM"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analysis__value_state__valid
 msgid "Valid"
-msgstr ""
+msgstr "Valido"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__value
 #: model:ir.model.fields,field_description:lims.field_lims_analyte_option__value
 msgid "Value"
-msgstr ""
+msgstr "Valore"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__value_state
 msgid "Value State"
-msgstr ""
+msgstr "Stato valore"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__verification_date
 #: model:ir.model.fields,field_description:lims.field_lims_sample__verification_date
 msgid "Verification Date"
-msgstr ""
+msgstr "Data verifica"
 
 #. module: lims
 #: model:ir.model.fields.selection,name:lims.selection__lims_analysis__state__verified
 #: model:ir.model.fields.selection,name:lims.selection__lims_sample__state__verified
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_search_view
 msgid "Verified"
-msgstr ""
+msgstr "Verificato"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analysis__verified_by
 msgid "Verified By"
-msgstr ""
+msgstr "Verificata da"
 
 #. module: lims
 #: model:res.groups,name:lims.group_lims_verifier
 msgid "Verifier"
-msgstr ""
+msgstr "Verificatore"
 
 #. module: lims
 #: model_terms:ir.ui.view,arch_db:lims.lims_analysis_list_base_view
 msgid "Verify"
-msgstr ""
+msgstr "Verifica"
 
 #. module: lims
 #: model:ir.model.fields,field_description:lims.field_lims_analyte__website_message_ids
 #: model:ir.model.fields,field_description:lims.field_lims_sample__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Messaggi sito web"
 
 #. module: lims
 #: model:ir.model.fields,help:lims.field_lims_analyte__website_message_ids
 #: model:ir.model.fields,help:lims.field_lims_sample__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Cronologia comunicazioni sito web"
 
 #. module: lims
 #: model:ir.model.fields,help:lims.field_lims_analyte__autoverify
 msgid "Whether the analysis can be verified by the user if he is a verifier."
-msgstr ""
+msgstr "Se una analisi può essere verificata dall'utente se è un verificatore."
 
 #. module: lims
 #. odoo-python
 #: code:addons/lims/models/lims_analysis.py:0
 msgid "You are not allowed to analyze this"
-msgstr ""
+msgstr "Non si è autorizzati ad analizzarlo"
 
 #. module: lims
 #. odoo-python
 #: code:addons/lims/models/lims_analysis.py:0
 msgid "You are not allowed to retract an analysis to be verified"
-msgstr ""
+msgstr "Non è consentito ritirare un'analisi da verificare"
 
 #. module: lims
 #. odoo-python
 #: code:addons/lims/models/lims_analysis.py:0
 msgid "You are not allowed to verify an analysis"
-msgstr ""
+msgstr "Non si è abilitati a verificare un'analisi"
 
 #. module: lims
 #: model:uom.uom,name:lims.product_uom_mg
 msgid "mg"
-msgstr ""
+msgstr "mg"
