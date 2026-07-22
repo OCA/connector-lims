@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2026 Gray Matter Logic (<https://www.graymatterlogic.com>).
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo noupdate="1">
+    <record id="demo_purchase_order_line_lims" model="purchase.order.line">
+        <field name="order_id" ref="demo_purchase_order_lims" />
+        <field name="product_id" ref="demo_product_lab_reagent" />
+        <field name="name">Lab Reagent (Demo)</field>
+        <field name="product_qty">2</field>
+        <field name="price_unit">20.0</field>
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field
+            name="date_planned"
+            eval="DateTime.today().strftime('%Y-%m-%d %H:%M:%S')"
+        />
+    </record>
+</odoo>

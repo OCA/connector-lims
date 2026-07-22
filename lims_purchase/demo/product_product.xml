@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2026 Gray Matter Logic (<https://www.graymatterlogic.com>).
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo noupdate="1">
+    <record id="demo_product_lab_reagent" model="product.product">
+        <field name="name">Lab Reagent (Demo)</field>
+        <field name="type">consu</field>
+        <field name="purchase_ok" eval="True" />
+        <field name="list_price">25.0</field>
+        <field name="standard_price">20.0</field>
+    </record>
+</odoo>
