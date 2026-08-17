@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2025 Open Source Integrators
+     Copyright (C) 2026 Gray Matter Logic (<https://www.graymatterlogic.com>).
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record id="view_lims_sample_form_inherit_stock" model="ir.ui.view">
+        <field name="name">lims.sample.form.inherit.stock</field>
+        <field name="model">lims.sample</field>
+        <field name="inherit_id" ref="lims.lims_sample_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_open_lot"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-barcode"
+                    invisible="not lot_id"
+                >
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Lot / Serial</span>
+                    </div>
+                </button>
+                <button
+                    name="action_view_stock_moves"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-exchange"
+                    invisible="not lot_id"
+                >
+                    <field
+                        name="move_line_count"
+                        widget="statinfo"
+                        string="Move Lines"
+                    />
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="product_id" />
+                <field name="lot_id" />
+                <field name="location_id" readonly="1" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_lims_sample_list_inherit_stock" model="ir.ui.view">
+        <field name="name">lims.sample.list.inherit.stock</field>
+        <field name="model">lims.sample</field>
+        <field name="inherit_id" ref="lims.lims_sample_list_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//list/field[@name='partner_id']" position="after">
+                <field name="product_id" optional="show" />
+                <field name="lot_id" optional="show" />
+                <field name="location_id" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
