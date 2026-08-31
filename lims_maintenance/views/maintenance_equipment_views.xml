@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2025 Open Source Integrators
+     Copyright (C) 2026 Gray Matter Logic (<https://www.graymatterlogic.com>).
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record id="view_maintenance_equipment_form_inherit_lims" model="ir.ui.view">
+        <field name="name">maintenance.equipment.form.lims</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="is_lims_instrument" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_lims_instrument_equipment_list" model="ir.ui.view">
+        <field name="name">maintenance.equipment.lims.list</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="category_id" />
+                <field name="technician_user_id" />
+                <field name="is_lims_instrument" column_invisible="True" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_lims_instrument_equipment_search" model="ir.ui.view">
+        <field name="name">maintenance.equipment.lims.search</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="category_id" />
+                <field name="technician_user_id" />
+                <group>
+                    <filter
+                        name="groupby_category"
+                        string="Category"
+                        context="{'group_by': 'category_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_lims_instrument" model="ir.actions.act_window">
+        <field name="name">Instruments</field>
+        <field name="res_model">maintenance.equipment</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[("is_lims_instrument", "=", True)]</field>
+        <field name="context">{"default_is_lims_instrument": True}</field>
+        <field name="search_view_id" ref="view_lims_instrument_equipment_search" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a maintenance equipment and mark it as a LIMS instrument.
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2025 Open Source Integrators
+     Copyright (C) 2026 Gray Matter Logic (<https://www.graymatterlogic.com>).
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <menuitem
+        id="menu_lims_instrument"
+        name="Instruments"
+        parent="lims.lims_root"
+        action="action_lims_instrument"
+        sequence="40"
+        groups="lims.group_lims_base"
+    />
+</odoo>

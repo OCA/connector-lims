@@ -1,0 +1,4 @@
+- Rodrigo Madrid <rmadrid@opensourceintegrators.com>
+- Adriana Alpizar <aalpizar@opensourceintegrators.com>
+- Nikul Chaudhary <nchaudhary@opensourceintegrators.com>
+- Maxime Chambreuil <maxime.chambreuil@graymatterlogic.com> (Gray Matter Logic)
