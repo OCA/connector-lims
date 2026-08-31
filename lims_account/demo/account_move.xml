@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2026 Gray Matter Logic (<https://www.graymatterlogic.com>).
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo noupdate="1">
+    <record id="demo_invoice_lims_sample" model="account.move">
+        <field name="partner_id" ref="demo_customer_lims_billing" />
+        <field name="move_type">out_invoice</field>
+        <field name="lims_sample_ids" eval="[(4, ref('demo_lims_sample_account'))]" />
+        <field
+            name="invoice_line_ids"
+            eval="[
+                (0, 0, {
+                    'name': 'Blood analysis',
+                    'quantity': 1,
+                    'price_unit': 150,
+                    'lims_analyte_ids': [(4, ref('lims.lims_ph'))],
+                }),
+            ]"
+        />
+    </record>
+</odoo>

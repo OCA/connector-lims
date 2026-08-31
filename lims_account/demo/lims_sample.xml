@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2026 Gray Matter Logic (<https://www.graymatterlogic.com>).
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo noupdate="1">
+    <record id="demo_lims_sample_account" model="lims.sample">
+        <field name="sample_type_id" ref="lims.lims_blood_sample_type" />
+        <field name="partner_id" ref="demo_customer_lims_billing" />
+        <field name="priority">3</field>
+    </record>
+</odoo>
