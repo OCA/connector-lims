@@ -35,11 +35,12 @@ LIMS Sale
 Create LIMS samples automatically when sales orders are confirmed.
 
 Configure each product with LIMS Tracking and LIMS Sample Type. On the
-sale order line, select the analytes (parameters) to analyze. Tracking
-modes: none, per order, per line, or per quantity.
+sale order line, select the analytes (parameters) to invoice/analyze.
+Tracking modes: none, per order, per line, or per quantity.
 
-On confirmation, samples are linked to the sales order with one analysis
-per analyte. Smart buttons connect the sales order and related samples.
+On confirmation, samples are linked to one or more sales orders (M2M),
+and each analysis is linked to the sale order line that sold that
+analyte. Smart buttons connect the sales order and related samples.
 
 **Table of contents**
 
@@ -57,10 +58,13 @@ Usage
 =====
 
 1. Create a sales order with products configured for LIMS.
-2. On each line, set the **LIMS Analytes** to the parameters to analyze.
+2. On each line, set the **LIMS Analytes** to the parameters to analyze
+   (defaults from the product when available).
 3. Confirm the sales order.
 4. Open **LIMS Samples** from the smart button on the sales order.
-5. From a sample, use **Sale Order** to return to the originating order.
+5. From a sample, use **Sale Orders** to open related sales orders.
+6. Each analysis on the sample references the sale order line that sold
+   it.
 
 Bug Tracker
 ===========
@@ -89,6 +93,7 @@ Contributors
 - Hardik Suthar hsuthar@opensourceintegrators.com
 - Maxime Chambreuil maxime.chambreuil@graymatterlogic.com (Gray Matter
   Logic)
+- Assisted-by: Cursor
 
 Maintainers
 -----------

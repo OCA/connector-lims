@@ -377,10 +377,11 @@ ul.auto-toc {
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/license-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/connector-lims/tree/19.0/lims_sale"><img alt="OCA/connector-lims" src="https://img.shields.io/badge/github-OCA%2Fconnector--lims-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/connector-lims-19-0/connector-lims-19-0-lims_sale"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/connector-lims&amp;target_branch=19.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>Create LIMS samples automatically when sales orders are confirmed.</p>
 <p>Configure each product with LIMS Tracking and LIMS Sample Type. On the
-sale order line, select the analytes (parameters) to analyze. Tracking
-modes: none, per order, per line, or per quantity.</p>
-<p>On confirmation, samples are linked to the sales order with one analysis
-per analyte. Smart buttons connect the sales order and related samples.</p>
+sale order line, select the analytes (parameters) to invoice/analyze.
+Tracking modes: none, per order, per line, or per quantity.</p>
+<p>On confirmation, samples are linked to one or more sales orders (M2M),
+and each analysis is linked to the sale order line that sold that
+analyte. Smart buttons connect the sales order and related samples.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -407,10 +408,13 @@ Sample Type</strong>, and optionally <strong>LIMS Analytes</strong> on the <em>S
 <h2><a class="toc-backref" href="#toc-entry-2">Usage</a></h2>
 <ol class="arabic simple">
 <li>Create a sales order with products configured for LIMS.</li>
-<li>On each line, set the <strong>LIMS Analytes</strong> to the parameters to analyze.</li>
+<li>On each line, set the <strong>LIMS Analytes</strong> to the parameters to analyze
+(defaults from the product when available).</li>
 <li>Confirm the sales order.</li>
 <li>Open <strong>LIMS Samples</strong> from the smart button on the sales order.</li>
-<li>From a sample, use <strong>Sale Order</strong> to return to the originating order.</li>
+<li>From a sample, use <strong>Sale Orders</strong> to open related sales orders.</li>
+<li>Each analysis on the sample references the sale order line that sold
+it.</li>
 </ol>
 </div>
 <div class="section" id="bug-tracker">
@@ -438,6 +442,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li>Hardik Suthar <a class="reference external" href="mailto:hsuthar&#64;opensourceintegrators.com">hsuthar&#64;opensourceintegrators.com</a></li>
 <li>Maxime Chambreuil <a class="reference external" href="mailto:maxime.chambreuil&#64;graymatterlogic.com">maxime.chambreuil&#64;graymatterlogic.com</a> (Gray Matter
 Logic)</li>
+<li>Assisted-by: Cursor</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
